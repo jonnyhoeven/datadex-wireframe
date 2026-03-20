@@ -7,17 +7,16 @@ import subprocess
 
 CKAN_URL = os.environ.get('CKAN_SITE_URL', 'http://localhost:5000').rstrip('/')
 CKAN_INI = os.environ.get('CKAN_INI', '/srv/app/ckan.ini')
-CONFIG_FILE = os.environ.get('CONFIG_FILE', '/srv/app/portal-config.yaml')
+CONFIG_FILE = os.environ.get('CONFIG_FILE', '/docker-entrypoint.d/portal-config.yaml')
 CKAN_SYSADMIN_NAME = os.environ.get('CKAN_SYSADMIN_NAME', 'admin')
 CKAN_SYSADMIN_EMAIL = os.environ.get('CKAN_SYSADMIN_EMAIL', 'admin@example.com')
 CKAN_SYSADMIN_PASSWORD = os.environ.get('CKAN_SYSADMIN_PASSWORD', 'password')
-
-print("Successfully created SYSADMINHJSJHDJHJEHUHHELLO.")
+API_KEY = None
 
 try:
     cmd = ["ckan", "-c", CKAN_INI, "sysadmin", "add", CKAN_SYSADMIN_NAME, "email=" + CKAN_SYSADMIN_EMAIL,
-           "password=" + CKAN_SYSADMIN_PASSWORD, "--quiet"]
-    result = subprocess.run(cmd, capture_output=True, text=True)
+           "password=" + CKAN_SYSADMIN_PASSWORD]
+    result = subprocess.run(cmd, capture_output=True, text=True, input="y")
     if result.returncode == 0:
         print("Successfully created SYSADMIN.")
     else:
@@ -25,12 +24,12 @@ try:
 except Exception as e:
     print(f"Error generating SYSADMIN token: {e}")
 
-API_KEY = None
 try:
-    cmd = ["ckan", "-c", CKAN_INI, "user", "token", "add", CKAN_SYSADMIN_NAME, "setup", "--quiet"]
+    cmd = ["ckan", "-c", CKAN_INI, "user", "token", "add", CKAN_SYSADMIN_NAME, "setup"]
     result = subprocess.run(cmd, capture_output=True, text=True)
+    print(result.stdout)
     if result.returncode == 0:
-        API_KEY = result.stdout.strip()
+        API_KEY = result.stdout.split(":", 1)[1].strip()
         print("Successfully generated API token.")
     else:
         print(f"Failed to generate API token: {result.stderr}")
@@ -38,13 +37,12 @@ except Exception as e:
     print(f"Error generating API token: {e}")
 
 if not API_KEY:
-    print("Error: CKAN_API_KEY environment variable is not set and could not be generated.")
+    print("Error: Failed to generate API token, exiting.")
     sys.exit(1)
-
 
 def wait_for_ckan():
     print(f"Waiting for CKAN at {CKAN_URL}...")
-    for _ in range(30):
+    for _ in range(40):
         try:
             response = requests.get(f"{CKAN_URL}/api/3/action/status_show")
             if response.status_code == 200:
@@ -62,8 +60,13 @@ def call_action(action, data):
     url = f"{CKAN_URL}/api/3/action/{action}"
     try:
         response = requests.post(url, json=data, headers=headers)
+        if response.status_code != 200:
+            print(f"Error calling {action}: {response.status_code} {response.text}")
+        else:
+            print(response.json())
         return response.json()
     except Exception as e:
+        print(str(e))
         return {'success': False, 'error': {'message': str(e)}}
 
 
@@ -125,9 +128,23 @@ if __name__ == "__main__":
         print(f"Config file {CONFIG_FILE} not found. Skipping setup.")
         sys.exit(0)
 
+    try:
+        pid = os.fork()
+        if pid > 0:
+            print(f"Forked background process (PID: {pid}) for CKAN setup. Continuing container startup...")
+            sys.exit(0)
+    except OSError as e:
+        print(f"Fork failed: {e}")
+        sys.exit(1)
+
+    sys.stdout = open('/tmp/setup-portal.log', 'a')
+    sys.stderr = sys.stdout
+
     with open(CONFIG_FILE, 'r') as f:
         config_data = yaml.safe_load(f)
 
     if wait_for_ckan():
         setup_entities(config_data)
         print("Setup completed.")
+    else:
+        print("Setup failed because CKAN did not respond.")
