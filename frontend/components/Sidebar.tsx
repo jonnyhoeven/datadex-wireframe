@@ -8,7 +8,7 @@ export const ServicesCard: React.FC = () => (
         <div id="services-container" className="space-y-2">
             {['WMS', 'WFS', 'MVT'].map((service) => (
                 <button key={service} className="btn-outline">
-                    <FontAwesomeIcon icon={faArrowUpRightFromSquare} className="mr-3 text-gray-400 text-sm" />
+                    <FontAwesomeIcon icon={faArrowUpRightFromSquare} className="fa-solid mr-3 text-gray-400 text-sm" />
                     <span className="font-bold text-sm">{service}</span>
                 </button>
             ))}
