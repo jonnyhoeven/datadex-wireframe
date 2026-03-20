@@ -20,6 +20,11 @@ COPY requirements.txt /srv/app/requirements.txt
 RUN pip install --no-cache-dir -r /srv/app/requirements.txt
 RUN chown -R ckan:ckan /srv/app/src/ckan/ckan/public/base/i18n
 
+# Patch ckan/cli/plugin_info.py to fix inspect.getargspec error on Python 3.10
+# (https://github.com/ckan/ckan/pull/7334)
+#RUN sed -i 's/args_info = inspect.getargspec(fn)/args_info = inspect.getfullargspec(fn)/g' /srv/app/src/ckan/ckan/cli/plugin_info.py && \
+#    sed -i 's/args_info.keywords/args_info.varkw/g' /srv/app/src/ckan/ckan/cli/plugin_info.py
+
 # Return to ckan user (inherited from base image)
 USER ckan
 

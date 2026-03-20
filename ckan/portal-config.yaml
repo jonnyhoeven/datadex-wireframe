@@ -1,26 +1,52 @@
 organizations:
-  - name: "test-org"
+  - name: "test"
     title: "Test Organization"
     description: "An organization for testing purposes."
+  - name: "zuid-holland"
+    title: "Open-dataportaal Zuid Holland"
+    description: "Dataportaal lorum ipsum"
 
 groups:
-  - name: "test-group"
+  - name: "test"
     title: "Test Group"
-    description: "A group for testing purposes."
+    description: "A group for testing purposes.2"
 
 datasets:
-  - name: "test-dataset"
-    title: "Test Dataset"
-    notes: "A dataset for testing purposes."
-    owner_org: "test-org"
+  - name: "water"
+    title: "Water"
+    notes: "A GeoSpatial Dataset for testing purposes."
+    owner_org: "zuid-holland"
     groups:
-      - name: "test-group"
+      - name: "test"
     resources:
-      - name: "Sample CSV"
-        url: "https://example.com/data.csv"
-        format: "CSV"
+      - name: "WMS"
+        url: "https://geodata.zuid-holland.nl/geoserver/water/wms?service=WMS&version=1.3.0&request=GetCapabilities"
+        format: "WMS"
+      - name: "WFS"
+        url: "https://geodata.zuid-holland.nl/geoserver/water/wfs?service=WFS&version=1.3.0&request=GetCapabilities"
+        format: "WFS"
+  - name: "percelen-in-bezit-van-woningcorporaties"
+    title: "Percelen in bezit van woningcorporaties "
+    notes: "A GeoSpatial Dataset for testing purposes."
+    owner_org: "zuid-holland"
+    groups:
+      - name: "test"
+    resources:
+      - name: "WMS"
+        url: "https://geodata.zuid-holland.nl/geoserver/wonen/wms?service=WMS&version=1.3.0&request=GetCapabilities"
+        format: "WMS"
+      - name: "WFS"
+        url: "https://geodata.zuid-holland.nl/geoserver/wonen/wfs?service=WFS&version=2.0.0&request=GetCapabilities"
+        format: "WFS"
 
 harvesters:
+  - name: "test-harvester"
+    url: "https://demo.ckan.org"
+    type: "ckan"
+    owner_org: "test-org"
+    title: "Test Harvester"
+    description: "A harvester for demo.ckan.org."
+    frequency: "MANUAL"
   - name: "test-harvester"
     url: "https://demo.ckan.org"
     type: "ckan"

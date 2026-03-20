@@ -12,3 +12,4 @@ OWSLib
 lxml
 python-dateutil
 PyYAML
+ckanext-geoview @ git+https://github.com/ckan/ckanext-geoview.git
