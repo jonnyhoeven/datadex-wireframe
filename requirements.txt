@@ -1,0 +1,13 @@
+git+https://github.com/ckan/ckanext-spatial.git#egg=ckanext-spatial
+git+https://github.com/ckan/ckanext-harvest.git#egg=ckanext-harvest
+psycopg2-binary
+geojson
+requests
+six
+pika
+pysolr
+sqlalchemy-citext
+Shapely
+OWSLib
+lxml
+python-dateutil

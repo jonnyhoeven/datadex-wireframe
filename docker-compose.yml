@@ -1,0 +1,56 @@
+services:
+  ckan:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+      - solr
+      - redis
+    ports:
+      - "5000:5000"
+    environment:
+      - CKAN_SQLALCHEMY_URL=postgresql://ckan_default:${POSTGRES_PASSWORD}@db/ckan_default
+      - CKAN_SOLR_URL=http://solr:8983/solr/ckan
+      - CKAN_REDIS_URL=redis://redis:6379/1
+      - CKAN_DATADIC_URL=postgresql://datastore_default:${POSTGRES_PASSWORD}@db/datastore_default
+      - CKAN_SITE_URL=${CKAN_SITE_URL}
+      - CKAN_BEAKER_SESSION_SECRET=${CKAN_BEAKER_SESSION_SECRET}
+      - CKAN_INI=/srv/app/ckan.ini
+      - UWSGI_OPTS=--plugins python3 --http-socket [::]:5000 --wsgi-file /srv/app/wsgi.py --module wsgi:application --master --enable-threads --lazy-apps -p 2 -L -b 32768 --vacuum --harakiri 60
+    volumes:
+      - ./ckan.ini:/srv/app/ckan.ini
+      - ckan_storage:/var/lib/ckan
+    networks:
+      - ckan-network
+
+  db:
+    image: postgres:12-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_USER=ckan_default
+      - POSTGRES_DB=ckan_default
+    volumes:
+      - ./pg_data:/var/lib/postgresql/data
+      - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d:ro
+    networks:
+      - ckan-network
+
+  solr:
+    image: ckan/ckan-solr:2.10-solr9
+    networks:
+      - ckan-network
+
+  redis:
+    image: redis:6-alpine
+    networks:
+      - ckan-network
+
+networks:
+  ckan-network:
+    driver: bridge
+
+volumes:
+  ckan_storage:
