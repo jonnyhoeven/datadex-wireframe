@@ -30,24 +30,12 @@ npm install --global yarn
 yarn install
 ```
 
-or
-
-```bash
-npm install
-```
-
 ### 3. Run the Development Server
 
 Start the development server with:
 
 ```bash
 yarn dev
-```
-
-or
-
-```bash
-npm run dev
 ```
 
 The application will be available at [http://localhost:3000](http://localhost:3000).
