@@ -7,7 +7,7 @@ import subprocess
 
 CKAN_URL = os.environ.get('CKAN_SITE_URL', 'http://localhost:5000').rstrip('/')
 CKAN_INI = os.environ.get('CKAN_INI', '/srv/app/ckan.ini')
-CONFIG_FILE = os.environ.get('CONFIG_FILE', '/docker-entrypoint.d/portal-config.yaml')
+CONFIG_FILE = os.environ.get('CONFIG_FILE', '/srv/app/portal-config.yaml')
 CKAN_SYSADMIN_NAME = os.environ.get('CKAN_SYSADMIN_NAME', 'admin')
 CKAN_SYSADMIN_EMAIL = os.environ.get('CKAN_SYSADMIN_EMAIL', 'admin@example.com')
 CKAN_SYSADMIN_PASSWORD = os.environ.get('CKAN_SYSADMIN_PASSWORD', 'password')
