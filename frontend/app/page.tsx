@@ -50,8 +50,12 @@ const HomePage = () => {
                         <p className="text-blue-100 mb-6 leading-relaxed">
                             Het Data4OOV portaal draait op een robuuste CKAN backend. Applicaties kunnen data naadloos via de proxy benaderen op het <code>/api/ckan/</code> endpoint.
                         </p>
-                        <a href="/api/3/action/status_show" className="text-white font-semibold underline decoration-2 decoration-blue-300 hover:decoration-white flex items-center gap-1">
-                            Test de CKAN API proxy
+                        <a href="/api" className="text-white font-semibold hover:underline flex items-center gap-1">
+                            Gebruik de API tester
+                            <span aria-hidden="true">&rarr;</span>
+                        </a>
+                        <a href="/api/3/action/status_show" className="text-white font-semibold hover:underline flex items-center gap-1">
+                           Direct verbinden naar de CKAN API
                             <span aria-hidden="true">&rarr;</span>
                         </a>
                     </div>
