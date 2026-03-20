@@ -1,6 +1,8 @@
 # CKAN Project with Repository-Based Configuration and Custom Frontend
 
-This project is a Dockerized CKAN 2.10+ instance with a custom Next.js frontend designed for repository-based configuration. It follows Infrastructure as Code principles, where the entire portal state is defined by the files in this repository.
+This project is a Dockerized CKAN 2.10+ instance with a custom Next.js frontend designed for repository-based
+configuration. It follows Infrastructure as Code principles, where the entire portal state is defined by the files in
+this repository.
 
 ## Features
 
@@ -8,8 +10,8 @@ This project is a Dockerized CKAN 2.10+ instance with a custom Next.js frontend 
 - **Next.js Frontend**: Custom React-based interface (Data4OOV Catalogus).
 - **Dockerized Architecture**: Simplified setup using Docker Compose.
 - **Extensions Included**:
-  - `ckanext-spatial`: Geospatial capabilities.
-  - `ckanext-harvest`: Framework for harvesting datasets from other sources.
+    - `ckanext-spatial`: Geospatial capabilities.
+    - `ckanext-harvest`: Framework for harvesting datasets from other sources.
 - **Environment Driven**: Configuration via environment variables and a base `ckan.ini`.
 
 ## Project Structure
@@ -32,7 +34,8 @@ Follow these steps to set up the project on your local machine:
 
 ### 1. Configure Environment Variables
 
-Copy the example environment file and adjust any settings if necessary (the defaults are usually fine for local development):
+Copy the example environment file and adjust any settings if necessary (the defaults are usually fine for local
+development):
 
 ```bash
 cp .env.example .env
@@ -50,9 +53,11 @@ docker compose up frontend --force-recreate  --build
 
 ### 3. Initialize the Database and Automated Setup
 
-The portal is configured to automatically initialize the database, create a sysadmin user, and apply the portal configuration on startup.
+The portal is configured to automatically initialize the database, create a sysadmin user, and apply the portal
+configuration on startup.
 
 **Default Admin Credentials:**
+
 - **User**: `admin`
 - **Password**: `password`
 - **Email**: `admin@example.com`
@@ -62,12 +67,25 @@ These can be adjusted in `docker-compose.yml`.
 ### 4. Access the Portal
 
 The services will be available at:
+
 - **Frontend**: http://localhost:3000 (if running Next.js defaults)
 - **CKAN Backend**: http://localhost:5000
 
+### 5. Frontend development
+
+To develop the frontend:
+
+```bash
+yarn run dev
+```
+
+The rest is just fluff... containers, config, and scripts, see the individual
+services: [frontend](frontend), [ckan](ckan), [db](db).
+
 ## Infrastructure as Code: Configuring the Portal
 
-The state of the portal (organizations, groups, datasets, and harvesters) is defined in `portal-config.yaml`. This follows IaC principles, and the configuration is automatically applied when the CKAN container starts.
+The state of the portal (organizations, groups, datasets, and harvesters) is defined in `portal-config.yaml`. This
+follows IaC principles, and the configuration is automatically applied when the CKAN container starts.
 
 ### 1. Define your configuration
 
@@ -86,7 +104,7 @@ datasets:
   - name: "my-dataset"
     title: "My Dataset"
     owner_org: "my-org"
-    groups: [{name: "my-group"}]
+    groups: [ { name: "my-group" } ]
     resources:
       - name: "Data"
         url: "http://example.com/data.csv"
@@ -122,7 +140,8 @@ If you update `portal-config.yaml` while the container is running, you can:
 
 ## Configuration
 
-Most configuration settings can be managed via the `.env` file. These variables are passed to the `ckan.ini` file using placeholders like `${CKAN_SITE_URL}`.
+Most configuration settings can be managed via the `.env` file. These variables are passed to the `ckan.ini` file using
+placeholders like `${CKAN_SITE_URL}`.
 
 ## Volumes
 
