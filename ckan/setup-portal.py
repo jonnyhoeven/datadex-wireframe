@@ -12,6 +12,8 @@ CKAN_SYSADMIN_NAME = os.environ.get('CKAN_SYSADMIN_NAME', 'admin')
 CKAN_SYSADMIN_EMAIL = os.environ.get('CKAN_SYSADMIN_EMAIL', 'admin@example.com')
 CKAN_SYSADMIN_PASSWORD = os.environ.get('CKAN_SYSADMIN_PASSWORD', 'password')
 
+print("Successfully created SYSADMINHJSJHDJHJEHUHHELLO.")
+
 try:
     cmd = ["ckan", "-c", CKAN_INI, "sysadmin", "add", CKAN_SYSADMIN_NAME, "email=" + CKAN_SYSADMIN_EMAIL,
            "password=" + CKAN_SYSADMIN_PASSWORD, "--quiet"]

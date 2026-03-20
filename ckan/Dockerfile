@@ -24,5 +24,7 @@ RUN chown -R ckan:ckan /srv/app/src/ckan/ckan/public/base/i18n
 USER ckan
 
 # Add automated setup script
-COPY --chown=ckan:ckan docker-entrypoint.d/setup-portal.py /docker-entrypoint.d/setup-portal.py
+#COPY --chown=ckan:ckan portal-config.yaml /docker-entrypoint.d/portal-config.yaml
+COPY --chown=ckan:ckan setup-portal.py /docker-entrypoint.d/setup-portal.py
 RUN chmod +x /docker-entrypoint.d/setup-portal.py
+
