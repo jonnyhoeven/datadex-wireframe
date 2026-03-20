@@ -10,7 +10,7 @@ const Header = () => {
                 <button className="text-gray-500">
                     <FontAwesomeIcon icon={faMoon} />
                 </button>
-                <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center font-bold text-gray-600">BA</div>
+                <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center font-bold text-gray-600">DMO</div>
             </div>
         </header>
     );
