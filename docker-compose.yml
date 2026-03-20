@@ -43,8 +43,9 @@ services:
       - ./ckan/schema.yaml:/srv/app/schema.yaml:ro
       - ./ckan/portal-config.yaml:/docker-entrypoint.d/portal-config.yaml:ro
       - ./ckan/setup-portal.py:/srv/app/setup-portal.py:ro
-    tmpfs:
-      - /var/lib/ckan:uid=92,gid=92,mode=0777
+      - ./ckan/data:/var/lib/ckan
+    #tmpfs:
+    #  - /var/lib/ckan:uid=92,gid=92,mode=0777
     networks:
       - ckan-network
 
@@ -58,7 +59,8 @@ services:
       - POSTGRES_DB=${POSTGRES_DB:-ckan_default}
     volumes:
       - ./db/init-db.sh:/docker-entrypoint-initdb.d/init-db.sh:ro
-    tmpfs: /var/lib/postgresql/data
+      - ./db/data:/var/lib/postgresql/data:rw
+    #tmpfs: /var/lib/postgresql/data
     networks:
       - ckan-network
 
