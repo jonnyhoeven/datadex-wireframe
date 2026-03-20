@@ -1,0 +1,30 @@
+services:
+  demo:
+  tms:
+  wms:
+    md:
+      title: MapProxy WMS
+      abstract: This is the fantastic MapProxy.
+
+layers:
+  - name: osm
+    title: Omniscale OSM WMS - hosted by Omniscale
+    sources: [osm_cache]
+
+caches:
+  osm_cache:
+    grids: [webmercator]
+    sources: [osm_source]
+
+sources:
+  osm_source:
+    type: wms
+    wms_opts:
+      version: 1.1.1
+    req:
+      url: http://osm.omniscale.net/proxy/service?
+      layers: osm
+
+grids:
+    webmercator:
+        base: GLOBAL_WEBMERCATOR

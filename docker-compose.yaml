@@ -1,0 +1,37 @@
+services:
+  app-frontend:
+    build: .
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: "postgresql://user:pass@postgres-db:5432/gis_db?schema=public"
+      MAPPROXY_URL: "http://mapproxy:8080"
+      GEOSERVER_URL: "http://geoserver:8080/geoserver"
+      PORT: 3000
+      HOST: 0.0.0.0
+    depends_on:
+      - postgres-db
+
+  mapproxy:
+    image: kartoza/mapproxy
+    ports:
+      - "8081:8080"
+    volumes:
+      - ./mapproxy.yaml:/mapproxy/mapproxy.yaml
+
+  geoserver:
+    image: docker.osgeo.org/geoserver:2.28.0
+    ports:
+      - "8082:8080"
+    environment:
+      - INSTALL_EXTENSIONS=true
+
+  postgres-db:
+    image: postgis/postgis:18-3.6
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: gis_db

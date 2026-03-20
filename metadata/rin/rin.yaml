@@ -1,0 +1,50 @@
+---
+"Risico Index Natuurbranden (RIN)":
+  type: "Geo-dataset"
+  bron: "Geonovation/Nexpri"
+  classificatie: "Openbaar"
+  licentie: "-"
+  themas:
+    - naam: "Natuurbrandrisico"
+      waarde: 10
+    - naam: "Operationele bedrijfsvoering"
+      waarde: 6
+    - naam: "Infrastructuur drinkwater"
+      waarde: 4
+  beschrijving: |
+    De Risico Index Natuurbranden werkt met 17 parameters die duiding geven aan de kans op het ontstaan van een 
+    onbeheersbare natuurbrand. De opgetelde scores van de parameters bepalen het risico in een gebied per vierkante kilometer. 
+    Deze duiding krijgt een 'risicokleur': rood voor een risicovol gedeelte en groen voor weinig risico's bijvoorbeeld. 
+    Op basis van de RIN maken betrokken partijen keuzes voor een gebiedsgerichte aanpak. 
+    Bijvoorbeeld het plaatsen van een extra bluswatervoorziening.
+  links:
+    - label: "Informatie"
+      url: "https://nipv.nl/informatievoorziening/voorzieningen/risico-index-natuurbranden/"
+    - label: "Rekenregels"
+      url: "https://www.gitlab.com/nipv/rin/RIN_Rekenregels_v1.3.pdf"
+    - label: "Documentatie (pdf)"
+      url: "https://nipv.nl/wp-content/uploads/2022/03/202003-BwNL-IFV-Factsheet-Risico-Index-Natuurbranden.pdf"
+  services:
+    - "WMS"
+    - "WFS"
+    - "MVT"
+  status:
+    bijwerk_frequentie: "Dagelijks"
+    metadata_laatste_wijziging: "12-06-2025"
+    gegevens_laatste_wijziging: "01-02-2026"
+    #status_metadata: "Consistent"
+    #status_gegevens: "Actueel"
+  keywords:
+    - "risico index natuurbrand"
+    - "brandveiligheid"
+    - "rampenbestrijding"
+    - "crisismanagement"
+    - "noodplanning"
+    - "brandweer"
+    - "vegetatie"
+    - "brandbaarheid"
+    - "blusvoorzieningen"
+  gerelateerde_objecten:
+    - "Object A"
+    - "Object B"
+    - "Object C"
