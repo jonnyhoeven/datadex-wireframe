@@ -71,17 +71,6 @@ The services will be available at:
 - **Frontend**: http://localhost:3000 (if running Next.js defaults)
 - **CKAN Backend**: http://localhost:5000
 
-### 5. Frontend development
-
-To develop the frontend:
-
-```bash
-yarn run dev
-```
-
-The rest is just fluff... containers, config, and scripts, see the individual
-services: [frontend](frontend), [ckan](ckan), [db](db).
-
 ## Infrastructure as Code: Configuring the Portal
 
 The state of the portal (organizations, groups, datasets, and harvesters) is defined in `portal-config.yaml`. This
