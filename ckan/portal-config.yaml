@@ -1,7 +1,7 @@
 organizations:
   - name: "test"
     title: "Test Organization"
-    description: "An organization for testing purposes."
+    description: "An Whooptidoo organization for testing purposes."
   - name: "zuid-holland"
     title: "Open-dataportaal Zuid Holland"
     description: "Dataportaal lorum ipsum"
@@ -9,7 +9,7 @@ organizations:
 groups:
   - name: "test"
     title: "Test Group"
-    description: "A group for testing purposes.2"
+    description: "A group for testing purposes."
 
 datasets:
   - name: "water"
