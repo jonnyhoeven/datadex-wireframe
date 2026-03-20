@@ -1,2 +1,4 @@
 .idea
 .env
+/frontend/.next/
+/frontend/node_modules/
