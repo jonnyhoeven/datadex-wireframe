@@ -48,7 +48,7 @@ const ApiTester = () => {
 
     return (
         <>
-            <div className="lg:w-2/3">
+            <div className="lg:w-1/1">
                 <div className="card">
                     <h2 className="text-2xl font-bold mb-6">CKAN API Tester</h2>
                     
@@ -124,7 +124,6 @@ const ApiTester = () => {
                     )}
                 </div>
             </div>
-            <Sidebar />
         </>
     );
 };
