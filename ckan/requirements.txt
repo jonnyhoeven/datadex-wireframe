@@ -13,5 +13,5 @@ PyYAML
 
 ckanext-spatial @ git+https://github.com/ckan/ckanext-spatial.git
 ckanext-harvest @ git+https://github.com/ckan/ckanext-harvest.git
-ckanext-geoview @ git+https://github.com/ckan/ckanext-geoview.git
-ckanext-scheming
+ckanext-scheming @ git+https://github.com/ckan/ckanext-scheming.git#egg=ckanext-scheming
+ckanext-geoview
