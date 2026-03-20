@@ -12,6 +12,8 @@ services:
       - API_KEY=
     networks:
       - ckan-network
+    profiles:
+      - ignore  # This excludes it from a standard 'up' when you want to run yarn dev with the backend. Disable this line to run the container.
   ckan:
     build:
       context: ckan
@@ -38,6 +40,7 @@ services:
       - POSTGRES_USER=${POSTGRES_USER:-ckan_default}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-password}
       - UWSGI_OPTS=--plugins python3 --http-socket [::]:5000 --wsgi-file /srv/app/wsgi.py --module wsgi:application --master --enable-threads --lazy-apps -p 2 -L -b 32768 --vacuum --harakiri 60
+      - CKAN_BASE_URL=http://ckan:5000/
     volumes:
       - ./ckan/ckan.ini:/srv/app/ckan.ini:ro
       - ./ckan/schema.yaml:/srv/app/schema.yaml:ro
