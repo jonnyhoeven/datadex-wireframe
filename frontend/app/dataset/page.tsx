@@ -30,6 +30,7 @@ const Dataset = () => {
             <div className="lg:w-2/3">
                 <div className="card">
                     <h2 className="text-2xl font-bold mb-6">{datasetData.title}</h2>
+
                     <div className="space-y-4 mb-8">
                         <InfoRow label="Type" value={datasetData.type} />
                         <InfoRow label="Bron" value={datasetData.source} />
