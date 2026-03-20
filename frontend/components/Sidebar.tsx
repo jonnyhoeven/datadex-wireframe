@@ -1,4 +1,6 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowUpRightFromSquare, faMap, faTable, faCloudArrowDown, faLink } from '@fortawesome/free-solid-svg-icons';
 
 export const ServicesCard: React.FC = () => (
     <div className="card">
@@ -6,7 +8,7 @@ export const ServicesCard: React.FC = () => (
         <div id="services-container" className="space-y-2">
             {['WMS', 'WFS', 'MVT'].map((service) => (
                 <button key={service} className="btn-outline">
-                    <i className="fa-solid fa-arrow-up-right-from-square mr-3 text-gray-400 text-sm"></i>
+                    <FontAwesomeIcon icon={faArrowUpRightFromSquare} className="mr-3 text-gray-400 text-sm" />
                     <span className="font-bold text-sm">{service}</span>
                 </button>
             ))}
@@ -21,15 +23,15 @@ export const PreviewCard: React.FC = () => (
     <div className="card">
         <h3 className="font-bold mb-4 text-gray-700">Preview</h3>
         <button className="btn-outline">
-            <i className="fa-solid fa-map mr-3 text-gray-400 text-sm"></i>
+            <FontAwesomeIcon icon={faMap} className="mr-3 text-gray-400 text-sm" />
             <span className="font-bold text-sm">Kaart</span>
         </button>
         <button className="btn-outline">
-            <i className="fa-solid fa-table mr-3 text-gray-400 text-sm"></i>
+            <FontAwesomeIcon icon={faTable} className="mr-3 text-gray-400 text-sm" />
             <span className="font-bold text-sm">Table</span>
         </button>
         <button className="btn-outline">
-            <i className="fa-solid fa-cloud-arrow-down mr-3 text-gray-400 text-sm"></i>
+            <FontAwesomeIcon icon={faCloudArrowDown} className="mr-3 text-gray-400 text-sm" />
             <span className="font-bold text-sm">Download</span>
         </button>
     </div>
@@ -72,7 +74,7 @@ export const RelatedObjectsCard: React.FC = () => (
             {['Object A', 'Object B', 'Object C'].map((obj) => (
                 <li key={obj}>
                     <a href="#" className="flex items-center">
-                        {obj} <i className="fa-solid fa-link ml-2 text-xs text-gray-400"></i>
+                        {obj} <FontAwesomeIcon icon={faLink} className="ml-2 text-xs text-gray-400" />
                     </a>
                 </li>
             ))}
