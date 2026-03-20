@@ -1,11 +1,11 @@
 # Stage 1: Build the Next.js application
-FROM node:18-alpine AS builder
+FROM node:24-alpine AS builder
 
 WORKDIR /app
 
 # Install dependencies
-COPY package.json yarn.lock ./
-RUN yarn install --frozen-lockfile
+COPY package.json ./
+RUN yarn install
 
 # Copy the rest of the application code
 COPY . .
@@ -14,7 +14,7 @@ COPY . .
 RUN yarn build
 
 # Stage 2: Run the Next.js application
-FROM node:18-alpine AS runner
+FROM node:24-alpine AS runner
 
 WORKDIR /app
 

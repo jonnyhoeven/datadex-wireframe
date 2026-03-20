@@ -1,4 +1,17 @@
 services:
+  frontend:
+    build:
+      context: frontend
+      dockerfile: Dockerfile
+    depends_on:
+      - ckan
+    ports:
+      - "3000:3000"
+    environment:
+      - API_URL=http://ckan:5000/api/3/action/status_show
+      - API_KEY=
+    networks:
+      - ckan-network
   ckan:
     build:
       context: ckan
