@@ -1,0 +1,129 @@
+import yaml
+import requests
+import os
+import sys
+import time
+import subprocess
+
+CKAN_URL = os.environ.get('CKAN_SITE_URL', 'http://localhost:5000').rstrip('/')
+CKAN_INI = os.environ.get('CKAN_INI', '/srv/app/ckan.ini')
+SYSADMIN_USER = os.environ.get('SYSADMIN_USER', 'admin')
+SYSADMIN_EMAIL = os.environ.get('SYSADMIN_EMAIL', 'admin@example.com')
+SYSADMIN_PASSWORD = os.environ.get('SYSADMIN_PASSWORD', 'password')
+
+try:
+    cmd = ["ckan", "-c", CKAN_INI, "sysadmin", "add", SYSADMIN_USER, "email=" + SYSADMIN_EMAIL,
+           "password=" + SYSADMIN_PASSWORD, "--quiet"]
+    result = subprocess.run(cmd, capture_output=True, text=True)
+    if result.returncode == 0:
+        print("Successfully created SYSADMIN.")
+    else:
+        print(f"Failed to generate SYSADMIN: {result.stderr}")
+except Exception as e:
+    print(f"Error generating SYSADMIN token: {e}")
+
+try:
+    cmd = ["ckan", "-c", CKAN_INI, "user", "token", "add", SYSADMIN_USER, "setup", "--quiet"]
+    result = subprocess.run(cmd, capture_output=True, text=True)
+    if result.returncode == 0:
+        API_KEY = result.stdout.strip()
+        print("Successfully generated API token.")
+    else:
+        print(f"Failed to generate API token: {result.stderr}")
+except Exception as e:
+    print(f"Error generating API token: {e}")
+
+if not API_KEY:
+    print("Error: CKAN_API_KEY environment variable is not set and could not be generated.")
+    sys.exit(1)
+
+
+def wait_for_ckan():
+    print(f"Waiting for CKAN at {CKAN_URL}...")
+    for _ in range(30):
+        try:
+            response = requests.get(f"{CKAN_URL}/api/3/action/status_show")
+            if response.status_code == 200:
+                print("CKAN is up and running!")
+                return True
+        except requests.exceptions.ConnectionError:
+            pass
+        time.sleep(2)
+    print("CKAN is not responding. Exiting.")
+    return False
+
+
+def call_action(action, data):
+    headers = {'Authorization': API_KEY}
+    url = f"{CKAN_URL}/api/3/action/{action}"
+    try:
+        response = requests.post(url, json=data, headers=headers)
+        return response.json()
+    except Exception as e:
+        return {'success': False, 'error': {'message': str(e)}}
+
+
+def setup_entities(config):
+    # Setup Organizations
+    for org in config.get('organizations', []):
+        print(f"Checking organization: {org['name']}")
+        res = call_action('organization_show', {'id': org['name']})
+        if not res['success']:
+            print(f"Creating organization: {org['name']}")
+            call_action('organization_create', org)
+        else:
+            print(f"Organization {org['name']} already exists.")
+
+    # Setup Groups
+    for group in config.get('groups', []):
+        print(f"Checking group: {group['name']}")
+        res = call_action('group_show', {'id': group['name']})
+        if not res['success']:
+            print(f"Creating group: {group['name']}")
+            call_action('group_create', group)
+        else:
+            print(f"Group {group['name']} already exists.")
+
+    # Setup Datasets
+    for dataset in config.get('datasets', []):
+        print(f"Checking dataset: {dataset['name']}")
+        res = call_action('package_show', {'id': dataset['name']})
+        if not res['success']:
+            print(f"Creating dataset: {dataset['name']}")
+            call_action('package_create', dataset)
+        else:
+            print(f"Dataset {dataset['name']} already exists.")
+
+    # Setup Harvesters
+    for harvester in config.get('harvesters', []):
+        print(f"Checking harvester: {harvester['name']}")
+        # Harvesters are usually checked by name/id using harvest_source_show
+        res = call_action('harvest_source_show', {'id': harvester['name']})
+        if not res['success']:
+            print(f"Creating harvester: {harvester['name']}")
+            # Map harvester config to match harvest_source_create expectations
+            harvest_data = {
+                'name': harvester['name'],
+                'url': harvester['url'],
+                'source_type': harvester['type'],
+                'title': harvester.get('title', harvester['name']),
+                'notes': harvester.get('description', ''),
+                'frequency': harvester.get('frequency', 'MANUAL'),
+                'active': True
+            }
+            call_action('harvest_source_create', harvest_data)
+        else:
+            print(f"Harvester {harvester['name']} already exists.")
+
+
+if __name__ == "__main__":
+    if not os.path.exists(CONFIG_FILE):
+        print(f"Config file {CONFIG_FILE} not found. Skipping setup.")
+        sys.exit(0)
+
+    with open(CONFIG_FILE, 'r') as f:
+        config_data = yaml.safe_load(f)
+
+    if wait_for_ckan():
+        setup_entities(config_data)
+        print("Setup completed.")
