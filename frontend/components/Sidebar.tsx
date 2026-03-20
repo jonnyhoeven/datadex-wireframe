@@ -3,7 +3,7 @@ import React from 'react';
 export const ServicesCard: React.FC = () => (
     <div className="card">
         <h3 className="font-bold mb-4">Services</h3>
-        <div className="space-y-2">
+        <div id="services-container" className="space-y-2">
             {['WMS', 'WFS', 'MVT'].map((service) => (
                 <button key={service} className="btn-outline">
                     <i className="fa-solid fa-arrow-up-right-from-square mr-3 text-gray-400 text-sm"></i>

@@ -31,10 +31,10 @@ const Dataset = () => {
                 <div className="card">
                     <h2 className="text-2xl font-bold mb-6">{datasetData.title}</h2>
                     <div className="space-y-4 mb-8">
-                        <InfoRow label="Type" value={datasetData.type}/>
-                        <InfoRow label="Bron" value={datasetData.source}/>
-                        <InfoRow label="Classificatie" value={datasetData.classification}/>
-                        <InfoRow label="Licentie" value={datasetData.license}/>
+                        <InfoRow label="Type" value={datasetData.type} />
+                        <InfoRow label="Bron" value={datasetData.source} />
+                        <InfoRow label="Classificatie" value={datasetData.classification} />
+                        <InfoRow label="Licentie" value={datasetData.license} />
                         <InfoRow
                             label="Thema's"
                             border={false}
@@ -42,8 +42,8 @@ const Dataset = () => {
                                 <div className="flex flex-wrap gap-2">
                                     {datasetData.themes.map((theme, index) => (
                                         <span key={index} className="tag">
-                                        {theme.label}: {theme.value}
-                                    </span>
+                                            {theme.label}: {theme.value}
+                                        </span>
                                     ))}
                                     <a href="#" className="text-blue-600 text-sm font-medium ml-auto underline">Meer...</a>
                                 </div>
