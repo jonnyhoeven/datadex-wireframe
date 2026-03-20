@@ -1,0 +1,66 @@
+ckan_version: 3
+
+dataset_schemas:
+  my_dataset_schema:
+    name: My Dataset Schema
+    id: my_dataset_schema
+    
+    fields:
+      - id: dataset_type
+        label: Type
+        preset: text
+        validators: unicode_text
+      - id: source
+        label: Bron
+        preset: text
+        validators: unicode_text
+      - id: classification
+        label: Classificatie
+        preset: text
+        validators: unicode_text
+      - id: custom_license
+        label: Licentie (Custom)
+        preset: text
+        validators: unicode_text
+      - id: themes
+        label: Thema's
+        preset: text
+        validators: unicode_text
+        help_text: "Enter themes in 'Theme: Value' format, separated by commas."
+      - id: info_url
+        label: Informatie URL
+        preset: url
+        validators: url_validator
+      - id: calculation_rules_url
+        label: Rekenregels URL
+        preset: url
+        validators: url_validator
+      - id: documentation_url
+        label: Documentatie URL
+        preset: url
+        validators: url_validator
+      - id: metadata_last_modified
+        label: Metadata laatste wijziging
+        preset: date
+        validators: date_validator
+      - id: metadata_status
+        label: Status metadata
+        preset: text
+        validators: unicode_text
+      - id: data_last_modified
+        label: Gegevens laatste wijziging
+        preset: date
+        validators: date_validator
+      - id: update_frequency
+        label: Bijwerk frequentie
+        preset: text
+        validators: unicode_text
+      - id: data_status
+        label: Status gegevens
+        preset: text
+        validators: unicode_text
+      - id: related_objects
+        label: Gerelateerde objecten
+        preset: text
+        validators: unicode_text
+        help_text: "Enter related object names, separated by commas."

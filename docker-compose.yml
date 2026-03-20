@@ -27,8 +27,9 @@ services:
       - UWSGI_OPTS=--plugins python3 --http-socket [::]:5000 --wsgi-file /srv/app/wsgi.py --module wsgi:application --master --enable-threads --lazy-apps -p 2 -L -b 32768 --vacuum --harakiri 60
     volumes:
       - ./ckan/ckan.ini:/srv/app/ckan.ini:ro
-      - ./ckan/setup-portal.py:/docker-entrypoint.d/setup-portal.py:ro
+      - ./ckan/schema.yaml:/srv/app/schema.yaml:ro
       - ./ckan/portal-config.yaml:/docker-entrypoint.d/portal-config.yaml:ro
+      - ./ckan/setup-portal.py:/srv/app/setup-portal.py:ro
     tmpfs:
       - /var/lib/ckan:uid=92,gid=92,mode=0777
     networks:
