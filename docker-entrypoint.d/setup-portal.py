@@ -7,13 +7,14 @@ import subprocess
 
 CKAN_URL = os.environ.get('CKAN_SITE_URL', 'http://localhost:5000').rstrip('/')
 CKAN_INI = os.environ.get('CKAN_INI', '/srv/app/ckan.ini')
-SYSADMIN_USER = os.environ.get('SYSADMIN_USER', 'admin')
-SYSADMIN_EMAIL = os.environ.get('SYSADMIN_EMAIL', 'admin@example.com')
-SYSADMIN_PASSWORD = os.environ.get('SYSADMIN_PASSWORD', 'password')
+CONFIG_FILE = os.environ.get('CONFIG_FILE', '/srv/app/portal-config.yaml')
+CKAN_SYSADMIN_NAME = os.environ.get('CKAN_SYSADMIN_NAME', 'admin')
+CKAN_SYSADMIN_EMAIL = os.environ.get('CKAN_SYSADMIN_EMAIL', 'admin@example.com')
+CKAN_SYSADMIN_PASSWORD = os.environ.get('CKAN_SYSADMIN_PASSWORD', 'password')
 
 try:
-    cmd = ["ckan", "-c", CKAN_INI, "sysadmin", "add", SYSADMIN_USER, "email=" + SYSADMIN_EMAIL,
-           "password=" + SYSADMIN_PASSWORD, "--quiet"]
+    cmd = ["ckan", "-c", CKAN_INI, "sysadmin", "add", CKAN_SYSADMIN_NAME, "email=" + CKAN_SYSADMIN_EMAIL,
+           "password=" + CKAN_SYSADMIN_PASSWORD, "--quiet"]
     result = subprocess.run(cmd, capture_output=True, text=True)
     if result.returncode == 0:
         print("Successfully created SYSADMIN.")
@@ -22,8 +23,9 @@ try:
 except Exception as e:
     print(f"Error generating SYSADMIN token: {e}")
 
+API_KEY = None
 try:
-    cmd = ["ckan", "-c", CKAN_INI, "user", "token", "add", SYSADMIN_USER, "setup", "--quiet"]
+    cmd = ["ckan", "-c", CKAN_INI, "user", "token", "add", CKAN_SYSADMIN_NAME, "setup", "--quiet"]
     result = subprocess.run(cmd, capture_output=True, text=True)
     if result.returncode == 0:
         API_KEY = result.stdout.strip()
