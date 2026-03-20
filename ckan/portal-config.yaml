@@ -24,6 +24,7 @@ harvesters:
   - name: "test-harvester"
     url: "https://demo.ckan.org"
     type: "ckan"
+    owner_org: "test-org"
     title: "Test Harvester"
     description: "A harvester for demo.ckan.org."
     frequency: "MANUAL"

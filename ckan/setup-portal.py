@@ -27,7 +27,6 @@ except Exception as e:
 try:
     cmd = ["ckan", "-c", CKAN_INI, "user", "token", "add", CKAN_SYSADMIN_NAME, "setup"]
     result = subprocess.run(cmd, capture_output=True, text=True)
-    print(result.stdout)
     if result.returncode == 0:
         API_KEY = result.stdout.split(":", 1)[1].strip()
         print("Successfully generated API token.")
@@ -35,6 +34,14 @@ try:
         print(f"Failed to generate API token: {result.stderr}")
 except Exception as e:
     print(f"Error generating API token: {e}")
+
+try:
+    print("Initializing harvest database...")
+    cmd = ["ckan", "-c", CKAN_INI, "db", "upgrade", "-p", "harvest"]
+    subprocess.run(cmd, capture_output=True, text=True, check=True)
+    print("Harvest database initialized.")
+except Exception as e:
+    print(f"Error initializing harvest database: {e}")
 
 if not API_KEY:
     print("Error: Failed to generate API token, exiting.")
@@ -97,7 +104,11 @@ def setup_entities(config):
         res = call_action('package_show', {'id': dataset['name']})
         if not res['success']:
             print(f"Creating dataset: {dataset['name']}")
-            call_action('package_create', dataset)
+            # CKAN expects groups as a list of dictionaries with name or id
+            dataset_to_create = dataset.copy()
+            if 'groups' in dataset_to_create:
+                dataset_to_create['groups'] = [{'name': g['name']} if isinstance(g, dict) else {'name': g} for g in dataset_to_create['groups']]
+            call_action('package_create', dataset_to_create)
         else:
             print(f"Dataset {dataset['name']} already exists.")
 
@@ -116,8 +127,14 @@ def setup_entities(config):
                 'title': harvester.get('title', harvester['name']),
                 'notes': harvester.get('description', ''),
                 'frequency': harvester.get('frequency', 'MANUAL'),
+                'owner_org': harvester.get('owner_org'),
                 'active': True
             }
+
+            # If owner_org is missing, try to use the first organization from config
+            if not harvest_data['owner_org'] and config.get('organizations'):
+                harvest_data['owner_org'] = config['organizations'][0]['name']
+
             call_action('harvest_source_create', harvest_data)
         else:
             print(f"Harvester {harvester['name']} already exists.")
