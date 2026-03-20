@@ -17,10 +17,14 @@ services:
       - CKAN_SITE_URL=${CKAN_SITE_URL}
       - CKAN_BEAKER_SESSION_SECRET=${CKAN_BEAKER_SESSION_SECRET}
       - CKAN_INI=/srv/app/ckan.ini
+      - CKAN_SYSADMIN_NAME=admin
+      - CKAN_SYSADMIN_PASSWORD=password
+      - CKAN_SYSADMIN_EMAIL=admin@example.com
       - UWSGI_OPTS=--plugins python3 --http-socket [::]:5000 --wsgi-file /srv/app/wsgi.py --module wsgi:application --master --enable-threads --lazy-apps -p 2 -L -b 32768 --vacuum --harakiri 60
     volumes:
       - ./ckan.ini:/srv/app/ckan.ini
-      - ckan_storage:/var/lib/ckan
+      - ./portal-config.yaml:/srv/app/portal-config.yaml
+      #- ckan_storage:/var/lib/ckan
     networks:
       - ckan-network
 
@@ -33,7 +37,7 @@ services:
       - POSTGRES_USER=ckan_default
       - POSTGRES_DB=ckan_default
     volumes:
-      - ./pg_data:/var/lib/postgresql/data
+      #- ./pg_data:/var/lib/postgresql/data
       - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d:ro
     networks:
       - ckan-network

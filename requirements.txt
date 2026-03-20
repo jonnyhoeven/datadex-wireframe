@@ -11,3 +11,4 @@ Shapely
 OWSLib
 lxml
 python-dateutil
+PyYAML

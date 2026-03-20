@@ -44,19 +44,68 @@ Use Docker Compose to build the custom CKAN image and start all services:
 docker compose up -d --build
 ```
 
-### 3. Initialize the Database (First time only)
+### 3. Initialize the Database and Automated Setup
 
-Once the containers are running, you may need to initialize the CKAN database and create a sysadmin user.
+The portal is configured to automatically initialize the database, create a sysadmin user, and apply the portal configuration on startup.
 
-**Create a sysadmin user:**
+**Default Admin Credentials:**
+- **User**: `admin`
+- **Password**: `password`
+- **Email**: `admin@example.com`
 
-```bash
-docker compose exec ckan ckan -c /srv/app/ckan.ini sysadmin add admin email=admin@example.com password=password
-```
+These can be adjusted in `docker-compose.yml`.
 
 ### 4. Access the Portal
 
 The CKAN instance will be available at: [http://localhost:5000](http://localhost:5000)
+
+## Infrastructure as Code: Configuring the Portal
+
+The state of the portal (organizations, groups, datasets, and harvesters) is defined in `portal-config.yaml`. This follows IaC principles, and the configuration is automatically applied when the CKAN container starts.
+
+### 1. Define your configuration
+
+Edit `portal-config.yaml` to include the entities you want to create:
+
+```yaml
+organizations:
+  - name: "my-org"
+    title: "My Organization"
+
+groups:
+  - name: "my-group"
+    title: "My Group"
+
+datasets:
+  - name: "my-dataset"
+    title: "My Dataset"
+    owner_org: "my-org"
+    groups: [{name: "my-group"}]
+    resources:
+      - name: "Data"
+        url: "http://example.com/data.csv"
+
+harvesters:
+  - name: "ckan-harvester"
+    url: "https://demo.ckan.org"
+    type: "ckan"
+```
+
+### 2. Apply changes
+
+If you update `portal-config.yaml` while the container is running, you can:
+
+1. **Restart the container**:
+   ```bash
+   docker compose restart ckan
+   ```
+   The configuration will be reapplied on startup.
+
+2. **Manually run the setup script**:
+   ```bash
+   docker compose exec ckan python3 /srv/app/setup-portal.py
+   ```
+   (The script will automatically generate an API token for the sysadmin user if `CKAN_API_KEY` is not provided).
 
 ## Common Commands
 
