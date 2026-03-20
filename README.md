@@ -1,10 +1,11 @@
-# CKAN Project with Repository-Based Configuration
+# CKAN Project with Repository-Based Configuration and Custom Frontend
 
-This project is a Dockerized CKAN 2.10+ instance designed for repository-based configuration. It follows Infrastructure as Code principles, where the entire portal state is defined by the files in this repository.
+This project is a Dockerized CKAN 2.10+ instance with a custom Next.js frontend designed for repository-based configuration. It follows Infrastructure as Code principles, where the entire portal state is defined by the files in this repository.
 
 ## Features
 
 - **CKAN 2.10+**: Core CKAN platform.
+- **Next.js Frontend**: Custom React-based interface (Data4OOV Catalogus).
 - **Dockerized Architecture**: Simplified setup using Docker Compose.
 - **Extensions Included**:
   - `ckanext-spatial`: Geospatial capabilities.
@@ -13,6 +14,7 @@ This project is a Dockerized CKAN 2.10+ instance designed for repository-based c
 
 ## Project Structure
 
+- `frontend/`: Next.js frontend application source code.
 - `Dockerfile`: Custom CKAN image building with required OS dependencies and extensions.
 - `docker-compose.yml`: Defines `ckan`, `db` (PostgreSQL), `solr`, and `redis` services.
 - `ckan.ini`: Base configuration file with environment variable placeholders.
@@ -38,10 +40,12 @@ cp .env.example .env
 
 ### 2. Build and Start the Services
 
-Use Docker Compose to build the custom CKAN image and start all services:
+Use Docker Compose to build the custom CKAN image and start all services, examples:
 
 ```bash
-docker compose up -d --build
+docker compose up
+docker compose up --build
+docker compose up frontend --force-recreate  --build
 ```
 
 ### 3. Initialize the Database and Automated Setup
@@ -57,7 +61,9 @@ These can be adjusted in `docker-compose.yml`.
 
 ### 4. Access the Portal
 
-The CKAN instance will be available at: [http://localhost:5000](http://localhost:5000)
+The services will be available at:
+- **Frontend**: http://localhost:3000 (if running Next.js defaults)
+- **CKAN Backend**: http://localhost:5000
 
 ## Infrastructure as Code: Configuring the Portal
 
