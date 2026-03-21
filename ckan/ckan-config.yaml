@@ -1,14 +1,15 @@
 organizations:
-  - name: "test"
-    title: "Test Organization"
-    description: "An Whooptidoo organization for testing purposes."
   - name: "zuid-holland"
     title: "Open-dataportaal Zuid Holland"
     description: "Dataportaal van provincie Zuid Holland"
 
 groups:
-  - name: "test"
-    title: "Test Group"
+  - name: "vertrouwelijk"
+    title: "Vertrouwelijke Groep"
+  - name: "afgeschermd"
+    title: "Afgeschermde Groep"
+  - name: "openbaar"
+    title: "Openbare Groep"
     description: "A group for testing purposes."
 
 packages:
@@ -16,8 +17,21 @@ packages:
     title: "Water"
     notes: "Deze dataset bevat informatie over watergebieden in Zuid-Holland."
     owner_org: "zuid-holland"
+    license_id: "cc-by"
     groups:
-      - name: "test"
+      - name: "vertrouwelijk"
+      - name: "afgeschermd"
+      - name: "openbaar"
+    tags:
+      - display_name: "Verkeer"
+        name: "verkeer"
+        state: "active"
+      - display_name: "Waterwegen"
+        name: "waterwegen"
+        state: "active"
+      - display_name: "Goederenvervoer"
+        name: "goederenvervoer"
+        state: "active"
     resources:
       - name: "WMS"
         url: "https://geodata.zuid-holland.nl/geoserver/water/wms?service=WMS&version=1.3.0&request=GetCapabilities"
@@ -25,18 +39,53 @@ packages:
       - name: "WFS"
         url: "https://geodata.zuid-holland.nl/geoserver/water/wfs?service=WFS&version=1.3.0&request=GetCapabilities"
         format: "WFS"
+
   - name: "percelen-in-bezit-van-woningcorporaties"
     title: "Percelen in bezit van woningcorporaties "
     notes: "Deze dataset bevat informatie over percelen in bezit van woningcorporaties in Zuid-Holland."
     owner_org: "zuid-holland"
+    license_id: "cc-by"
     groups:
-      - name: "test"
+      - name: "vertrouwelijk"
+      - name: "afgeschermd"
+      - name: "openbaar"
+    tags:
+      - display_name: "Wonen"
+        name: "wonen"
+        state: "active"
+      - display_name: "Bebouwing"
+        name: "bebouwing"
+        state: "active"
     resources:
       - name: "WMS"
         url: "https://geodata.zuid-holland.nl/geoserver/wonen/wms?service=WMS&version=1.3.0&request=GetCapabilities"
         format: "WMS"
       - name: "WFS"
         url: "https://geodata.zuid-holland.nl/geoserver/wonen/wfs?service=WFS&version=2.0.0&request=GetCapabilities"
+        format: "WFS"
+
+  - name: "klimaat"
+    title: "Klimaatonderlegger"
+    notes: "De provincie Zuid-Holland en de waterschappen hebben samen een klimaatonderlegger ontwikkeld. Dit is een set kaarten die, op basis van de laatste kennis, inzicht verschaft in de uitdagingen die water, bodem en klimaat meegeven voor bebouwing, landbouw en natuur."
+    owner_org: "zuid-holland"
+    license_id: "cc-by"
+    groups:
+      - name: "vertrouwelijk"
+      - name: "afgeschermd"
+      - name: "openbaar"
+    tags:
+      - display_name: "Klimaat"
+        name: "klimaat"
+        state: "active"
+      - display_name: "Natuur"
+        name: "natuur"
+        state: "active"
+    resources:
+      - name: "WMS"
+        url: "https://geodata.zuid-holland.nl/geoserver/klimaat/wms?service=WMS&version=1.3.0&request=GetCapabilities"
+        format: "WMS"
+      - name: "WFS"
+        url: "https://geodata.zuid-holland.nl/geoserver/klimaat/wfs?service=WFS&version=2.0.0&request=GetCapabilities"
         format: "WFS"
 
 harvesters:

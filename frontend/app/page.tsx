@@ -62,6 +62,12 @@ const HomePage = () => {
                             Development link naar ckan
                             <span aria-hidden="true">&rarr;</span>
                         </a>
+                        <a href="/dataset?q=water" className="text-white font-semibold hover:underline flex items-center gap-1">
+                            Development link naar search
+                            <span aria-hidden="true">&rarr;</span>
+                        </a>
+
+
                     </div>
                 </div>
             </main>
