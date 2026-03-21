@@ -31,7 +31,7 @@ services:
       - CKAN_DATADIC_URL=postgresql://datastore_default:${POSTGRES_PASSWORD}@db/datastore_default
       - CKAN_DATASTORE_WRITE_URL=postgresql://ckan_default:${POSTGRES_PASSWORD:-password}@db/datastore_default
       - CKAN_DATASTORE_READ_URL=postgresql://datastore_default:${POSTGRES_PASSWORD:-password}@db/datastore_default
-      - CKAN_SITE_URL=${CKAN_SITE_URL:-http://localhost:3000}
+      - CKAN_SITE_URL=${CKAN_SITE_URL:-http://localhost:5000}
       - CKAN_BEAKER_SESSION_SECRET=${CKAN_BEAKER_SESSION_SECRET:-secret}
       - CKAN_INI=${CKAN_INI:-/srv/app/ckan.ini}
       - CKAN_SYSADMIN_NAME=${CKAN_SYSADMIN_NAME:-admin}
@@ -42,11 +42,11 @@ services:
       - UWSGI_OPTS=--plugins python3 --http-socket [::]:5000 --wsgi-file /srv/app/wsgi.py --module wsgi:application --master --enable-threads --lazy-apps -p 2 -L -b 32768 --vacuum --harakiri 60
       - CKAN_BASE_URL=http://ckan:5000/
     volumes:
+      - ckan-data:/var/lib/ckan
       - ./ckan/ckan.ini:/srv/app/ckan.ini:ro
+      - ./ckan/ckan-config.yaml:/srv/app/ckan-config.yaml:ro
       - ./ckan/schema.yaml:/srv/app/schema.yaml:ro
-      - ./ckan/portal-config.yaml:/docker-entrypoint.d/portal-config.yaml:ro
-      - ./ckan/setup-portal.py:/srv/app/setup-portal.py:ro
-      - ./ckan/data:/var/lib/ckan
+      - ./ckan/ckan-init.py:/srv/app/ckan-init.py:ro
     #tmpfs:
     #  - /var/lib/ckan:uid=92,gid=92,mode=0777
     networks:
@@ -62,7 +62,7 @@ services:
       - POSTGRES_DB=${POSTGRES_DB:-ckan_default}
     volumes:
       - ./db/init-db.sh:/docker-entrypoint-initdb.d/init-db.sh:ro
-      - ./db/data:/var/lib/postgresql/data:rw
+      - db-data:/var/lib/postgresql/data:rw
     #tmpfs: /var/lib/postgresql/data
     networks:
       - ckan-network
@@ -80,3 +80,7 @@ services:
 networks:
   ckan-network:
     driver: bridge
+
+volumes:
+  ckan-data:
+  db-data:

@@ -7,57 +7,24 @@ import subprocess
 
 CKAN_URL = os.environ.get('CKAN_SITE_URL', 'http://localhost:5000').rstrip('/')
 CKAN_INI = os.environ.get('CKAN_INI', '/srv/app/ckan.ini')
-CONFIG_FILE = os.environ.get('CONFIG_FILE', '/srv/app/portal-config.yaml')
+CONFIG_FILE = os.environ.get('CONFIG_FILE', '/srv/app/ckan-config.yaml')
 CKAN_SYSADMIN_NAME = os.environ.get('CKAN_SYSADMIN_NAME', 'admin')
 CKAN_SYSADMIN_EMAIL = os.environ.get('CKAN_SYSADMIN_EMAIL', 'admin@example.com')
 CKAN_SYSADMIN_PASSWORD = os.environ.get('CKAN_SYSADMIN_PASSWORD', 'password')
 API_KEY = None
 
-try:
-    cmd = ["ckan", "-c", CKAN_INI, "sysadmin", "add", CKAN_SYSADMIN_NAME, "email=" + CKAN_SYSADMIN_EMAIL,
-           "password=" + CKAN_SYSADMIN_PASSWORD]
-    result = subprocess.run(cmd, capture_output=True, text=True, input="y")
-    if result.returncode == 0:
-        print("Successfully created SYSADMIN.")
-    else:
-        print(f"Failed to generate SYSADMIN: {result.stderr}")
-except Exception as e:
-    print(f"Error generating SYSADMIN token: {e}")
-
-try:
-    cmd = ["ckan", "-c", CKAN_INI, "user", "token", "add", CKAN_SYSADMIN_NAME, "setup"]
-    result = subprocess.run(cmd, capture_output=True, text=True)
-    if result.returncode == 0:
-        API_KEY = result.stdout.split(":", 1)[1].strip()
-        print("Successfully generated API token.")
-    else:
-        print(f"Failed to generate API token: {result.stderr}")
-except Exception as e:
-    print(f"Error generating API token: {e}")
-
-try:
-    print("Initializing harvest database...")
-    cmd = ["ckan", "-c", CKAN_INI, "db", "upgrade", "-p", "harvest"]
-    subprocess.run(cmd, capture_output=True, text=True, check=True)
-    print("Harvest database initialized.")
-except Exception as e:
-    print(f"Error initializing harvest database: {e}")
-
-if not API_KEY:
-    print("Error: Failed to generate API token, exiting.")
-    sys.exit(1)
-
 def wait_for_ckan():
-    print(f"Waiting for CKAN at {CKAN_URL}...")
-    for _ in range(40):
+    print(f"Waiting for CKAN API at {CKAN_URL}...")
+    for _ in range(120):
         try:
             response = requests.get(f"{CKAN_URL}/api/3/action/status_show")
             if response.status_code == 200:
                 print("CKAN is up and running!")
                 return True
         except requests.exceptions.ConnectionError:
+            print("Waiting for api!")
             pass
-        time.sleep(2)
+        time.sleep(1)
     print("CKAN is not responding. Exiting.")
     return False
 
@@ -145,20 +112,42 @@ if __name__ == "__main__":
         print(f"Config file {CONFIG_FILE} not found. Skipping setup.")
         sys.exit(0)
 
-    try:
-        pid = os.fork()
-        if pid > 0:
-            print(f"Forked background process (PID: {pid}) for CKAN setup. Continuing container startup...")
-            sys.exit(0)
-    except OSError as e:
-        print(f"Fork failed: {e}")
-        sys.exit(1)
-
-    sys.stdout = open('/tmp/setup-portal.log', 'a')
-    sys.stderr = sys.stdout
-
     with open(CONFIG_FILE, 'r') as f:
         config_data = yaml.safe_load(f)
+    
+    try:
+        cmd = ["ckan", "-c", CKAN_INI, "sysadmin", "add", CKAN_SYSADMIN_NAME, "email=" + CKAN_SYSADMIN_EMAIL,
+               "password=" + CKAN_SYSADMIN_PASSWORD]
+        result = subprocess.run(cmd, capture_output=True, text=True, input="y")
+        if result.returncode == 0:
+            print("Successfully created SYSADMIN.")
+        else:
+            print(f"Failed to generate SYSADMIN: {result.stderr}")
+    except Exception as e:
+        print(f"Error generating SYSADMIN token: {e}")
+
+    try:
+        cmd = ["ckan", "-c", CKAN_INI, "user", "token", "add", CKAN_SYSADMIN_NAME, "setup"]
+        result = subprocess.run(cmd, capture_output=True, text=True)
+        if result.returncode == 0:
+            API_KEY = result.stdout.split(":", 1)[1].strip()
+            print("Successfully generated API token.")
+        else:
+            print(f"Failed to generate API token: {result.stderr}")
+    except Exception as e:
+        print(f"Error generating API token: {e}")
+
+    try:
+        print("Initializing harvest database...")
+        cmd = ["ckan", "-c", CKAN_INI, "db", "upgrade", "-p", "harvest"]
+        subprocess.run(cmd, capture_output=True, text=True, check=True)
+        print("Harvest database initialized.")
+    except Exception as e:
+        print(f"Error initializing harvest database: {e}")
+
+    if not API_KEY:
+        print("Error: Failed to generate API token, exiting.")
+        sys.exit(1)
 
     if wait_for_ckan():
         setup_entities(config_data)

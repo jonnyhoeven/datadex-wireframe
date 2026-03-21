@@ -53,8 +53,11 @@ docker compose up frontend --force-recreate  --build
 
 ### 3. Initialize the Database and Automated Setup
 
-The portal is configured to automatically initialize the database, create a sysadmin user, and apply the portal
-configuration on startup.
+You can initialize/bootstrap ckan using the following command: 
+
+```bash
+docker compose exec ckan python3 /srv/app/ckan-init.py
+```
 
 **Default Admin Credentials:**
 
@@ -73,12 +76,12 @@ The services will be available at:
 
 ## Infrastructure as Code: Configuring the Portal
 
-The state of the portal (organizations, groups, datasets, and harvesters) is defined in `portal-config.yaml`. This
+The state of the portal (organizations, groups, datasets, and harvesters) is defined in `ckan-config.yaml`. This
 follows IaC principles, and the configuration is automatically applied when the CKAN container starts.
 
 ### 1. Define your configuration
 
-Edit `portal-config.yaml` to include the entities you want to create:
+Edit [ckan-config.yaml](ckan/ckan-config.yaml) to include the entities you want to create:
 
 ```yaml
 organizations:
@@ -106,19 +109,11 @@ harvesters:
 
 ### 2. Apply changes
 
-If you update `portal-config.yaml` while the container is running, you can:
+If you update `ckan-config.yaml` while the container is running, make sure you rerun:
 
-1. **Restart the container**:
-   ```bash
-   docker compose restart ckan
-   ```
-   The configuration will be reapplied on startup.
-
-2. **Manually run the setup script**:
-   ```bash
-   docker compose exec ckan python3 /srv/app/setup-portal.py
-   ```
-   (The script will automatically generate an API token for the sysadmin user if `CKAN_API_KEY` is not provided).
+```bash
+docker compose exec ckan python3 /srv/app/ckan-init.py
+```
 
 ## Common Commands
 
@@ -131,19 +126,3 @@ If you update `portal-config.yaml` while the container is running, you can:
 
 Most configuration settings can be managed via the `.env` file. These variables are passed to the `ckan.ini` file using
 placeholders like `${CKAN_SITE_URL}`.
-
-## Volumes
-
-The following local volumes are mapped for data persistence:
-
-    - `ckan_storage`: Stores uploaded resources and files.
-    - `pg_data`: Stores the PostgreSQL database files.
-    - `./ckan.ini`: Mapped to `/srv/app/ckan.ini` inside the container for live configuration updates.
-
-### Note on Environment Variables
-
-The following environment variables are mandatory and should be set in your `.env` file:
-
-- `CKAN_SITE_URL`: The URL of your CKAN instance.
-- `POSTGRES_PASSWORD`: The password for the PostgreSQL database.
-- `CKAN_BEAKER_SESSION_SECRET`: A secret string used for session encryption.

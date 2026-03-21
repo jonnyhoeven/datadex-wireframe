@@ -19,7 +19,7 @@ RUN pip install --no-cache-dir -r /srv/app/requirements.txt
 RUN chown -R ckan:ckan /srv/app/src/ckan/ckan/public/base/i18n
 
 USER ckan
-COPY --chown=ckan:ckan setup-portal.py /docker-entrypoint.d/setup-portal.py
-RUN chmod +x /docker-entrypoint.d/setup-portal.py
-COPY --chown=ckan:ckan portal-config.yaml /srv/app/portal-config.yaml
+COPY --chown=ckan:ckan ckan-init.py /srv/app/ckan-init.py
+RUN chmod +x /srv/app/ckan-init.py
+COPY --chown=ckan:ckan ckan-config.yaml /srv/app/ckan-config.yaml
 COPY --chown=ckan:ckan schema.yaml /srv/app/schema.yaml
