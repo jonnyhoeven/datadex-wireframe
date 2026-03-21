@@ -83,30 +83,6 @@ follows IaC principles, and the configuration is automatically applied when the 
 
 Edit [ckan-config.yaml](ckan/ckan-config.yaml) to include the entities you want to create:
 
-```yaml
-organizations:
-  - name: "my-org"
-    title: "My Organization"
-
-groups:
-  - name: "my-group"
-    title: "My Group"
-
-datasets:
-  - name: "my-dataset"
-    title: "My Dataset"
-    owner_org: "my-org"
-    groups: [ { name: "my-group" } ]
-    resources:
-      - name: "Data"
-        url: "http://example.com/data.csv"
-
-harvesters:
-  - name: "ckan-harvester"
-    url: "https://demo.ckan.org"
-    type: "ckan"
-```
-
 ### 2. Apply changes
 
 If you update `ckan-config.yaml` while the container is running, make sure you rerun:
