@@ -8,7 +8,7 @@ import {faArrowUpRightFromSquare} from "@fortawesome/free-solid-svg-icons";
 
 const ApiTester = () => {
     const [method, setMethod] = useState('GET');
-    const [endpoint, setEndpoint] = useState('package_search?q=water');
+    const [endpoint, setEndpoint] = useState('package_show?id=water');
     const [requestBody, setRequestBody] = useState('{\n  "q": "water"\n}');
     const [response, setResponse] = useState<any>(null);
     const [loading, setLoading] = useState(false);
@@ -87,7 +87,6 @@ const ApiTester = () => {
                                             className="border border-gray-300 p-2 rounded-r w-full focus:ring-2 focus:ring-blue-500 outline-none font-mono text-sm"
                                             value={endpoint}
                                             onChange={(e) => setEndpoint(e.target.value)}
-                                            placeholder="package_search"
                                         />
                                     </div>
                                 </div>
