@@ -1,4 +1,5 @@
 import React from 'react';
+import {notFound} from 'next/navigation';
 import {Description, InfoRow, MapPreview, MetadataTable} from '../../../components/DatasetInfo';
 import Sidebar from '../../../components/Sidebar';
 
@@ -24,26 +25,38 @@ const datasetData = {
     ]
 };
 
-const Dataset = ({ params }: { params: { slug: string } }) => {
+async function getDataset(slug: string) {
+    const res = await fetch(`http://localhost:3000/api/3/action/package_show?id=${slug}`);
+    if (!res.ok) return null;
+    const data = await res.json();
+    return data.result
+}
+
+const Dataset = async ({params}: { params: Promise<{ slug: string }> }) => {
+    const {slug} = await params;
+    const dataset = await getDataset(slug);
+    if (!dataset) {
+        notFound();
+    }
+
     return (
         <>
             <div className="lg:w-2/3">
                 <div className="card">
-                    <h2 className="text-2xl font-bold mb-6">{datasetData.title} kaas {params.slug}</h2>
-
+                    <h2 className="text-2xl font-bold mb-6">{dataset.title}</h2>
                     <div className="space-y-4 mb-8">
-                        <InfoRow label="Type" value={datasetData.type} />
-                        <InfoRow label="Bron" value={datasetData.source} />
-                        <InfoRow label="Classificatie" value={datasetData.classification} />
-                        <InfoRow label="Licentie" value={datasetData.license} />
+                        <InfoRow label="Type" value={dataset.type}/>
+                        <InfoRow label="Bron" value={dataset.organization?.title}/>
+                        <InfoRow label="Classificatie" value={dataset.classification?.private ? 'Prive' : 'Openbaar'}/>
+                        <InfoRow label="Licentie" value={dataset.license_title}/>
                         <InfoRow
                             label="Thema's"
                             border={false}
                             value={
                                 <div className="flex flex-wrap gap-2">
-                                    {datasetData.themes.map((theme, index) => (
+                                    {dataset.tags?.map((tag, index) => (
                                         <span key={index} className="tag">
-                                            {theme.label}: {theme.value}
+                                            {tag.display_name}
                                         </span>
                                     ))}
                                     <a href="#" className="text-blue-600 text-sm font-medium ml-auto underline">Meer...</a>
@@ -53,8 +66,8 @@ const Dataset = ({ params }: { params: { slug: string } }) => {
                     </div>
 
                     <Description
-                        text={datasetData.description}
-                        links={datasetData.infoLinks}
+                        text={dataset.notes}
+                        links={dataset.infoLinks}
                     />
 
                     <MapPreview/>
