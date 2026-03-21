@@ -1,8 +1,6 @@
-'use client'
 import React from 'react';
-import {Description, InfoRow, MapPreview, MetadataTable} from '../../components/DatasetInfo';
-import Sidebar from '../../components/Sidebar';
-import { useRouter } from 'next/navigation'
+import {Description, InfoRow, MapPreview, MetadataTable} from '../../../components/DatasetInfo';
+import Sidebar from '../../../components/Sidebar';
 
 const datasetData = {
     title: "Risico Index Natuurbranden (RIN)",
@@ -26,12 +24,12 @@ const datasetData = {
     ]
 };
 
-const Dataset = () => {
+const Dataset = ({ params }: { params: { slug: string } }) => {
     return (
         <>
             <div className="lg:w-2/3">
                 <div className="card">
-                    <h2 className="text-2xl font-bold mb-6">{datasetData.title}</h2>
+                    <h2 className="text-2xl font-bold mb-6">{datasetData.title} kaas {params.slug}</h2>
 
                     <div className="space-y-4 mb-8">
                         <InfoRow label="Type" value={datasetData.type} />
