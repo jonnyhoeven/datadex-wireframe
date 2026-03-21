@@ -65,19 +65,19 @@ def setup_entities(config):
         else:
             print(f"Group {group['name']} already exists.")
 
-    # Setup Datasets
-    for dataset in config.get('datasets', []):
-        print(f"Checking dataset: {dataset['name']}")
-        res = call_action('package_show', {'id': dataset['name']})
+    # Setup Packages
+    for package in config.get('packages', []):
+        print(f"Checking dataset: {package['name']}")
+        res = call_action('package_show', {'id': package['name']})
         if not res['success']:
-            print(f"Creating dataset: {dataset['name']}")
+            print(f"Creating dataset: {package['name']}")
             # CKAN expects groups as a list of dictionaries with name or id
-            dataset_to_create = dataset.copy()
+            dataset_to_create = package.copy()
             if 'groups' in dataset_to_create:
                 dataset_to_create['groups'] = [{'name': g['name']} if isinstance(g, dict) else {'name': g} for g in dataset_to_create['groups']]
             call_action('package_create', dataset_to_create)
         else:
-            print(f"Dataset {dataset['name']} already exists.")
+            print(f"Dataset {package['name']} already exists.")
 
     # Setup Harvesters
     for harvester in config.get('harvesters', []):
