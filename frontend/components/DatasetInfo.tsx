@@ -26,11 +26,11 @@ export const Description: React.FC<DescriptionProps> = ({text, links}) => (
         </p>
         <h3 className="font-bold text-sm mb-2">Meer informatie:</h3>
         <ul className="text-xs space-y-1 text-gray-500">
-            {links.map((link, index) => (
+            {links ? links.map((link, index) => (
                 <li key={index}>
                     {link.label}: <a href="#" className="text-blue-600 underline">{link.url}</a>
                 </li>
-            ))}
+            )) : null}
         </ul>
     </div>
 );
