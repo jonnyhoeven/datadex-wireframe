@@ -4,17 +4,17 @@ organizations:
     description: "An Whooptidoo organization for testing purposes."
   - name: "zuid-holland"
     title: "Open-dataportaal Zuid Holland"
-    description: "Dataportaal lorum ipsum"
+    description: "Dataportaal van provincie Zuid Holland"
 
 groups:
   - name: "test"
     title: "Test Group"
     description: "A group for testing purposes."
 
-datasets:
+packages:
   - name: "water"
     title: "Water"
-    notes: "A GeoSpatial Dataset for testing purposes."
+    notes: "Deze dataset bevat informatie over watergebieden in Zuid-Holland."
     owner_org: "zuid-holland"
     groups:
       - name: "test"
@@ -27,7 +27,7 @@ datasets:
         format: "WFS"
   - name: "percelen-in-bezit-van-woningcorporaties"
     title: "Percelen in bezit van woningcorporaties "
-    notes: "A GeoSpatial Dataset for testing purposes."
+    notes: "Deze dataset bevat informatie over percelen in bezit van woningcorporaties in Zuid-Holland."
     owner_org: "zuid-holland"
     groups:
       - name: "test"
@@ -40,13 +40,6 @@ datasets:
         format: "WFS"
 
 harvesters:
-  - name: "test-harvester"
-    url: "https://demo.ckan.org"
-    type: "ckan"
-    owner_org: "test-org"
-    title: "Test Harvester"
-    description: "A harvester for demo.ckan.org."
-    frequency: "MANUAL"
   - name: "test-harvester"
     url: "https://demo.ckan.org"
     type: "ckan"
