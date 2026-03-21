@@ -9,7 +9,7 @@ const HomePage = () => {
             <main className="flex-grow container mx-auto px-6 py-16">
                 <div className="text-center max-w-4xl mx-auto mb-16">
                     <h1 className="text-5xl font-extrabold tracking-tight text-gray-900 mb-6">
-                        Hét open data portaal voor <span className="text-[#004562]">Openbare Orde en Veiligheid</span>
+                        Hét data portaal voor <span className="text-[#004562]">Openbare Orde en Veiligheid</span>
                     </h1>
                     <p className="text-xl text-gray-600 mb-10 leading-relaxed">
                         Ontdek, analyseer en deel essentiële (geo-)informatie. Data4OOV maakt data toegankelijk 
@@ -46,16 +46,20 @@ const HomePage = () => {
                     {/* Backend API Info */}
                     <div className="bg-[#004562] text-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
                         <div className="inline-block bg-white/20 text-white text-xs font-bold px-3 py-1 rounded-full mb-4 uppercase tracking-wide">Voor Ontwikkelaars</div>
-                        <h2 className="text-2xl font-bold mb-3">Powered by CKAN</h2>
+                        <h2 className="text-2xl font-bold mb-3">Powered by ckan</h2>
                         <p className="text-blue-100 mb-6 leading-relaxed">
-                            Het Data4OOV portaal draait op een robuuste CKAN backend. Applicaties kunnen data naadloos via de proxy benaderen op het <code>/api/ckan/</code> endpoint.
+                            Het Data4OOV portaal draait op een robuuste ckan backend. Applicaties kunnen data naadloos via de proxy benaderen via <code>/api</code>.
                         </p>
                         <a href="/api" className="text-white font-semibold hover:underline flex items-center gap-1">
-                            Gebruik de API tester
+                            Gebruik de ckan API tester
                             <span aria-hidden="true">&rarr;</span>
                         </a>
                         <a href="/api/3/action/status_show" className="text-white font-semibold hover:underline flex items-center gap-1">
-                           Direct verbinden naar de CKAN API
+                           Direct verbinden naar de ckan API
+                            <span aria-hidden="true">&rarr;</span>
+                        </a>
+                        <a href="http://localhost:5000" className="text-white font-semibold hover:underline flex items-center gap-1">
+                            Development link naar ckan
                             <span aria-hidden="true">&rarr;</span>
                         </a>
                     </div>
