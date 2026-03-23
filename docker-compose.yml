@@ -9,7 +9,7 @@ services:
       - "3000:3000"
     environment:
       - API_KEY=
-      - CKAN_BASE_URL=http://ckan:5000
+      - CKAN_BASE_URL=http://ckan:4000
     networks:
       - ckan-network
     profiles:
@@ -24,7 +24,7 @@ services:
       - solr
       #- redis
     ports:
-      - "5000:5000"
+      - "4000:4000"
     environment:
       - CKAN_SQLALCHEMY_URL=postgresql://ckan_default:${POSTGRES_PASSWORD:-password}@db/ckan_default
       - CKAN_SOLR_URL=${CKAN_SOLR_URL:-http://solr:8983/solr/ckan}
@@ -32,7 +32,7 @@ services:
       - CKAN_DATADIC_URL=postgresql://datastore_default:${POSTGRES_PASSWORD}@db/datastore_default
       - CKAN_DATASTORE_WRITE_URL=postgresql://ckan_default:${POSTGRES_PASSWORD:-password}@db/datastore_default
       - CKAN_DATASTORE_READ_URL=postgresql://datastore_default:${POSTGRES_PASSWORD:-password}@db/datastore_default
-      - CKAN_SITE_URL=${CKAN_SITE_URL:-http://localhost:5000}
+      - CKAN_SITE_URL=${CKAN_SITE_URL:-http://localhost:4000}
       - CKAN_BEAKER_SESSION_SECRET=${CKAN_BEAKER_SESSION_SECRET:-secret}
       - CKAN_INI=${CKAN_INI:-/srv/app/ckan.ini}
       - CKAN_SYSADMIN_NAME=${CKAN_SYSADMIN_NAME:-admin}
@@ -40,8 +40,8 @@ services:
       - CKAN_SYSADMIN_EMAIL=${CKAN_SYSADMIN_EMAIL:-admin@example.com}
       - POSTGRES_USER=${POSTGRES_USER:-ckan_default}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-password}
-      - UWSGI_OPTS=--plugins python3 --http-socket [::]:5000 --wsgi-file /srv/app/wsgi.py --module wsgi:application --master --enable-threads --lazy-apps -p 2 -L -b 32768 --vacuum --harakiri 60
-      - CKAN_BASE_URL=http://ckan:5000/
+      - UWSGI_OPTS=--plugins python3 --http-socket [::]:4000 --wsgi-file /srv/app/wsgi.py --module wsgi:application --master --enable-threads --lazy-apps -p 2 -L -b 32768 --vacuum --harakiri 60
+      - CKAN_BASE_URL=http://ckan:4000/
     volumes:
       - ckan-data:/var/lib/ckan
       - ./ckan/ckan.ini:/srv/app/ckan.ini:ro

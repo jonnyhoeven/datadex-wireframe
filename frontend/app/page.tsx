@@ -58,7 +58,7 @@ const HomePage = () => {
                            Direct verbinden naar de ckan API
                             <span aria-hidden="true">&rarr;</span>
                         </a>
-                        <a href="http://localhost:5000" className="text-white font-semibold hover:underline flex items-center gap-1">
+                        <a href="http://localhost:4000" className="text-white font-semibold hover:underline flex items-center gap-1">
                             Development link naar ckan
                             <span aria-hidden="true">&rarr;</span>
                         </a>

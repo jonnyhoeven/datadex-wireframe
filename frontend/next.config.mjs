@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     async rewrites() {
-        const ckanBaseUrl = process.env.CKAN_BASE_URL || 'http://127.0.0.1:5000';
+        const ckanBaseUrl = process.env.CKAN_BASE_URL || 'http://127.0.0.1:4000';
 
         return [
             {

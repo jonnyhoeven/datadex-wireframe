@@ -5,7 +5,7 @@ import sys
 import time
 import subprocess
 
-CKAN_URL = os.environ.get('CKAN_SITE_URL', 'http://localhost:5000').rstrip('/')
+CKAN_URL = os.environ.get('CKAN_SITE_URL', 'http://localhost:4000').rstrip('/')
 CKAN_INI = os.environ.get('CKAN_INI', '/srv/app/ckan.ini')
 CONFIG_FILE = os.environ.get('CONFIG_FILE', '/srv/app/ckan-config.yaml')
 CKAN_SYSADMIN_NAME = os.environ.get('CKAN_SYSADMIN_NAME', 'admin')
