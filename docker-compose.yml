@@ -15,6 +15,7 @@ services:
     profiles:
       - ignore  # This excludes it from a standard 'up' when you want to run yarn dev with the backend. Disable this line to run the container.
   ckan:
+    platform: linux/amd64
     build:
       context: ckan
       dockerfile: Dockerfile
