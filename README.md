@@ -71,7 +71,7 @@ These can be adjusted in `docker-compose.yml`.
 
 The services will be available at:
 
-- **Frontend**: http://localhost:3000 (if running Next.js defaults)
+- **Frontend**: http://localhost:3000 (can be run from container or if disabled in docker compose start yarn dev in frontend folder)
 - **CKAN Backend**: http://localhost:5000
 
 ## Infrastructure as Code: Configuring the Portal
