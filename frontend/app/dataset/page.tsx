@@ -1,9 +1,8 @@
 import React from 'react';
-import { useState } from 'react'
 import {DebugOutput} from '../../components/DebugOutput'
 import {Description, InfoRow} from "../../components/PackageInfo";
-import Autocomplete from '../../components/Autocomplete/Autocomplete'
-import { OptionType } from '../../components/Autocomplete/types'
+import SearchBar from '../../components/SearchBar';
+import Link from 'next/link';
 
 async function getSearchResults(searchString: string) {
     const res = await fetch(`http://localhost:3000/api/3/action/package_search?q=${searchString}`);
@@ -13,29 +12,16 @@ async function getSearchResults(searchString: string) {
 }
 
 const searchResults = async ({searchParams}: { searchParams: Promise<{ q: string }> }) => {
-    const [selection, handleSelection] = useState<OptionType>()
     const {q} = await searchParams;
     const results = await getSearchResults(q);
+
+    if (!results) {
+        return <div className="card">Fout bij het ophalen van resultaten.</div>
+    }
+
     return (
         <div className="lg:w-1/1">
-
-            <Autocomplete
-                //loadOptions={yourAsyncFunction}
-                onChange={handleSelection}
-                placeholder="Search..."
-                isClearable
-            />
-
-            <div className="relative max-w-2xl mx-auto mb-5">
-                <input
-                    type="text"
-                    placeholder="Doorzoek het CKAN archief (bijv. Water)..."
-                    className="w-full rounded-full border border-gray-200 px-6 py-4 text-lg focus:outline-none focus:ring-2 focus:ring-[#004562] focus:border-transparent"
-                />
-                <button className="absolute right-2 top-2 bottom-2 bg-[#004562] text-white px-6 rounded-full font-medium hover:bg-opacity-90 transition-all">
-                    Zoeken
-                </button>
-            </div>
+            <SearchBar initialValue={q} className="mb-5" />
 
             <div className="card">
                 <h4 className="text-2xl font-bold">
@@ -44,13 +30,13 @@ const searchResults = async ({searchParams}: { searchParams: Promise<{ q: string
                 </h4>
             </div>
 
-            {results.results.map((result, index) => (
-                <div className="card">
-                    <h2 className="text-2xl font-bold mb-6">{result.title}</h2>
+            {results.results.map((result) => (
+                <div key={result.id} className="card">
+                    <h2 className="text-2xl font-bold mb-6"><Link href={'dataset/'+ result.name}>{result.title}</Link></h2>
                     <div className="space-y-4 mb-8">
                         <InfoRow label="Type" value={result.type}/>
                         <InfoRow label="Bron" value={result.organization?.title}/>
-                        <InfoRow label="Classificatie" value={result.classification?.private ? 'Prive' : 'Openbaar'}/>
+                        <InfoRow label="Classificatie" value={result.private ? 'Prive' : 'Openbaar'}/>
                         <InfoRow label="Licentie" value={result.license_title}/>
                         <InfoRow
                             label="Thema's"
@@ -69,7 +55,7 @@ const searchResults = async ({searchParams}: { searchParams: Promise<{ q: string
 
                     <Description
                         text={result.notes}
-                        links={result.infoLinks}
+                        links={result.resources?.map((r: any) => ({ label: r.name, url: r.url }))}
                     />
                 </div>
             ))}

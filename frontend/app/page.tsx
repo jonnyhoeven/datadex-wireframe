@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import SearchBar from '../components/SearchBar';
 
 const HomePage = () => {
     return (
@@ -16,16 +17,7 @@ const HomePage = () => {
                         voor operationele bedrijfsvoering, beleid en onderzoek omtrent veiligheid in Nederland.
                     </p>
 
-                    <div className="relative max-w-2xl mx-auto">
-                        <input 
-                            type="text" 
-                            placeholder="Doorzoek het CKAN archief (bijv. Water )..."
-                            className="w-full rounded-full border border-gray-200 px-6 py-4 text-lg focus:outline-none focus:ring-2 focus:ring-[#004562] focus:border-transparent"
-                        />
-                        <button className="absolute right-2 top-2 bottom-2 bg-[#004562] text-white px-6 rounded-full font-medium hover:bg-opacity-90 transition-all">
-                            Zoeken
-                        </button>
-                    </div>
+                    <SearchBar placeholder="Doorzoek het CKAN archief (bijv. Water )..." />
                 </div>
 
                 {/* Info Cards */}

@@ -10,6 +10,7 @@ const Header = () => {
                 <Link href="/"><img src="/nipv.svg" alt="NIPV Logo" className="h-10 w-auto" /></Link>
                 <Link href="/"><h1 className="text-xl font-bold">Data4OOV Catalogus</h1></Link>
             </div>
+
             <div className="flex items-center space-x-4">
                 <button className="text-gray-500">
                     <FontAwesomeIcon icon={faMoon} />

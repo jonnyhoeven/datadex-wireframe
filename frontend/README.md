@@ -84,16 +84,7 @@ To allow the Junie AI agent to interact with the local development server via br
 1. In IntelliJ, open the Junie chat and type `/mcp` (or create `.junie/mcp/mcp.json` in the project root).
 2. Add the following configuration:
 
-```json
-{
-  "mcpServers": {
-    "playwright": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@playwright/mcp@latest"
-      ]
-    }
-  }
-}
+install playwright chrome
+```bash
+npx playwright install chrome
 ```
