@@ -29,7 +29,7 @@ const HomePage = () => {
                         <p className="text-gray-600 mb-6 line-clamp-3">
                             A GeoSpatial Dataset for testing purposes.
                         </p>
-                        <Link href="/dataset" className="text-[#004562] font-semibold hover:underline flex items-center gap-1">
+                        <Link href="/dataset/percelen-in-bezit-van-woningcorporaties" className="text-[#004562] font-semibold hover:underline flex items-center gap-1">
                             Bekijk dataset details
                             <span aria-hidden="true">&rarr;</span>
                         </Link>
