@@ -69,6 +69,7 @@ services:
       - ckan-network
 
   solr:
+    platform: linux/amd64
     image: ckan/ckan-solr:2.10-solr9
     networks:
       - ckan-network
