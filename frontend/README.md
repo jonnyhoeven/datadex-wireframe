@@ -76,3 +76,24 @@ The frontend expects to communicate with a CKAN backend. When running locally ou
 - `pages/`: Contains the Next.js pages (e.g., `index.tsx`, `dataset.tsx`).
 - `public/`: Static assets like images and fonts.
 - `Dockerfile`: Configuration for building the frontend container image.
+
+## Junie MCP Setup
+
+To allow the Junie AI agent to interact with the local development server via browser automation, configure the Playwright MCP server:
+
+1. In IntelliJ, open the Junie chat and type `/mcp` (or create `.junie/mcp/mcp.json` in the project root).
+2. Add the following configuration:
+
+```json
+{
+  "mcpServers": {
+    "playwright": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@playwright/mcp@latest"
+      ]
+    }
+  }
+}
+```
