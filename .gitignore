@@ -5,3 +5,4 @@
 /ckan/data/
 /db/data/
 /unshared-docs/
+/.playwright-mcp/*.log
