@@ -40,18 +40,18 @@ export const MapPreview: React.FC = () => (
     <div className="rounded-xl overflow-hidden border border-gray-200 mb-8 bg-gray-50">
         <div className="relative h-64 md:h-80 w-full z-0">
             <MapWrapper />
-            <div className="absolute top-2 right-2 z-[400] bg-white/90 p-2 text-[10px] border border-gray-200 rounded shadow-sm">
-                <div className="font-bold border-b mb-1">Legenda</div>
-                <div className="flex items-center space-x-1">
-                    <span className="w-2 h-2 bg-red-500 rounded-sm opacity-50 border border-red-500"></span> <span>Hoog risico</span>
-                </div>
-                <div className="flex items-center space-x-1">
-                    <span className="w-2 h-2 bg-yellow-400 rounded-sm opacity-50 border border-yellow-400"></span> <span>Matig risico</span>
-                </div>
-                <div className="flex items-center space-x-1">
-                    <span className="w-2 h-2 bg-green-500 rounded-sm opacity-50 border border-green-500"></span> <span>Laag risico</span>
-                </div>
-            </div>
+            {/*<div className="absolute top-2 right-2 z-[400] bg-white/90 p-2 text-[10px] border border-gray-200 rounded shadow-sm">*/}
+            {/*    <div className="font-bold border-b mb-1">Legenda</div>*/}
+            {/*    <div className="flex items-center space-x-1">*/}
+            {/*        <span className="w-2 h-2 bg-red-500 rounded-sm opacity-50 border border-red-500"></span> <span>Hoog risico</span>*/}
+            {/*    </div>*/}
+            {/*    <div className="flex items-center space-x-1">*/}
+            {/*        <span className="w-2 h-2 bg-yellow-400 rounded-sm opacity-50 border border-yellow-400"></span> <span>Matig risico</span>*/}
+            {/*    </div>*/}
+            {/*    <div className="flex items-center space-x-1">*/}
+            {/*        <span className="w-2 h-2 bg-green-500 rounded-sm opacity-50 border border-green-500"></span> <span>Laag risico</span>*/}
+            {/*    </div>*/}
+            {/*</div>*/}
         </div>
     </div>
 );
