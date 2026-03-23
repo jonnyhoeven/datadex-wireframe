@@ -57,7 +57,7 @@ const Package = async ({params}: { params: Promise<{ slug: string }> }) => {
                     <DebugOutput obj={result}/>
                 </div>
             </div>
-            <Sidebar/>
+            <Sidebar dataset={result} />
         </>
     );
 };
