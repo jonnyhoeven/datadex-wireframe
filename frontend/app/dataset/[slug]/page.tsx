@@ -4,16 +4,16 @@ import {Description, InfoRow, MapPreview, MetadataTable} from '../../../componen
 import Sidebar from '../../../components/Sidebar';
 import {DebugOutput} from '../../../components/DebugOutput'
 
-async function getDataset(slug: string) {
+async function getPackage(slug: string) {
     const res = await fetch(`http://localhost:3000/api/3/action/package_show?id=${slug}`);
     if (!res.ok) return null;
     const data = await res.json();
     return data.result
 }
 
-const Dataset = async ({params}: { params: Promise<{ slug: string }> }) => {
+const Package = async ({params}: { params: Promise<{ slug: string }> }) => {
     const {slug} = await params;
-    const result = await getDataset(slug);
+    const result = await getPackage(slug);
     if (!result) {
         notFound();
     }
@@ -62,4 +62,4 @@ const Dataset = async ({params}: { params: Promise<{ slug: string }> }) => {
     );
 };
 
-export default Dataset;
+export default Package;
