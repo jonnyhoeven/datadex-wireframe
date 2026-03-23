@@ -1,4 +1,5 @@
 import React from 'react';
+import MapWrapper from './MapWrapper';
 
 interface InfoRowProps {
     label: string;
@@ -37,34 +38,18 @@ export const Description: React.FC<DescriptionProps> = ({text, links}) => (
 
 export const MapPreview: React.FC = () => (
     <div className="rounded-xl overflow-hidden border border-gray-200 mb-8 bg-gray-50">
-        <div className="relative h-64 md:h-80 flex items-center justify-center">
-            <div className="absolute inset-0 opacity-40"
-                 style={{
-                     backgroundImage: 'radial-gradient(#cbd5e1 1px, transparent 1px)',
-                     backgroundSize: '20px 20px'
-                 }}>
-            </div>
-            <div className="z-10 bg-white p-4 rounded shadow-sm border border-gray-200">
-                <div className="grid grid-cols-6 gap-1 w-48">
-                    {[
-                        'bg-green-400', 'bg-green-300', 'bg-yellow-300', 'bg-yellow-400', 'bg-red-400', 'bg-red-500',
-                        'bg-green-500', 'bg-yellow-400', 'bg-red-500', 'bg-red-600', 'bg-yellow-400', 'bg-green-400'
-                    ].map((color, idx) => (
-                        <div key={idx} className={`h-4 ${color}`}></div>
-                    ))}
-                </div>
-                <p className="text-[10px] text-center mt-2 text-gray-400 italic">Kaart preview visualisatie</p>
-            </div>
-            <div className="absolute top-2 right-2 bg-white/90 p-2 text-[10px] border border-gray-200 rounded">
+        <div className="relative h-64 md:h-80 w-full z-0">
+            <MapWrapper />
+            <div className="absolute top-2 right-2 z-[400] bg-white/90 p-2 text-[10px] border border-gray-200 rounded shadow-sm">
                 <div className="font-bold border-b mb-1">Legenda</div>
                 <div className="flex items-center space-x-1">
-                    <span className="w-2 h-2 bg-red-500 rounded-sm"></span> <span>Hoog risico</span>
+                    <span className="w-2 h-2 bg-red-500 rounded-sm opacity-50 border border-red-500"></span> <span>Hoog risico</span>
                 </div>
                 <div className="flex items-center space-x-1">
-                    <span className="w-2 h-2 bg-yellow-400 rounded-sm"></span> <span>Matig risico</span>
+                    <span className="w-2 h-2 bg-yellow-400 rounded-sm opacity-50 border border-yellow-400"></span> <span>Matig risico</span>
                 </div>
                 <div className="flex items-center space-x-1">
-                    <span className="w-2 h-2 bg-green-500 rounded-sm"></span> <span>Laag risico</span>
+                    <span className="w-2 h-2 bg-green-500 rounded-sm opacity-50 border border-green-500"></span> <span>Laag risico</span>
                 </div>
             </div>
         </div>
