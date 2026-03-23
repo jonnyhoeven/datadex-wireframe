@@ -19,7 +19,7 @@ const HomePage = () => {
                     <div className="relative max-w-2xl mx-auto">
                         <input 
                             type="text" 
-                            placeholder="Doorzoek het CKAN archief (bijv. Natuurbranden)..." 
+                            placeholder="Doorzoek het CKAN archief (bijv. Water )..."
                             className="w-full rounded-full border border-gray-200 px-6 py-4 text-lg focus:outline-none focus:ring-2 focus:ring-[#004562] focus:border-transparent"
                         />
                         <button className="absolute right-2 top-2 bottom-2 bg-[#004562] text-white px-6 rounded-full font-medium hover:bg-opacity-90 transition-all">
@@ -33,9 +33,9 @@ const HomePage = () => {
                     {/* Highlighted Dataset */}
                     <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
                         <div className="inline-block bg-orange-100 text-orange-800 text-xs font-bold px-3 py-1 rounded-full mb-4 uppercase tracking-wide">Uitgelicht</div>
-                        <h2 className="text-2xl font-bold text-gray-900 mb-3">Risico Index Natuurbranden (RIN)</h2>
+                        <h2 className="text-2xl font-bold text-gray-900 mb-3">Percelen in bezit van woningcorporaties</h2>
                         <p className="text-gray-600 mb-6 line-clamp-3">
-                            De RIN werkt met 17 parameters die duiding geven aan de kans op het ontstaan van een onbeheersbare natuurbrand. Deze dataset helpt betrokken partijen bij een gebiedsgerichte aanpak.
+                            A GeoSpatial Dataset for testing purposes.
                         </p>
                         <Link href="/dataset" className="text-[#004562] font-semibold hover:underline flex items-center gap-1">
                             Bekijk dataset details
