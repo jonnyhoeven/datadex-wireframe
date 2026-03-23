@@ -4,18 +4,18 @@ import {Description, InfoRow} from "../../components/PackageInfo";
 import SearchBar from '../../components/SearchBar';
 import Link from 'next/link';
 
-async function getSearchResults(searchString: string) {
-    if (!searchString) return { count: 0, results: [] };
-    
-    // Append wildcard for prefix matching (e.g. 'wat' -> 'wat*')
-    // and use edismax to search across multiple fields with weighting.
-    const query = searchString.trim().split(' ').map(term => `${term}*`).join(' ');
+async function getSearchResults(searchString: string | undefined) {
+    // If no search string, show all datasets using the Solr match-all query '*:*'
+    // Otherwise, append wildcard '*' to each term for prefix matching (e.g. 'wat' -> 'wat*')
+    const query = searchString?.trim()
+        ? searchString.trim().split(/\s+/).map(term => `${term}*`).join(' ')
+        : '*:*';
     
     const params = new URLSearchParams({
         q: query,
         defType: 'edismax',
         qf: 'title^4 name^2 notes^1 tags^1',
-        rows: '10'
+        rows: '20'
     });
 
     const res = await fetch(`http://localhost:3000/api/3/action/package_search?${params.toString()}`);
