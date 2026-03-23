@@ -1,15 +1,7 @@
 'use client';
 
-import { MapContainer, TileLayer } from 'react-leaflet';
+import { MapContainer, TileLayer, WMSTileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import L from 'leaflet';
-
-// delete (L.Icon.Default.prototype as any)._getIconUrl;
-// L.Icon.Default.mergeOptions({
-//     iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
-//     iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
-//     shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
-// });
 
 const MapComponent: React.FC = () => {
     // Determine the center based on mock data points
@@ -25,6 +17,14 @@ const MapComponent: React.FC = () => {
             <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+
+            <WMSTileLayer
+                url="https://geodata.zuid-holland.nl/geoserver/water/wms"
+                layers="HHDELFLAND_AFSLUITER,HHDELFLAND_INSPECTIEPUT"
+                format="image/png"
+                transparent={true}
+                attribution="ehgjehjehjwjh"
             />
 
         </MapContainer>
