@@ -17,7 +17,7 @@ export default function NotFound() {
                         404
                     </h1>
                     <p className="text-xl text-gray-600 mb-10 leading-relaxed">
-                        Pagina niet beschikbaar
+                        Niet beschikbaar, de opgevraagde pagina kon niet worden gevonden.
                     </p>
                     <Link href="/" className="inline-block bg-[#004562] text-white px-8 py-3 rounded-full font-medium hover:bg-opacity-90 transition-all">
                         Home

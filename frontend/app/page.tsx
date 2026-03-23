@@ -50,15 +50,14 @@ const HomePage = () => {
                            Direct verbinden naar de ckan API
                             <span aria-hidden="true">&rarr;</span>
                         </a>
-                        <a href="http://localhost:4000" className="text-white font-semibold hover:underline flex items-center gap-1">
-                            Development link naar ckan
-                            <span aria-hidden="true">&rarr;</span>
-                        </a>
-                        <a href="/dataset?q=water" className="text-white font-semibold hover:underline flex items-center gap-1">
-                            Development link naar search
-                            <span aria-hidden="true">&rarr;</span>
-                        </a>
 
+                        <div>
+                            <h4 className="mt-3">Development links:</h4>
+                            <a href="http://localhost:4000" className="text-white font-semibold hover:underline flex items-center gap-1">
+                                ckan
+                                <span aria-hidden="true">&rarr;</span>
+                            </a>
+                        </div>
 
                     </div>
                 </div>

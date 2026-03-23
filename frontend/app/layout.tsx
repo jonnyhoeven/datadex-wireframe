@@ -8,8 +8,8 @@ config.autoAddCss = false;
 import Header from '../components/Header';
 
 export const metadata: Metadata = {
-    title: "Data4OOV Catalogus - Risico Index Natuurbranden",
-    description: "Data4OOV Catalogus",
+    title: "Data4OOV Catalogus",
+    description: "Data4OOV Catalogus - Hét data portaal voor Openbare Orde en Veiligheid",
 };
 
 export default function RootLayout({
