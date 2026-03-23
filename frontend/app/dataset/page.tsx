@@ -1,7 +1,9 @@
 import React from 'react';
+import { useState } from 'react'
 import {DebugOutput} from '../../components/DebugOutput'
 import {Description, InfoRow} from "../../components/PackageInfo";
-
+import Autocomplete from '../../components/Autocomplete/Autocomplete'
+import { OptionType } from '../../components/Autocomplete/types'
 
 async function getSearchResults(searchString: string) {
     const res = await fetch(`http://localhost:3000/api/3/action/package_search?q=${searchString}`);
@@ -11,10 +13,18 @@ async function getSearchResults(searchString: string) {
 }
 
 const searchResults = async ({searchParams}: { searchParams: Promise<{ q: string }> }) => {
+    const [selection, handleSelection] = useState<OptionType>()
     const {q} = await searchParams;
     const results = await getSearchResults(q);
     return (
         <div className="lg:w-1/1">
+
+            <Autocomplete
+                //loadOptions={yourAsyncFunction}
+                onChange={handleSelection}
+                placeholder="Search..."
+                isClearable
+            />
 
             <div className="relative max-w-2xl mx-auto mb-5">
                 <input

@@ -4,8 +4,6 @@ import {Description, InfoRow, MapPreview, MetadataTable} from '../../../componen
 import Sidebar from '../../../components/Sidebar';
 import {DebugOutput} from '../../../components/DebugOutput'
 
-
-
 async function getDataset(slug: string) {
     const res = await fetch(`http://localhost:3000/api/3/action/package_show?id=${slug}`);
     if (!res.ok) return null;
