@@ -14,7 +14,7 @@ async function getSearchResults(searchString: string | undefined) {
     const params = new URLSearchParams({
         q: query,
         defType: 'edismax',
-        qf: 'title^4 name^2 notes^1 tags^1',
+        qf: 'title^2 name^2 notes^1 tags^1',
         rows: '20'
     });
 
