@@ -10,9 +10,9 @@ const MapComponent: React.FC = () => {
     return (
         <MapContainer 
             center={center} 
-            zoom={12} 
+            zoom={6.5}
             style={{ height: '100%', width: '100%', zIndex: 0 }}
-            scrollWheelZoom={false}
+            scrollWheelZoom={true}
         >
             <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
