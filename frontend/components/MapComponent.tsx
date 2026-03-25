@@ -23,7 +23,7 @@ const MapComponent: React.FC = () => {
                 layers="HHDELFLAND_AFSLUITER,HHDELFLAND_INSPECTIEPUT"
                 format="image/png"
                 transparent={true}
-                attribution="ehgjehjehjwjh"
+                attribution="@todo api retrieval"
             />
 
         </MapContainer>
