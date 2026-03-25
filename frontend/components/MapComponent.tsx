@@ -4,7 +4,6 @@ import { MapContainer, TileLayer, WMSTileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 
 const MapComponent: React.FC = () => {
-    // Determine the center based on mock data points
     const center: [number, number] = [52.09, 5.10]; // Near Utrecht roughly
 
     return (
