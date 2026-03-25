@@ -20,8 +20,8 @@ As an AI agent working on the Datadex Wireframe project, you must adhere strictl
 
 - **Browser Automation:** This project is configured with a Playwright MCP (Model Context Protocol) server, allowing you
   to interact with the local development server via browser automation.
-- **Usage:** The Playwright MCP should be used in conjunction with the `yarn dev` command. While the development server
-  is running (at `http://localhost:3000`), you can utilize Playwright tools to visually test, navigate, and evaluate the
-  application.
+- **Usage:** The Playwright MCP should be used in conjunction with the `yarn dev` command within the `frontend/` 
+  directory. While the development server is running (at `http://localhost:3000`), you can use Playwright to interact 
+  test, navigate, and evaluate the application.
 - **Prerequisites:** If Playwright browsers are missing when attempting to use the MCP, you can install them by running
   `npx playwright install chrome` within the `frontend` directory.
