@@ -8,6 +8,10 @@ const nextConfig = {
                 source: '/api/3/action/:path*',
                 destination: `${ckanBaseUrl}/api/3/action/:path*`,
             },
+            {
+                source: '/api/activity-predictor/:path*',
+                destination: `http://127.0.0.1:8501/:path*`,
+            },
         ]
     },
 };
