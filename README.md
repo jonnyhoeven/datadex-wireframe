@@ -91,6 +91,9 @@ If you update `ckan-config.yaml` while the container is running, make sure you r
 docker compose exec ckan python3 /srv/app/ckan-init.py
 ```
 
+To run Harvester see [ckanext-harvester](https://github.com/ckan/ckanext-harvest/blob/master/README.rst#harvester-run)
+(Currently not working)
+
 ## Common Commands
 
 - **Stop services**: `docker compose stop`
