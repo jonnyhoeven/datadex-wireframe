@@ -14,5 +14,6 @@ PyYAML
 # Extra plugins for CKAN
 ckanext-spatial @ git+https://github.com/ckan/ckanext-spatial.git
 ckanext-harvest @ git+https://github.com/ckan/ckanext-harvest.git
+ckanext-dcat @ git+https://github.com/ckan/ckanext-dcat.git
 ckanext-scheming @ git+https://github.com/ckan/ckanext-scheming.git#egg=ckanext-scheming
 ckanext-geoview

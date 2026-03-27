@@ -94,10 +94,10 @@ packages:
 
 
 harvesters:
-  - name: "data-europe"
-    url: "https://data.europa.eu/api/hub/search/ckan/"
-    type: "ckan"
+  - name: "data-europe-dcat"
+    url: "https://data.europa.eu/api/hub/repo/datasets"
+    type: "dcat_rdf"
     owner_org: "data-europe"
-    title: "European Data Portal Harvester"
-    description: "European Data Portal ckan api endpoint"
+    title: "European Data Portal DCAT Harvester"
+    description: "European Data Portal DCAT-AP endpoint"
     frequency: "MANUAL"
