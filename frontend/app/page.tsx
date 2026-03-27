@@ -52,9 +52,9 @@ const HomePage = () => {
                         </a>
 
                         <div>
-                            <h4 className="mt-3">Development links:</h4>
+                            <h4 className="mt-3">While developing links:</h4>
                             <a href="http://localhost:4000" className="text-white font-semibold hover:underline flex items-center gap-1">
-                                ckan
+                                Login to ckan (use: admin - password)
                                 <span aria-hidden="true">&rarr;</span>
                             </a>
                         </div>
