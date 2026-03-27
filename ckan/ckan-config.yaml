@@ -91,6 +91,143 @@ packages:
         url: "https://geodata.zuid-holland.nl/geoserver/klimaat/wfs?service=WFS&version=2.0.0&request=GetCapabilities"
         format: "WFS"
 
+  - name: "vrijevlak"
+    title: "Vrijvlak"
+    notes: "Digitale kadastrale kaart van Nederland.  Beeldt de kadastrale percelen, gebouwen en liggingsovereenkomsten weer."
+    owner_org: "zuid-holland"
+    license_id: "cc-by-nc"
+    groups:
+      - name: "afgeschermd"
+      - name: "openbaar"
+    tags:
+      - display_name: "Kadaster"
+        name: "kadaster"
+        state: "active"
+      - display_name: "Grond"
+        name: "grond"
+        state: "active"
+    resources:
+      - name: "WMS"
+        url: "https://geodata.zuid-holland.nl/geoserver/vrijevlak/wms?service=WMS&version=1.3.0&request=GetCapabilities"
+        format: "WMS"
+      - name: "WFS"
+        url: "https://geodata.zuid-holland.nl/geoserver/vrijevlak/wfs?service=WFS&version=2.0.0&request=GetCapabilities"
+        format: "WFS"
+
+  - name: "natuur-en-recreatie"
+    title: "Natuur en Recreatie"
+    notes: "Informatie over natuurgebieden en recreatiemogelijkheden in de provincie."
+    owner_org: "zuid-holland"
+    license_id: "cc-by"
+    groups:
+      - name: "openbaar"
+    tags:
+      - display_name: "Natuur"
+        name: "natuur"
+        state: "active"
+      - display_name: "Recreatie"
+        name: "recreatie"
+        state: "active"
+    resources:
+      - name: "GeoJSON"
+        url: "https://geodata.zuid-holland.nl/geoserver/natuur/geojson?request=GetFeature&typeName=natuur_recreatie.natuurrecreatiegebieden&outputFormat=GeoJSON"
+        format: "GeoJSON"
+
+  - name: "economische-activiteiten"
+    title: "Economische Activiteiten"
+    notes: "Dataset met informatie over bedrijven en economische activiteiten in de provincie."
+    owner_org: "data-europe"
+    license_id: "cc0"
+    groups:
+      - name: "afgeschermd"
+    tags:
+      - display_name: "Economie"
+        name: "economie"
+        state: "active"
+      - display_name: "Bedrijven"
+        name: "bedrijven"
+        state: "active"
+    resources:
+      - name: "CSV"
+        url: "https://example.com/economische_activiteiten.csv"
+        format: "CSV"
+
+  - name: "gemeentegrenzen"
+    title: "Gemeentegrenzen"
+    notes: "Dataset met de grenzen van de gemeenten in de provincie."
+    owner_org: "zuid-holland"
+    license_id: "cc-by"
+    groups:
+      - name: "openbaar"
+    tags:
+      - display_name: "Geografie"
+        name: "geografie"
+        state: "active"
+      - display_name: "Gemeenten"
+        name: "gemeenten"
+        state: "active"
+    resources:
+      - name: "Shapefile"
+        url: "https://geodata.zuid-holland.nl/geoserver/gemeenten/shapefile?request=GetFeature&typeName=gemeente_grenzen&outputFormat=shape-zip"
+        format: "Shapefile"
+
+  - name: "fietsroutes"
+    title: "Fietsroutes"
+    notes: "Dataset met informatie over fietsroutes in de provincie."
+    owner_org: "zuid-holland"
+    license_id: "cc-by"
+    groups:
+      - name: "openbaar"
+    tags:
+      - display_name: "Transport"
+        name: "transport"
+        state: "active"
+      - display_name: "Fietsen"
+        name: "fietsen"
+        state: "active"
+    resources:
+      - name: "KML"
+        url: "https://geodata.zuid-holland.nl/geoserver/fietsroutes/kml?request=GetFeature&typeName=fietsroutes&outputFormat=kml"
+        format: "KML"
+
+  - name: "bezienswaardigheden"
+    title: "Bezienswaardigheden"
+    notes: "Dataset met informatie over bezienswaardigheden in de provincie."
+    owner_org: "data-europe"
+    license_id: "cc-by"
+    groups:
+      - name: "openbaar"
+    tags:
+      - display_name: "Toerisme"
+        name: "toerisme"
+        state: "active"
+      - display_name: "Cultuur"
+        name: "cultuur"
+        state: "active"
+    resources:
+      - name: "GeoJSON"
+        url: "https://example.com/bezienswaardigheden.geojson"
+        format: "GeoJSON"
+
+  - name: "landbouwgrond"
+    title: "Landbouwgrond"
+    notes: "Dataset met informatie over landbouwgrond en -gebruik."
+    owner_org: "zuid-holland"
+    license_id: "cc-by-nc"
+    groups:
+      - name: "afgeschermd"
+    tags:
+      - display_name: "Landbouw"
+        name: "landbouw"
+        state: "active"
+      - display_name: "Grondgebruik"
+        name: "grondgebruik"
+        state: "active"
+    resources:
+      - name: "Raster"
+        url: "https://geodata.zuid-holland.nl/geoserver/landbouw/raster?request=GetMap&service=WMS&version=1.3.0&layers=landbouw.landbouwgrond&styles=&format=image/png"
+        format: "Raster"
+
 
 
 harvesters:
