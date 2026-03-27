@@ -95,7 +95,7 @@ packages:
 
 harvesters:
   - name: "data-europe"
-    url: "https://data.europa.eu/api/hub/search/ckan"
+    url: "https://data.europa.eu/api/hub/search/ckan/"
     type: "ckan"
     owner_org: "data-europe"
     title: "European Data Portal Harvester"
