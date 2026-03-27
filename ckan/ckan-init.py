@@ -82,29 +82,31 @@ def setup_entities(config):
     # Setup Harvesters
     for harvester in config.get('harvesters', []):
         print(f"Checking harvester: {harvester['name']}")
-        # Harvesters are usually checked by name/id using harvest_source_show
+        
+        harvest_data = {
+            'name': harvester['name'],
+            'url': harvester['url'],
+            'source_type': harvester['type'],
+            'title': harvester.get('title', harvester['name']),
+            'notes': harvester.get('description', ''),
+            'frequency': harvester.get('frequency', 'MANUAL'),
+            'owner_org': harvester.get('owner_org'),
+            'config': harvester.get('config'),
+            'active': True
+        }
+
+        # If owner_org is missing, try to use the first organization from config
+        if not harvest_data['owner_org'] and config.get('organizations'):
+            harvest_data['owner_org'] = config['organizations'][0]['name']
+
         res = call_action('harvest_source_show', {'id': harvester['name']})
         if not res['success']:
             print(f"Creating harvester: {harvester['name']}")
-            # Map harvester config to match harvest_source_create expectations
-            harvest_data = {
-                'name': harvester['name'],
-                'url': harvester['url'],
-                'source_type': harvester['type'],
-                'title': harvester.get('title', harvester['name']),
-                'notes': harvester.get('description', ''),
-                'frequency': harvester.get('frequency', 'MANUAL'),
-                'owner_org': harvester.get('owner_org'),
-                'active': True
-            }
-
-            # If owner_org is missing, try to use the first organization from config
-            if not harvest_data['owner_org'] and config.get('organizations'):
-                harvest_data['owner_org'] = config['organizations'][0]['name']
-
             call_action('harvest_source_create', harvest_data)
         else:
-            print(f"Harvester {harvester['name']} already exists.")
+            print(f"Harvester {harvester['name']} already exists. Updating...")
+            harvest_data['id'] = res['result']['id']
+            call_action('harvest_source_update', harvest_data)
 
 
 if __name__ == "__main__":
