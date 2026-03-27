@@ -1,0 +1,236 @@
+[
+  {
+    "activity": "brand bij schouwburg",
+    "actual_layers": [
+      "A Wegen",
+      "D Waterwegen",
+      "E Gebouwen",
+      "G scholen"
+    ],
+    "predicted_layers": [
+      "A Wegen",
+      "C Electriciteit",
+      "C Gasnetwerk",
+      "E Gebouwen",
+      "F Riolering",
+      "G scholen",
+      "J Publieke ruimte",
+      "L Kunstwerken"
+    ]
+  },
+  {
+    "activity": "drukknopmelding Alco Engy",
+    "actual_layers": [
+      "A Industrie",
+      "C Electriciteit"
+    ],
+    "predicted_layers": [
+      "A Industrie",
+      "A Wegen",
+      "C Electriciteit",
+      "I Milieu zones",
+      "J Publieke ruimte",
+      "K Natuurgebieden"
+    ]
+  },
+  {
+    "activity": "gaslek in woonwijk",
+    "actual_layers": [
+      "E Gebouwen",
+      "C Gasnetwerk"
+    ],
+    "predicted_layers": [
+      "A Wegen",
+      "B Spoorwegen",
+      "C Electriciteit",
+      "F Riolering",
+      "K Natuurgebieden",
+      "L Kunstwerken"
+    ]
+  },
+  {
+    "activity": "aanrijding met letsel A12",
+    "actual_layers": [
+      "A Wegen",
+      "H Bermen"
+    ],
+    "predicted_layers": [
+      "A Wegen",
+      "C Electriciteit",
+      "C Gasnetwerk",
+      "F Riolering",
+      "G scholen",
+      "J Publieke ruimte",
+      "K Natuurgebieden"
+    ]
+  },
+  {
+    "activity": "wateroverlast ziekenhuis",
+    "actual_layers": [
+      "E Gebouwen",
+      "D Waterwegen",
+      "F Riolering"
+    ],
+    "predicted_layers": [
+      "A Wegen",
+      "B Spoorwegen",
+      "C Electriciteit",
+      "D Waterwegen",
+      "F Riolering",
+      "G scholen",
+      "K Natuurgebieden",
+      "L Kunstwerken"
+    ]
+  },
+  {
+    "activity": "stroomstoring datacenter",
+    "actual_layers": [
+      "A Industrie",
+      "C Electriciteit"
+    ],
+    "predicted_layers": [
+      "A Industrie",
+      "A Wegen",
+      "B Spoorwegen",
+      "C Electriciteit",
+      "F Riolering",
+      "G scholen",
+      "J Publieke ruimte",
+      "K Natuurgebieden",
+      "L Kunstwerken"
+    ]
+  },
+  {
+    "activity": "verdacht pakketje treinstation",
+    "actual_layers": [
+      "B Spoorwegen",
+      "E Gebouwen"
+    ],
+    "predicted_layers": [
+      "A Industrie",
+      "A Wegen",
+      "B Spoorwegen",
+      "C Electriciteit",
+      "C Gasnetwerk",
+      "E Gebouwen",
+      "F Riolering",
+      "K Natuurgebieden",
+      "L Kunstwerken"
+    ]
+  },
+  {
+    "activity": "oliespoor op provinciale weg",
+    "actual_layers": [
+      "A Wegen",
+      "I Milieu zones"
+    ],
+    "predicted_layers": [
+      "B Spoorwegen",
+      "C Electriciteit",
+      "E Gebouwen",
+      "F Riolering",
+      "G scholen",
+      "J Publieke ruimte",
+      "K Natuurgebieden",
+      "L Kunstwerken"
+    ]
+  },
+  {
+    "activity": "demonstratie stadhuis",
+    "actual_layers": [
+      "E Gebouwen",
+      "J Publieke ruimte"
+    ],
+    "predicted_layers": [
+      "A Industrie",
+      "B Spoorwegen",
+      "C Electriciteit",
+      "E Gebouwen",
+      "J Publieke ruimte",
+      "K Natuurgebieden"
+    ]
+  },
+  {
+    "activity": "vermiste zwemmer recreatieplas",
+    "actual_layers": [
+      "D Waterwegen",
+      "K Natuurgebieden"
+    ],
+    "predicted_layers": [
+      "A Wegen",
+      "B Spoorwegen",
+      "C Electriciteit",
+      "D Waterwegen",
+      "I Milieu zones",
+      "K Natuurgebieden",
+      "L Kunstwerken"
+    ]
+  },
+  {
+    "activity": "uitslaande brand basisschool",
+    "actual_layers": [
+      "E Gebouwen",
+      "G scholen"
+    ],
+    "predicted_layers": [
+      "A Industrie",
+      "A Wegen",
+      "B Spoorwegen",
+      "C Electriciteit",
+      "E Gebouwen",
+      "F Riolering",
+      "J Publieke ruimte",
+      "K Natuurgebieden",
+      "L Kunstwerken"
+    ]
+  },
+  {
+    "activity": "defecte sluisdeur hoofdvaart",
+    "actual_layers": [
+      "D Waterwegen",
+      "L Kunstwerken"
+    ],
+    "predicted_layers": [
+      "A Industrie",
+      "B Spoorwegen",
+      "C Electriciteit",
+      "E Gebouwen",
+      "F Riolering",
+      "G scholen",
+      "J Publieke ruimte",
+      "K Natuurgebieden",
+      "L Kunstwerken"
+    ]
+  },
+  {
+    "activity": "uitval verkeerslichten kruispunt",
+    "actual_layers": [
+      "A Wegen",
+      "C Electriciteit"
+    ],
+    "predicted_layers": [
+      "A Industrie",
+      "B Spoorwegen",
+      "C Electriciteit",
+      "E Gebouwen",
+      "F Riolering",
+      "J Publieke ruimte",
+      "L Kunstwerken"
+    ]
+  },
+  {
+    "activity": "drugslab aangetroffen in loods",
+    "actual_layers": [
+      "A Wegen",
+      "C Electriciteit"
+    ],
+    "predicted_layers": [
+      "B Spoorwegen",
+      "C Electriciteit",
+      "E Gebouwen",
+      "F Riolering",
+      "K Natuurgebieden",
+      "L Kunstwerken"
+    ]
+  }
+]

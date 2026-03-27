@@ -54,5 +54,14 @@ async function getPrediction(inputData) {
 - **CORS**: By using the `/api/activity-predictor/` path, you avoid all Cross-Origin Resource Sharing (CORS) issues because the request stays on the same origin (`localhost:3000`).
 - **Configuration**: The proxy logic is defined in `frontend/next.config.mjs`.
 
+## Example Predictions
+To see what the model predicts for the activities in `mockdata.yaml`, you can check the reference output file:
+`tensorflow/api_test_output.json`
+
+This file contains an array of objects showing the input activity name, the actual layers (from the mock data), and the layers predicted by the model.
+
+## Reference Implementation
+If you need to see how to preprocess the data in Python (which matches the training logic), refer to `tensorflow/api_test.py`.
+
 ## Docker Configuration
 The service runs using the `emacski/tensorflow-serving:latest` image (compatible with ARM64/Apple Silicon). It loads models from the `tf_serving_models/` directory.
