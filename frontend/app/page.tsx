@@ -57,6 +57,10 @@ const HomePage = () => {
                                 Login to ckan (use: admin - password)
                                 <span aria-hidden="true">&rarr;</span>
                             </a>
+                            <a href="/api/activity-predictor/v1/models/activity_predictor/metadata" className="text-white font-semibold hover:underline flex items-center gap-1">
+                                Activity predictor model in tensorflow serving
+                                <span aria-hidden="true">&rarr;</span>
+                            </a>
                         </div>
 
                     </div>
