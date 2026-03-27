@@ -95,9 +95,9 @@ To run Harvester see [ckanext-harvester](https://github.com/ckan/ckanext-harvest
 (Currently not working)
 
 ```bash
-ckan --config=/srv/app/ckan.ini harvester gather-consumer
-ckan --config=/srv/app/ckan.ini harvester fetch-consumer
-ckan --config=/srv/app/ckan.ini harvester run
+docker compose exec ckan ckan --config=/srv/app/ckan.ini harvester gather-consumer
+docker compose exec ckan ckan --config=/srv/app/ckan.ini harvester fetch-consumer
+docker compose exec ckan ckan --config=/srv/app/ckan.ini harvester run
 ```
 
 ## Common Commands
