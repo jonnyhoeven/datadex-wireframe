@@ -53,6 +53,15 @@ services:
     networks:
       - ckan-network
 
+  tensorflow:
+    build:
+      context: tensorflow
+      dockerfile: Dockerfile
+    ports:
+     - "8501:8501"
+    networks:
+      - ckan-network
+
   db:
     image: postgres:12-alpine
     ports:
