@@ -2,6 +2,10 @@ organizations:
   - name: "zuid-holland"
     title: "Open-dataportaal Zuid Holland"
     description: "Dataportaal van provincie Zuid Holland"
+  - name: "data-europe"
+    title: "European Data Portal"
+    description: "Dataportaal van de EU"
+
 
 groups:
   - name: "vertrouwelijk"
@@ -90,10 +94,10 @@ packages:
 
 
 harvesters:
-  - name: "test-harvester"
-    url: "https://demo.ckan.org"
+  - name: "data-europe"
+    url: "https://data.europa.eu/api/hub/search/ckan"
     type: "ckan"
-    owner_org: "test-org"
-    title: "Test Harvester"
-    description: "A harvester for demo.ckan.org."
+    owner_org: "data-europe"
+    title: "European Data Portal Harvester"
+    description: "European Data Portal ckan api endpoint"
     frequency: "MANUAL"
