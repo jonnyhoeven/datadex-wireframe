@@ -7,3 +7,4 @@
 /unshared-docs/
 /.playwright-mcp/*.log
 /.venv_ml/
+.DS_Store
