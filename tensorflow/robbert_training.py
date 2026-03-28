@@ -52,7 +52,8 @@ def get_bert_embeddings(texts, model_name='pdelobelle/robbert-v2-dutch-base'):
 def build_model(domain_dim, bert_dim, output_dim):
     # --- HYPERPARAMETERS FOR TUNING ---
     DOMAIN_WEIGHT = 0.3  # Set < 1.0 to make domains LESS important than text
-    DOMAIN_UNITS = 64    # Narrower bottleneck = less influence
+    DOMAIN_WEIGHT = 0.3  # Set < 1.0 to make domains LESS important than text
+    DOMAIN_UNITS = 32    # Narrower bottleneck = less influence
     BERT_UNITS = 256
     # ----------------------------------
 
