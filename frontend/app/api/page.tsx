@@ -4,7 +4,9 @@ import React, {useState, useEffect} from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import {faArrowUpRightFromSquare} from "@fortawesome/free-solid-svg-icons";
-import Select from 'react-select';
+import dynamic from 'next/dynamic';
+
+const Select = dynamic(() => import('react-select'), { ssr: false });
 
 const PredictApiTester = () => {
     const [title, setTitle] = useState('brand bij schouwburg');
@@ -78,6 +80,7 @@ const PredictApiTester = () => {
                     <div className="flex flex-col w-full">
                         <label className="font-semibold text-sm mb-1 text-gray-700">Domeinen</label>
                         <Select
+                            instanceId="domeinen-select"
                             isMulti
                             options={domeinOptions}
                             value={selectedDomeinen}
