@@ -15,7 +15,7 @@ export const SearchResultsHeader: React.FC<SearchResultsHeaderProps> = ({ count,
     return (
         <div className="card">
             <h4 className="text-2xl font-bold">
-                {getCountText()} gevonden voor: <i>{query}</i>
+                {getCountText()} gevonden met: <i>{query}</i>
             </h4>
         </div>
     );

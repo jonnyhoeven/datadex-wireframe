@@ -23,7 +23,7 @@ test.describe('Search Functionality', () => {
     await expect(resultsSearchInput).toHaveValue('water');
 
     // 7. Check for results heading (optional, depends on if CKAN is up)
-    // await expect(page.getByRole('heading', { name: /gevonden voor: water/i })).toBeVisible();
+    // await expect(page.getByRole('heading', { name: /gevonden met: water/i })).toBeVisible();
   });
 
   test('should update search results when searching again from results page', async ({ page }) => {
