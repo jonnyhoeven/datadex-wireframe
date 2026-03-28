@@ -1,9 +1,11 @@
 import React from 'react';
 import {DebugOutput} from '../../components/DebugOutput'
-import {Description, InfoRow} from "../../components/PackageInfo";
 import SearchBar from '../../components/SearchBar';
 import {SearchResultsHeader} from '../../components/SearchResultsHeader';
-import Link from 'next/link';
+import { fetchCKAN } from '../../lib/ckan';
+import { SearchResult } from '../../types/ckan';
+import { DatasetCard } from '../../components/DatasetCard';
+import { Metadata } from 'next';
 
 async function getSearchResults(searchString: string | undefined) {
     // If no search string, show all datasets using the Solr match-all query '*:*'
@@ -12,20 +14,24 @@ async function getSearchResults(searchString: string | undefined) {
         ? searchString.trim().split(/\s+/).map(term => `${term}*`).join(' ')
         : '*:*';
     
-    const params = new URLSearchParams({
+    const params = {
         q: query,
         defType: 'edismax',
         qf: 'title^2 name^2 notes^1 tags^1',
         rows: '20'
-    });
+    };
 
-    const res = await fetch(`http://localhost:3000/api/3/action/package_search?${params.toString()}`);
-    if (!res.ok) return null;
-    const data = await res.json();
-    return data.result
+    return fetchCKAN<SearchResult>('package_search', params);
 }
 
-const searchResults = async ({searchParams}: { searchParams: Promise<{ q: string }> }) => {
+export async function generateMetadata({searchParams}: { searchParams: Promise<{ q: string }> }): Promise<Metadata> {
+    const {q} = await searchParams;
+    return {
+        title: q ? `Zoekresultaten voor "${q}" - Data4OOV Catalogus` : 'Datasets - Data4OOV Catalogus',
+    };
+}
+
+const SearchResults = async ({searchParams}: { searchParams: Promise<{ q: string }> }) => {
     const {q} = await searchParams;
     const results = await getSearchResults(q);
 
@@ -34,44 +40,18 @@ const searchResults = async ({searchParams}: { searchParams: Promise<{ q: string
     }
 
     return (
-        <div className="lg:w-1/1">
+        <div className="lg:w-1/1 w-full">
             <SearchBar initialValue={q} className="mb-5" />
 
             <SearchResultsHeader count={results.count} query={q} />
 
             {results.results.map((result) => (
-                <div key={result.id} className="card">
-                    <h2 className="text-2xl font-bold mb-6"><Link href={'/dataset/'+ result.name}>{result.title}</Link></h2>
-                    <div className="space-y-4 mb-8">
-                        <InfoRow label="Type" value={result.type}/>
-                        <InfoRow label="Bron" value={result.organization?.title}/>
-                        <InfoRow label="Classificatie" value={result.private ? 'Prive' : 'Openbaar'}/>
-                        <InfoRow label="Licentie" value={result.license_title}/>
-                        <InfoRow
-                            label="Thema's"
-                            border={false}
-                            value={
-                                <div className="flex flex-wrap gap-2">
-                                    {result.tags?.map((tag) => (
-                                        <span key={tag.name} className="tag">
-                                            {tag.display_name}
-                                        </span>
-                                    ))}
-                                </div>
-                            }
-                        />
-                    </div>
-
-                    <Description
-                        text={result.notes}
-                        links={result.resources?.map((r: any) => ({ label: r.name, url: r.url }))}
-                    />
-                </div>
+                <DatasetCard key={result.id} dataset={result} />
             ))}
 
-            <DebugOutput obj={results}/>
+            {process.env.NODE_ENV === 'development' && <DebugOutput obj={results}/>}
         </div>
     );
 };
 
-export default searchResults;
+export default SearchResults;

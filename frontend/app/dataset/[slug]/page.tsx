@@ -4,17 +4,30 @@ import {Description, InfoRow, MapPreview, MetadataTable} from '../../../componen
 import Sidebar from '../../../components/Sidebar';
 import {DebugOutput} from '../../../components/DebugOutput'
 import Link from "next/link";
+import { fetchCKAN } from '../../../lib/ckan';
+import { Dataset } from '../../../types/ckan';
+import { Metadata } from 'next';
 
 async function getPackage(slug: string) {
-    const res = await fetch(`http://localhost:3000/api/3/action/package_show?id=${slug}`);
-    if (!res.ok) return null;
-    const data = await res.json();
-    return data.result
+    return fetchCKAN<Dataset>('package_show', { id: slug });
+}
+
+export async function generateMetadata({params}: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+    const {slug} = await params;
+    const result = await getPackage(slug);
+
+    if (!result) return { title: 'Dataset niet gevonden' };
+
+    return {
+        title: `${result.title} - Data4OOV Catalogus`,
+        description: result.notes?.slice(0, 160),
+    };
 }
 
 const Package = async ({params}: { params: Promise<{ slug: string }> }) => {
     const {slug} = await params;
     const result = await getPackage(slug);
+
     if (!result) {
         notFound();
     }
@@ -27,7 +40,7 @@ const Package = async ({params}: { params: Promise<{ slug: string }> }) => {
                     <div className="space-y-4 mb-8">
                         <InfoRow label="Type" value={result.type}/>
                         <InfoRow label="Bron" value={result.organization?.title}/>
-                        <InfoRow label="Classificatie" value={result.classification?.private ? 'Prive' : 'Openbaar'}/>
+                        <InfoRow label="Classificatie" value={result.private ? 'Prive' : 'Openbaar'}/>
                         <InfoRow label="Licentie" value={result.license_title}/>
                         <InfoRow
                             label="Thema's"
@@ -40,27 +53,25 @@ const Package = async ({params}: { params: Promise<{ slug: string }> }) => {
                                             href={`/tag/${encodeURIComponent(tag.display_name)}`}
                                         >
                                             <div className="tag hover:bg-gray-200 transition-colors text-[#004562] border border-gray-100">
-                                                {tag.display_name} <span className="text-xs text-gray-400 font-normal ml-1"></span>
+                                                {tag.display_name}
                                             </div>
                                         </Link>
                                     ))}
-                                    <a href="#"
-                                       className="text-blue-600 text-sm font-medium ml-auto underline"></a>
                                 </div>
                             }
                         />
                     </div>
 
                     <Description
-                        text={result.notes}
-                        links={result.infoLinks}
+                        text={result.notes || ''}
+                        links={result.resources?.map(r => ({ label: r.name, url: r.url })) || []}
                     />
 
                     <MapPreview/>
 
-                    <MetadataTable/>
+                    <MetadataTable extras={result.extras}/>
 
-                    <DebugOutput obj={result}/>
+                    {process.env.NODE_ENV === 'development' && <DebugOutput obj={result}/>}
                 </div>
             </div>
             <Sidebar dataset={result} />
