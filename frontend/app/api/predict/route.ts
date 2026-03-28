@@ -19,38 +19,6 @@ function loadMetadata() {
 }
 
 /**
- * Perform TF-IDF vectorization manually (matching scikit-learn's default behavior)
- */
-function vectorizeTitle(title: string, vocabulary: { [key: string]: number }, idf: number[]) {
-  const vector = new Array(Object.keys(vocabulary).length).fill(0);
-  // Simple tokenization: lowercase and split by non-alphanumeric characters
-  const tokens = title.toLowerCase().split(/[^a-z0-9]+/);
-
-  tokens.forEach(token => {
-    if (token in vocabulary) {
-      const idx = vocabulary[token];
-      vector[idx] += 1;
-    }
-  });
-
-  // Apply IDF
-  for (let i = 0; i < vector.length; i++) {
-    vector[i] *= idf[i];
-  }
-
-  // L2 Normalization (default in TfidfVectorizer)
-  const sumSq = vector.reduce((sum, val) => sum + val * val, 0);
-  if (sumSq > 0) {
-    const norm = Math.sqrt(sumSq);
-    for (let i = 0; i < vector.length; i++) {
-      vector[i] /= norm;
-    }
-  }
-
-  return vector;
-}
-
-/**
  * MultiLabelBinarizer-style encoding for domeinen
  */
 function encodeDomeinen(inputDomeinen: string[], domeinenClasses: string[]) {
@@ -65,7 +33,7 @@ export async function GET() {
 
   return NextResponse.json({
     status: 'Ready',
-    description: 'Activity Predictor API (BERT Enabled)',
+    description: 'Activity Predictor API (BERT Functional Enabled)',
     usage: 'POST to this endpoint with { title: string, domeinen: string[] }',
     metadata: {
       domeinen_classes: meta.domeinen_classes,
@@ -78,7 +46,7 @@ export async function GET() {
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { title, domeinen, version } = body;
+    const { title, domeinen } = body;
 
     if (!title || !Array.isArray(domeinen)) {
       return NextResponse.json({ error: 'Missing title or domeinen array' }, { status: 400 });
@@ -109,17 +77,19 @@ export async function POST(req: NextRequest) {
     // 2. Encode domeinen
     const domeinenEncoded = encodeDomeinen(domeinen, meta.domeinen_classes);
 
-    // 3. Concatenate [domeinen, titleEmbedding]
-    const X_encoded = [...domeinenEncoded, ...titleEmbedding];
-
-    // 4. Call TensorFlow Serving (Always uses latest version, which is now fixed to '1')
+    // 3. Call TensorFlow Serving using Functional API format
     const modelName = process.env.TF_MODEL_NAME || 'activity_predictor';
     const tfServingUrl = process.env.TF_SERVING_URL || `http://127.0.0.1:8501/v1/models/${modelName}:predict`;
     
     const response = await fetch(tfServingUrl, {
       method: 'POST',
       body: JSON.stringify({
-        instances: [X_encoded]
+        instances: [
+          {
+            domain_input: domeinenEncoded,
+            bert_input: titleEmbedding
+          }
+        ]
       })
     });
 
@@ -131,24 +101,29 @@ export async function POST(req: NextRequest) {
     const result = await response.json();
     const predictions = result.predictions[0];
 
-    // 5. Decode and Sort by relevance
-    const scoredLayers = meta.layers_classes.map((name: string, i: number) => ({
-      name,
-      score: predictions[i]
-    }));
+    // 4. Decode and Sort by relevance, using optimized thresholds if available
+    const scoredLayers = meta.layers_classes.map((name: string, i: number) => {
+      const score = predictions[i];
+      const threshold = meta.thresholds?.[name] || 0.5;
+      return {
+        name,
+        score,
+        threshold,
+        is_predicted: score > threshold
+      };
+    });
 
     // Sort descending by score
     scoredLayers.sort((a: any, b: any) => b.score - a.score);
 
-    // Filter by threshold for the "positive" predictions (but they are now sorted!)
+    // Filter by individual thresholds
     const predictedLayers = scoredLayers
-      .filter((l: any) => l.score > 0.0001)
+      .filter((l: any) => l.is_predicted)
       .map((l: any) => l.name);
 
     return NextResponse.json({
       predicted_layers: predictedLayers,
-      scored_predictions: scoredLayers.filter((l: any) => l.score > 0.0001),
-      //raw_predictions: predictions
+      scored_predictions: scoredLayers.filter((l: any) => l.score > 0.001),
     });
 
   } catch (error: any) {
