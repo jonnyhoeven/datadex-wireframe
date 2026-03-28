@@ -1,0 +1,56 @@
+{
+  "domeinen_classes": [
+    "ambulance",
+    "brandweer",
+    "defensie",
+    "gezondheidzorg",
+    "handhaving",
+    "mileu",
+    "nutsbedrijven",
+    "politie",
+    "reinigingsdienst",
+    "technische dienst",
+    "verkeerregelaars",
+    "waterstaat"
+  ],
+  "tfidf_vocabulary": {
+    "brand": 1,
+    "schouwburg": 5,
+    "in": 2,
+    "a12": 0,
+    "stroomstoring": 8,
+    "treinstation": 9,
+    "provinciale": 3,
+    "stadhuis": 7,
+    "recreatieplas": 4,
+    "sluisdeur": 6
+  },
+  "tfidf_idf": [
+    3.0149030205422647,
+    2.6094379124341005,
+    2.6094379124341005,
+    3.0149030205422647,
+    3.0149030205422647,
+    3.0149030205422647,
+    3.0149030205422647,
+    3.0149030205422647,
+    3.0149030205422647,
+    3.0149030205422647
+  ],
+  "layers_classes": [
+    "A Industrie",
+    "A Wegen",
+    "B Spoorwegen",
+    "C Electriciteit",
+    "C Gasnetwerk",
+    "D Waterwegen",
+    "E Gebouwen",
+    "F Riolering",
+    "G scholen",
+    "H Bermen",
+    "I Milieu zones",
+    "J Publieke ruimte",
+    "K Natuurgebieden",
+    "L Kunstwerken"
+  ]
+}
