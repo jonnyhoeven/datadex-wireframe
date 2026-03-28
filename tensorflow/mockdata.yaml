@@ -12553,3 +12553,114 @@ activities:
   - BRT Wateroppervlakken
   - Ziekenhuizen
   - Open Waterwinplaatsen
+- &id001
+  name: woningbrand in rijtjeshuis
+  domeinen:
+  - brandweer
+  - politie
+  - ambulance
+  layers:
+  - BAG Panden
+  - BGT Wegdelen
+  - Brandkranen (Publiek)
+  - Brandweerkazernes
+  - Sectorindeling Brandweer
+  - Open Waterwinplaatsen
+- &id002
+  name: bosbrand bij de camping
+  domeinen:
+  - brandweer
+  - politie
+  layers:
+  - Natura 2000
+  - Toegangspunten Natuur
+  - Brandbare Vegetatie
+  - Brandweerkazernes
+  - Open Waterwinplaatsen
+- &id003
+  name: industriebrand op bedrijventerrein
+  domeinen:
+  - brandweer
+  - handhaving
+  - milieu
+  layers:
+  - BRZO Bedrijven
+  - Opslag Gevaarlijke Stoffen (PGS15)
+  - Brandkranen (Privaat)
+  - Brandkranen (Publiek)
+  - Brandweerkazernes
+- &id004
+  name: autobrand op de vluchtstrook
+  domeinen:
+  - brandweer
+  - verkeerregelaars
+  layers:
+  - BGT Wegdelen
+  - Filegevoelige Trajecten
+  - Brandweerkazernes
+  - Sectorindeling Brandweer
+- &id005
+  name: brand in schouwburg centrum
+  domeinen:
+  - brandweer
+  - politie
+  - handhaving
+  layers:
+  - BAG Panden
+  - BGT Wegdelen
+  - Evenementenlocaties
+  - Brandweerkazernes
+  - Brandkranen (Publiek)
+  - Open Waterwinplaatsen
+- &id006
+  name: gasbrand bij transformatorhuisje
+  domeinen:
+  - brandweer
+  - nutsbedrijven
+  layers:
+  - Gasontvangststations
+  - Regelstations Gas
+  - Transformatorstations
+  - Brandweerkazernes
+  - Brandkranen (Publiek)
+- &id007
+  name: uitslaande brand in basisschool
+  domeinen:
+  - brandweer
+  - politie
+  - ambulance
+  layers:
+  - Basisscholen
+  - BAG Panden
+  - Brandweerkazernes
+  - Brandkranen (Publiek)
+  - Open Waterwinplaatsen
+  - Sectorindeling Brandweer
+- *id001
+- *id002
+- *id003
+- *id004
+- *id005
+- *id006
+- *id007
+- *id001
+- *id002
+- *id003
+- *id004
+- *id005
+- *id006
+- *id007
+- *id001
+- *id002
+- *id003
+- *id004
+- *id005
+- *id006
+- *id007
+- *id001
+- *id002
+- *id003
+- *id004
+- *id005
+- *id006
+- *id007

@@ -55,7 +55,7 @@ def build_model(domain_dim, bert_dim, output_dim):
     bert_input = tf.keras.layers.Input(shape=(bert_dim,), name='bert_input')
     
     # Domain branch: Upsample the categorical features to give them more weight
-    domain_branch = tf.keras.layers.Dense(64, activation='relu')(domain_input)
+    domain_branch = tf.keras.layers.Dense(128, activation='relu')(domain_input)
     domain_branch = tf.keras.layers.BatchNormalization()(domain_branch)
     
     # BERT branch: Process embeddings slightly
@@ -81,7 +81,7 @@ def build_model(domain_dim, bert_dim, output_dim):
     
     model.compile(
         optimizer=tf.keras.optimizers.Adam(learning_rate=0.001),
-        loss='binary_crossentropy',
+        loss=tf.keras.losses.BinaryFocalCrossentropy(gamma=2.0, alpha=0.25),
         metrics=[
             tf.keras.metrics.Precision(name='precision'), 
             tf.keras.metrics.Recall(name='recall'), 
