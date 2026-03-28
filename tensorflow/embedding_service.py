@@ -2,7 +2,6 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from typing import List
 import torch
-import numpy as np
 from transformers import AutoTokenizer, AutoModel
 
 app = FastAPI()
