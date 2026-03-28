@@ -54,8 +54,8 @@ export async function POST(req: NextRequest) {
     });
 
     if (!embResponse.ok) {
-      const errorText = await embResponse.text();
-      return NextResponse.json({ error: 'Embedding Service error', details: errorText }, { status: embResponse.status });
+      console.error('Embedding Service error:', await embResponse.text());
+      return NextResponse.json({ error: 'Embedding Service error' }, { status: embResponse.status });
     }
 
     const embData = await embResponse.json();
@@ -81,8 +81,8 @@ export async function POST(req: NextRequest) {
     });
 
     if (!response.ok) {
-      const errorText = await response.text();
-      return NextResponse.json({ error: 'TF Serving error', details: errorText }, { status: response.status });
+      console.error('TF Serving error:', await response.text());
+      return NextResponse.json({ error: 'TF Serving error' }, { status: response.status });
     }
 
     const result = await response.json();

@@ -121,6 +121,19 @@ const ApiTester = () => {
         setMounted(true);
     }, []);
 
+    if (process.env.NODE_ENV === 'production' && !process.env.NEXT_PUBLIC_ENABLE_API_TESTER) {
+        return (
+            <div className="p-8">
+                <div className="max-w-5xl mx-auto card">
+                    <h2 className="text-2xl font-bold mb-6">Restricted Access</h2>
+                    <p className="text-gray-600">
+                        The API Tester is disabled in production environments for security reasons.
+                    </p>
+                </div>
+            </div>
+        );
+    }
+
     const handleTestApi = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
