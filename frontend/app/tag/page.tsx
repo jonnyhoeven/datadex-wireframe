@@ -1,6 +1,5 @@
 import React from 'react';
 import {DebugOutput} from '../../components/DebugOutput'
-import {SearchResultsHeader} from '../../components/SearchResultsHeader';
 import { fetchCKAN } from '../../lib/ckan';
 import { SearchResult } from '../../types/ckan';
 import { Metadata } from 'next';
@@ -31,14 +30,13 @@ const TagIndex = async () => {
 
     return (
         <div className="lg:w-1/1 w-full">
-            <div className="mb-8 border-b pb-6">
+            <div className="mb-8 pb-6">
                 <h1 className="text-4xl font-extrabold text-gray-900 mb-2">Thema's</h1>
                 <p className="text-xl text-gray-600">
-                    Blader door de volledige lijst met thema's en categorieën binnen de Data4OOV catalogus.
+                    Blader door de volledige lijst met thema's binnen de Data4OOV catalogus.
                 </p>
             </div>
 
-            <SearchResultsHeader count={tags.length} />
 
             {tags.length > 0 ? (
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-8">
