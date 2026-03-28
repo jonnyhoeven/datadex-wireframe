@@ -1,30 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUpRightFromSquare, faMap, faTable, faCloudArrowDown, faLink } from '@fortawesome/free-solid-svg-icons';
-
-// Defining a generic Dataset interface based on the CKAN result structure
-export interface Dataset {
-    id: string;
-    title: string;
-    notes?: string;
-    metadata_modified?: string;
-    metadata_created?: string;
-    resources?: Array<{
-        id: string;
-        name: string;
-        format: string;
-        url: string;
-        metadata_modified?: string;
-    }>;
-    tags?: Array<{
-        id: string;
-        name: string;
-        display_name: string;
-    }>;
-    relationships_as_subject?: any[];
-    relationships_as_object?: any[];
-    [key: string]: any;
-}
+import { Dataset } from '../types/ckan';
 
 interface SidebarProps {
     dataset: Dataset;
