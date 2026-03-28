@@ -64,7 +64,7 @@ const Package = async ({params}: { params: Promise<{ slug: string }> }) => {
 
                     <Description
                         text={result.notes || ''}
-                        links={result.resources?.map(r => ({ label: r.name, url: r.url })) || []}
+                        links={result.resources?.map(r => ({ label: r.name, url: r.url, id: r.id })) || []}
                     />
 
                     <MapPreview/>

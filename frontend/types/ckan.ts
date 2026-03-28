@@ -51,6 +51,16 @@ export interface Tag {
   vocabulary_id?: string;
 }
 
+export interface LinkReport {
+  id: string;
+  resource_id: string;
+  url: string;
+  status: string;
+  last_check: string;
+  is_available: boolean;
+  message?: string;
+}
+
 export interface SearchResult {
   count: number;
   results: Dataset[];
