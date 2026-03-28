@@ -67,7 +67,7 @@ const HomePage = () => {
                     </a>
 
                     <div className="bg-[#004562] text-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                        <h2 className="text-2xl font-bold mb-3">Gebruikvoorwaarden</h2>
+                        <h2 className="text-2xl font-bold mb-3">Voorwaarden</h2>
                         <p className="text-blue-100 mb-6 leading-relaxed">
                             Voor het gebruik van deze dienst gaat u akkoord met de algemene gebruiksvoorwaarden.
                         </p>
