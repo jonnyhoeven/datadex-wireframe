@@ -1,111 +1,1853 @@
 activities:
-  - name: brand bij schouwburg
+  - name: stroomstoring bij stadhuis
     domeinen:
-      - gezondheidzorg
+      - nutsbedrijven
       - politie
+    layers:
+      - Electriciteit
+      - Gebouwen
+      - Industrie
+      - Publieke ruimte
+  - name: oliespoor bij schouwburg
+    domeinen:
       - verkeerregelaars
+      - reinigingsdienst
     layers:
-      - A Wegen
-      - D Waterwegen
-      - E Gebouwen
-      - G scholen
-  - name: drukknopmelding Alco Engy
+      - scholen
+      - Milieu zones
+      - Waterwegen
+      - Gebouwen
+      - Wegen
+  - name: gaslek bij treinstation
+    domeinen:
+      - nutsbedrijven
+      - brandweer
+      - politie
+    layers:
+      - Gasnetwerk
+      - Gebouwen
+      - Spoorwegen
+  - name: gaslek bij recreatieplas
+    domeinen:
+      - nutsbedrijven
+      - brandweer
+      - politie
+    layers:
+      - Recreatiegebieden
+      - Gasnetwerk
+      - Gebouwen
+      - Waterwegen
+  - name: aanrijding met letsel in ziekenhuis
+    domeinen:
+      - verkeerregelaars
+      - ambulance
+      - politie
+    layers:
+      - Bermen
+      - gezondheidzorg
+      - Gebouwen
+      - Wegen
+  - name: verdacht pakketje in kantoorpand
+    domeinen:
+      - handhaving
+      - defensie
+      - politie
+    layers:
+      - Publieke ruimte
+      - Gebouwen
+      - Spoorwegen
+  - name: gaslek in kinderopvang
+    domeinen:
+      - nutsbedrijven
+      - brandweer
+      - politie
+    layers:
+      - Gasnetwerk
+      - kinderdagverblijven
+      - Gebouwen
+  - name: oliespoor bij datacenter
+    domeinen:
+      - verkeerregelaars
+      - reinigingsdienst
+    layers:
+      - Milieu zones
+      - Electriciteit
+      - Industrie
+      - Wegen
+  - name: uitval verkeerslichten in tunnel
+    domeinen:
+      - verkeerregelaars
+      - politie
+    layers:
+      - Electriciteit
+      - Sluisen en Bruggen
+      - Wegen
+  - name: bommelding bij school
+    domeinen:
+      - defensie
+      - brandweer
+      - politie
+    layers:
+      - scholen
+      - Gebouwen
+      - Publieke ruimte
+  - name: vechtpartij bij schouwburg
+    domeinen:
+      - handhaving
+      - politie
+    layers:
+      - scholen
+      - Waterwegen
+      - Gebouwen
+      - Wegen
+      - Publieke ruimte
+  - name: defecte sluisdeur in ziekenhuis
+    domeinen:
+      - verkeerregelaars
+      - waterstaat
+    layers:
+      - Sluisen en Bruggen
+      - Waterwegen
+      - Gebouwen
+      - Wegen
+      - gezondheidzorg
+  - name: grote brand in loods
+    domeinen:
+      - gezondheidzorg
+      - ambulance
+      - brandweer
+      - politie
+    layers:
+      - Electriciteit
+      - Gebouwen
+      - Wegen
+  - name: aanrijding met letsel bij schouwburg
+    domeinen:
+      - verkeerregelaars
+      - ambulance
+      - politie
+    layers:
+      - scholen
+      - Bermen
+      - Waterwegen
+      - Gebouwen
+      - Wegen
+  - name: vechtpartij op provinciale weg
+    domeinen:
+      - handhaving
+      - politie
+    layers:
+      - Milieu zones
+      - Wegen
+      - Publieke ruimte
+  - name: bommelding bij school
+    domeinen:
+      - defensie
+      - brandweer
+      - politie
+    layers:
+      - scholen
+      - Gebouwen
+      - Publieke ruimte
+  - name: uitval verkeerslichten in loods
+    domeinen:
+      - verkeerregelaars
+      - politie
+    layers:
+      - Electriciteit
+      - Wegen
+  - name: aanrijding met letsel in het bos
+    domeinen:
+      - verkeerregelaars
+      - ambulance
+      - politie
+    layers:
+      - Bermen
+      - Natuurgebieden
+      - Wegen
+  - name: aanrijding met letsel in ziekenhuis
+    domeinen:
+      - verkeerregelaars
+      - ambulance
+      - politie
+    layers:
+      - Bermen
+      - gezondheidzorg
+      - Gebouwen
+      - Wegen
+  - name: uitslaande brand op industrieterrein
+    domeinen:
+      - gezondheidzorg
+      - brandweer
+      - politie
+    layers:
+      - kinderdagverblijven
+      - Gebouwen
+      - Industrie
+      - scholen
+  - name: bommelding bij datacenter
+    domeinen:
+      - defensie
+      - brandweer
+      - politie
+    layers:
+      - Electriciteit
+      - Gebouwen
+      - Industrie
+      - Publieke ruimte
+  - name: uitslaande brand in kinderopvang
+    domeinen:
+      - gezondheidzorg
+      - brandweer
+      - politie
+    layers:
+      - kinderdagverblijven
+      - Gebouwen
+      - scholen
+  - name: drukknopmelding in woonwijk
     domeinen:
       - gezondheidzorg
       - politie
     layers:
-      - A Industrie
-      - C Electriciteit
-  - name: gaslek in woonwijk
+      - Electriciteit
+      - Gebouwen
+      - Industrie
+  - name: uitval verkeerslichten in tunnel
+    domeinen:
+      - verkeerregelaars
+      - politie
+    layers:
+      - Electriciteit
+      - Sluisen en Bruggen
+      - Wegen
+  - name: stroomstoring in het bos
+    domeinen:
+      - nutsbedrijven
+      - politie
+    layers:
+      - Natuurgebieden
+      - Electriciteit
+      - Industrie
+  - name: aanrijding met letsel op provinciale weg
+    domeinen:
+      - verkeerregelaars
+      - ambulance
+      - politie
+    layers:
+      - Bermen
+      - Milieu zones
+      - Wegen
+  - name: drugslab aangetroffen bij datacenter
+    domeinen:
+      - milieu
+      - brandweer
+      - politie
+    layers:
+      - Electriciteit
+      - Gebouwen
+      - Industrie
+  - name: brand in kantoorpand
     domeinen:
       - brandweer
       - politie
-      - nutsbedrijven
     layers:
-      - E Gebouwen
-      - C Gasnetwerk
-  - name: aanrijding met letsel A12
+      - Gebouwen
+  - name: drukknopmelding in ziekenhuis
     domeinen:
       - gezondheidzorg
       - politie
-      - verkeerregelaars
     layers:
-      - A Wegen
-      - H Bermen
-  - name: wateroverlast ziekenhuis
+      - Electriciteit
+      - Gebouwen
+      - Industrie
+  - name: vermissing bij parkeergarage
+    domeinen:
+      - gezondheidzorg
+      - brandweer
+      - politie
+    layers:
+      - Gebouwen
+      - Waterwegen
+      - Natuurgebieden
+      - Wegen
+  - name: vermissing bij parkeergarage
+    domeinen:
+      - gezondheidzorg
+      - brandweer
+      - politie
+    layers:
+      - Gebouwen
+      - Waterwegen
+      - Natuurgebieden
+      - Wegen
+  - name: uitval verkeerslichten op industrieterrein
+    domeinen:
+      - verkeerregelaars
+      - politie
+    layers:
+      - Electriciteit
+      - Gebouwen
+      - Industrie
+      - Wegen
+  - name: vermissing bij datacenter
+    domeinen:
+      - gezondheidzorg
+      - brandweer
+      - politie
+    layers:
+      - Electriciteit
+      - Waterwegen
+      - Natuurgebieden
+      - Industrie
+  - name: grote brand op snelweg A12
+    domeinen:
+      - gezondheidzorg
+      - ambulance
+      - brandweer
+      - politie
+    layers:
+      - Bermen
+      - Gebouwen
+      - Wegen
+  - name: uitval verkeerslichten in tunnel
+    domeinen:
+      - verkeerregelaars
+      - politie
+    layers:
+      - Electriciteit
+      - Sluisen en Bruggen
+      - Wegen
+  - name: wateroverlast ziekenhuis in kantoorpand
     domeinen:
       - gezondheidzorg
       - brandweer
       - technische dienst
     layers:
-      - E Gebouwen
-      - D Waterwegen
-      - F Riolering
-  - name: stroomstoring datacenter
+      - Riolering
+      - Gebouwen
+      - Waterwegen
+  - name: zinkgat in loods
     domeinen:
-      - politie
       - nutsbedrijven
+      - waterstaat
+      - brandweer
     layers:
-      - A Industrie
-      - C Electriciteit
-  - name: verdacht pakketje treinstation
+      - Riolering
+      - Gasnetwerk
+      - Electriciteit
+      - Wegen
+  - name: uitslaande brand bij parkeergarage
     domeinen:
+      - gezondheidzorg
+      - brandweer
       - politie
-      - handhaving
-      - defensie
     layers:
-      - B Spoorwegen
-      - E Gebouwen
-  - name: oliespoor op provinciale weg
+      - kinderdagverblijven
+      - Wegen
+      - Gebouwen
+      - scholen
+  - name: bommelding op industrieterrein
+    domeinen:
+      - defensie
+      - brandweer
+      - politie
+    layers:
+      - Gebouwen
+      - Industrie
+      - Publieke ruimte
+  - name: oliespoor bij recreatieplas
     domeinen:
       - verkeerregelaars
       - reinigingsdienst
     layers:
-      - A Wegen
-      - I Milieu zones
-  - name: demonstratie stadhuis
-    domeinen:
-      - politie
-      - handhaving
-      - ambulance
-    layers:
-      - E Gebouwen
-      - J Publieke ruimte
-  - name: vermiste zwemmer recreatieplas
+      - Milieu zones
+      - Recreatiegebieden
+      - Waterwegen
+      - Wegen
+  - name: brand bij school
     domeinen:
       - brandweer
       - politie
-      - gezondheidzorg
     layers:
-      - D Waterwegen
-      - K Natuurgebieden
-  - name: uitslaande brand basisschool
-    domeinen:
-      - brandweer
-      - politie
-      - gezondheidzorg
-    layers:
-      - E Gebouwen
-      - G scholen
-  - name: defecte sluisdeur hoofdvaart
+      - Gebouwen
+      - scholen
+  - name: wateroverlast bij datacenter
     domeinen:
       - waterstaat
-      - verkeerregelaars
-    layers:
-      - D Waterwegen
-      - L Kunstwerken
-  - name: uitval verkeerslichten kruispunt
-    domeinen:
-      - politie
-      - verkeerregelaars
-    layers:
-      - A Wegen
-      - C Electriciteit
-  - name: drugslab aangetroffen in loods
-    domeinen:
-      - politie
       - brandweer
-      - mileu
+      - technische dienst
     layers:
-      - A Wegen
-      - C Electriciteit
+      - Waterwegen
+      - Riolering
+      - Electriciteit
+      - Gebouwen
+      - Industrie
+  - name: verdacht pakketje in de haven
+    domeinen:
+      - handhaving
+      - defensie
+      - politie
+    layers:
+      - Spoorwegen
+      - Waterwegen
+      - Gebouwen
+      - Publieke ruimte
+      - Industrie
+  - name: wateroverlast ziekenhuis bij school
+    domeinen:
+      - gezondheidzorg
+      - brandweer
+      - technische dienst
+    layers:
+      - Riolering
+      - Gebouwen
+      - Waterwegen
+      - scholen
+  - name: drukknopmelding bij treinstation
+    domeinen:
+      - gezondheidzorg
+      - politie
+    layers:
+      - Gebouwen
+      - Electriciteit
+      - Spoorwegen
+      - Industrie
+  - name: verdacht pakketje op de brug
+    domeinen:
+      - handhaving
+      - defensie
+      - politie
+    layers:
+      - Spoorwegen
+      - Sluisen en Bruggen
+      - Wegen
+      - Gebouwen
+      - Publieke ruimte
+  - name: wateroverlast ziekenhuis bij recreatieplas
+    domeinen:
+      - gezondheidzorg
+      - brandweer
+      - technische dienst
+    layers:
+      - Recreatiegebieden
+      - Riolering
+      - Gebouwen
+      - Waterwegen
+  - name: zinkgat in ziekenhuis
+    domeinen:
+      - nutsbedrijven
+      - waterstaat
+      - brandweer
+    layers:
+      - Riolering
+      - Gebouwen
+      - Wegen
+      - Gasnetwerk
+      - gezondheidzorg
+  - name: demonstratie op de brug
+    domeinen:
+      - handhaving
+      - ambulance
+      - politie
+    layers:
+      - Wegen
+      - Gebouwen
+      - Sluisen en Bruggen
+      - Publieke ruimte
+  - name: zinkgat op de brug
+    domeinen:
+      - nutsbedrijven
+      - waterstaat
+      - brandweer
+    layers:
+      - Riolering
+      - Gasnetwerk
+      - Sluisen en Bruggen
+      - Wegen
+  - name: bommelding bij stadhuis
+    domeinen:
+      - defensie
+      - brandweer
+      - politie
+    layers:
+      - Gebouwen
+      - Publieke ruimte
+  - name: wateroverlast ziekenhuis op kruispunt
+    domeinen:
+      - gezondheidzorg
+      - brandweer
+      - technische dienst
+    layers:
+      - Waterwegen
+      - Riolering
+      - Electriciteit
+      - Gebouwen
+      - Wegen
+  - name: oliespoor in kinderopvang
+    domeinen:
+      - verkeerregelaars
+      - reinigingsdienst
+    layers:
+      - kinderdagverblijven
+      - Milieu zones
+      - Gebouwen
+      - Wegen
+  - name: gaslek in ziekenhuis
+    domeinen:
+      - nutsbedrijven
+      - brandweer
+      - politie
+    layers:
+      - Gasnetwerk
+      - gezondheidzorg
+      - Gebouwen
+  - name: wateroverlast ziekenhuis bij recreatieplas
+    domeinen:
+      - gezondheidzorg
+      - brandweer
+      - technische dienst
+    layers:
+      - Recreatiegebieden
+      - Riolering
+      - Gebouwen
+      - Waterwegen
+  - name: zinkgat in tunnel
+    domeinen:
+      - nutsbedrijven
+      - waterstaat
+      - brandweer
+    layers:
+      - Riolering
+      - Gasnetwerk
+      - Sluisen en Bruggen
+      - Wegen
+  - name: uitslaande brand op snelweg A12
+    domeinen:
+      - gezondheidzorg
+      - brandweer
+      - politie
+    layers:
+      - kinderdagverblijven
+      - scholen
+      - Bermen
+      - Gebouwen
+      - Wegen
+  - name: stormschade bij datacenter
+    domeinen:
+      - verkeerregelaars
+      - brandweer
+    layers:
+      - Bermen
+      - Electriciteit
+      - Industrie
+      - Wegen
+  - name: aanrijding met letsel op de brug
+    domeinen:
+      - verkeerregelaars
+      - ambulance
+      - politie
+    layers:
+      - Bermen
+      - Sluisen en Bruggen
+      - Wegen
+  - name: demonstratie bij parkeergarage
+    domeinen:
+      - handhaving
+      - ambulance
+      - politie
+    layers:
+      - Wegen
+      - Gebouwen
+      - Publieke ruimte
+  - name: bommelding op de brug
+    domeinen:
+      - defensie
+      - brandweer
+      - politie
+    layers:
+      - Wegen
+      - Gebouwen
+      - Sluisen en Bruggen
+      - Publieke ruimte
+  - name: defecte sluisdeur bij school
+    domeinen:
+      - verkeerregelaars
+      - waterstaat
+    layers:
+      - scholen
+      - Sluisen en Bruggen
+      - Waterwegen
+      - Gebouwen
+      - Wegen
+  - name: demonstratie op snelweg A12
+    domeinen:
+      - handhaving
+      - ambulance
+      - politie
+    layers:
+      - Bermen
+      - Wegen
+      - Gebouwen
+      - Publieke ruimte
+  - name: wateroverlast in loods
+    domeinen:
+      - waterstaat
+      - brandweer
+      - technische dienst
+    layers:
+      - Waterwegen
+      - Riolering
+      - Electriciteit
+      - Gebouwen
+      - Wegen
+  - name: brand op provinciale weg
+    domeinen:
+      - brandweer
+      - politie
+    layers:
+      - Milieu zones
+      - Gebouwen
+      - Wegen
+  - name: drugslab aangetroffen in het bos
+    domeinen:
+      - milieu
+      - brandweer
+      - politie
+    layers:
+      - Natuurgebieden
+      - Electriciteit
+      - Gebouwen
+      - Industrie
+  - name: vechtpartij op snelweg A12
+    domeinen:
+      - handhaving
+      - politie
+    layers:
+      - Bermen
+      - Wegen
+      - Publieke ruimte
+  - name: vechtpartij bij parkeergarage
+    domeinen:
+      - handhaving
+      - politie
+    layers:
+      - Wegen
+      - Gebouwen
+      - Publieke ruimte
+  - name: oliespoor in woonwijk
+    domeinen:
+      - verkeerregelaars
+      - reinigingsdienst
+    layers:
+      - Milieu zones
+      - Gebouwen
+      - Wegen
+  - name: defecte sluisdeur op industrieterrein
+    domeinen:
+      - verkeerregelaars
+      - waterstaat
+    layers:
+      - Sluisen en Bruggen
+      - Waterwegen
+      - Gebouwen
+      - Wegen
+      - Industrie
+  - name: verdacht pakketje in kinderopvang
+    domeinen:
+      - handhaving
+      - defensie
+      - politie
+    layers:
+      - kinderdagverblijven
+      - Publieke ruimte
+      - Gebouwen
+      - Spoorwegen
+  - name: gaslek op snelweg A12
+    domeinen:
+      - nutsbedrijven
+      - brandweer
+      - politie
+    layers:
+      - Bermen
+      - Gasnetwerk
+      - Gebouwen
+      - Wegen
+  - name: demonstratie in ziekenhuis
+    domeinen:
+      - handhaving
+      - ambulance
+      - politie
+    layers:
+      - gezondheidzorg
+      - Gebouwen
+      - Publieke ruimte
+  - name: zinkgat op kruispunt
+    domeinen:
+      - nutsbedrijven
+      - waterstaat
+      - brandweer
+    layers:
+      - Riolering
+      - Gasnetwerk
+      - Electriciteit
+      - Wegen
+  - name: drugslab aangetroffen in woonwijk
+    domeinen:
+      - milieu
+      - brandweer
+      - politie
+    layers:
+      - Electriciteit
+      - Gebouwen
+      - Industrie
+  - name: aanrijding met letsel in loods
+    domeinen:
+      - verkeerregelaars
+      - ambulance
+      - politie
+    layers:
+      - Bermen
+      - Electriciteit
+      - Wegen
+  - name: drukknopmelding in de haven
+    domeinen:
+      - gezondheidzorg
+      - politie
+    layers:
+      - Electriciteit
+      - Waterwegen
+      - Industrie
+  - name: stormschade in het bos
+    domeinen:
+      - verkeerregelaars
+      - brandweer
+    layers:
+      - Bermen
+      - Natuurgebieden
+      - Wegen
+  - name: oliespoor in de haven
+    domeinen:
+      - verkeerregelaars
+      - reinigingsdienst
+    layers:
+      - Industrie
+      - Milieu zones
+      - Waterwegen
+      - Wegen
+  - name: vechtpartij in kinderopvang
+    domeinen:
+      - handhaving
+      - politie
+    layers:
+      - kinderdagverblijven
+      - Gebouwen
+      - Publieke ruimte
+  - name: drukknopmelding in kinderopvang
+    domeinen:
+      - gezondheidzorg
+      - politie
+    layers:
+      - kinderdagverblijven
+      - Electriciteit
+      - Gebouwen
+      - Industrie
+  - name: vechtpartij in ziekenhuis
+    domeinen:
+      - handhaving
+      - politie
+    layers:
+      - gezondheidzorg
+      - Gebouwen
+      - Publieke ruimte
+  - name: wateroverlast in kantoorpand
+    domeinen:
+      - waterstaat
+      - brandweer
+      - technische dienst
+    layers:
+      - Riolering
+      - Gebouwen
+      - Waterwegen
+  - name: vermissing bij stadhuis
+    domeinen:
+      - gezondheidzorg
+      - brandweer
+      - politie
+    layers:
+      - Gebouwen
+      - Waterwegen
+      - Natuurgebieden
+      - Publieke ruimte
+  - name: vermissing op industrieterrein
+    domeinen:
+      - gezondheidzorg
+      - brandweer
+      - politie
+    layers:
+      - Gebouwen
+      - Waterwegen
+      - Natuurgebieden
+      - Industrie
+  - name: brand bij stadhuis
+    domeinen:
+      - brandweer
+      - politie
+    layers:
+      - Gebouwen
+      - Publieke ruimte
+  - name: wateroverlast ziekenhuis op provinciale weg
+    domeinen:
+      - gezondheidzorg
+      - brandweer
+      - technische dienst
+    layers:
+      - Milieu zones
+      - Waterwegen
+      - Riolering
+      - Gebouwen
+      - Wegen
+  - name: gaslek op snelweg A12
+    domeinen:
+      - nutsbedrijven
+      - brandweer
+      - politie
+    layers:
+      - Bermen
+      - Gasnetwerk
+      - Gebouwen
+      - Wegen
+  - name: brand bij stadhuis
+    domeinen:
+      - brandweer
+      - politie
+    layers:
+      - Gebouwen
+      - Publieke ruimte
+  - name: stormschade bij parkeergarage
+    domeinen:
+      - verkeerregelaars
+      - brandweer
+    layers:
+      - Bermen
+      - Gebouwen
+      - Wegen
+  - name: wateroverlast ziekenhuis in ziekenhuis
+    domeinen:
+      - gezondheidzorg
+      - brandweer
+      - technische dienst
+    layers:
+      - Riolering
+      - Gebouwen
+      - Waterwegen
+  - name: drukknopmelding in tunnel
+    domeinen:
+      - gezondheidzorg
+      - politie
+    layers:
+      - Electriciteit
+      - Sluisen en Bruggen
+      - Industrie
+      - Wegen
+  - name: verdacht pakketje bij schouwburg
+    domeinen:
+      - handhaving
+      - defensie
+      - politie
+    layers:
+      - Spoorwegen
+      - scholen
+      - Waterwegen
+      - Wegen
+      - Gebouwen
+      - Publieke ruimte
+  - name: bommelding bij treinstation
+    domeinen:
+      - defensie
+      - brandweer
+      - politie
+    layers:
+      - Spoorwegen
+      - Gebouwen
+      - Publieke ruimte
+  - name: drugslab aangetroffen op kruispunt
+    domeinen:
+      - milieu
+      - brandweer
+      - politie
+    layers:
+      - Electriciteit
+      - Gebouwen
+      - Industrie
+      - Wegen
+  - name: drukknopmelding op snelweg A12
+    domeinen:
+      - gezondheidzorg
+      - politie
+    layers:
+      - Bermen
+      - Electriciteit
+      - Industrie
+      - Wegen
+  - name: uitval verkeerslichten in kinderopvang
+    domeinen:
+      - verkeerregelaars
+      - politie
+    layers:
+      - kinderdagverblijven
+      - Electriciteit
+      - Gebouwen
+      - Wegen
+  - name: defecte sluisdeur bij recreatieplas
+    domeinen:
+      - verkeerregelaars
+      - waterstaat
+    layers:
+      - Recreatiegebieden
+      - Sluisen en Bruggen
+      - Waterwegen
+      - Wegen
+  - name: uitval verkeerslichten in ziekenhuis
+    domeinen:
+      - verkeerregelaars
+      - politie
+    layers:
+      - gezondheidzorg
+      - Electriciteit
+      - Gebouwen
+      - Wegen
+  - name: grote brand in loods
+    domeinen:
+      - gezondheidzorg
+      - ambulance
+      - brandweer
+      - politie
+    layers:
+      - Electriciteit
+      - Gebouwen
+      - Wegen
+  - name: drugslab aangetroffen bij datacenter
+    domeinen:
+      - milieu
+      - brandweer
+      - politie
+    layers:
+      - Electriciteit
+      - Gebouwen
+      - Industrie
+  - name: defecte sluisdeur bij treinstation
+    domeinen:
+      - verkeerregelaars
+      - waterstaat
+    layers:
+      - Spoorwegen
+      - Sluisen en Bruggen
+      - Waterwegen
+      - Gebouwen
+      - Wegen
+  - name: grote brand in tunnel
+    domeinen:
+      - gezondheidzorg
+      - ambulance
+      - brandweer
+      - politie
+    layers:
+      - Gebouwen
+      - Sluisen en Bruggen
+      - Wegen
+  - name: aanrijding met letsel bij schouwburg
+    domeinen:
+      - verkeerregelaars
+      - ambulance
+      - politie
+    layers:
+      - scholen
+      - Bermen
+      - Waterwegen
+      - Gebouwen
+      - Wegen
+  - name: uitslaande brand op industrieterrein
+    domeinen:
+      - gezondheidzorg
+      - brandweer
+      - politie
+    layers:
+      - kinderdagverblijven
+      - Gebouwen
+      - Industrie
+      - scholen
+  - name: wateroverlast ziekenhuis bij school
+    domeinen:
+      - gezondheidzorg
+      - brandweer
+      - technische dienst
+    layers:
+      - Riolering
+      - Gebouwen
+      - Waterwegen
+      - scholen
+  - name: wateroverlast ziekenhuis op industrieterrein
+    domeinen:
+      - gezondheidzorg
+      - brandweer
+      - technische dienst
+    layers:
+      - Riolering
+      - Gebouwen
+      - Waterwegen
+      - Industrie
+  - name: uitval verkeerslichten in tunnel
+    domeinen:
+      - verkeerregelaars
+      - politie
+    layers:
+      - Electriciteit
+      - Sluisen en Bruggen
+      - Wegen
+  - name: vermissing op provinciale weg
+    domeinen:
+      - gezondheidzorg
+      - brandweer
+      - politie
+    layers:
+      - Milieu zones
+      - Waterwegen
+      - Natuurgebieden
+      - Wegen
+  - name: zinkgat bij school
+    domeinen:
+      - nutsbedrijven
+      - waterstaat
+      - brandweer
+    layers:
+      - scholen
+      - Riolering
+      - Gebouwen
+      - Wegen
+      - Gasnetwerk
+  - name: wateroverlast in kinderopvang
+    domeinen:
+      - waterstaat
+      - brandweer
+      - technische dienst
+    layers:
+      - Riolering
+      - kinderdagverblijven
+      - Gebouwen
+      - Waterwegen
+  - name: vechtpartij bij stadhuis
+    domeinen:
+      - handhaving
+      - politie
+    layers:
+      - Gebouwen
+      - Publieke ruimte
+  - name: defecte sluisdeur bij parkeergarage
+    domeinen:
+      - verkeerregelaars
+      - waterstaat
+    layers:
+      - Gebouwen
+      - Sluisen en Bruggen
+      - Waterwegen
+      - Wegen
+  - name: drukknopmelding op provinciale weg
+    domeinen:
+      - gezondheidzorg
+      - politie
+    layers:
+      - Milieu zones
+      - Electriciteit
+      - Industrie
+      - Wegen
+  - name: brand in ziekenhuis
+    domeinen:
+      - brandweer
+      - politie
+    layers:
+      - gezondheidzorg
+      - Gebouwen
+  - name: vechtpartij in loods
+    domeinen:
+      - handhaving
+      - politie
+    layers:
+      - Wegen
+      - Electriciteit
+      - Publieke ruimte
+  - name: drukknopmelding op industrieterrein
+    domeinen:
+      - gezondheidzorg
+      - politie
+    layers:
+      - Electriciteit
+      - Gebouwen
+      - Industrie
+  - name: zinkgat in tunnel
+    domeinen:
+      - nutsbedrijven
+      - waterstaat
+      - brandweer
+    layers:
+      - Riolering
+      - Gasnetwerk
+      - Sluisen en Bruggen
+      - Wegen
+  - name: oliespoor in loods
+    domeinen:
+      - verkeerregelaars
+      - reinigingsdienst
+    layers:
+      - Milieu zones
+      - Electriciteit
+      - Wegen
+  - name: drugslab aangetroffen in tunnel
+    domeinen:
+      - milieu
+      - brandweer
+      - politie
+    layers:
+      - Sluisen en Bruggen
+      - Electriciteit
+      - Gebouwen
+      - Wegen
+      - Industrie
+  - name: wateroverlast op de brug
+    domeinen:
+      - waterstaat
+      - brandweer
+      - technische dienst
+    layers:
+      - Sluisen en Bruggen
+      - Waterwegen
+      - Riolering
+      - Gebouwen
+      - Wegen
+  - name: wateroverlast in de haven
+    domeinen:
+      - waterstaat
+      - brandweer
+      - technische dienst
+    layers:
+      - Riolering
+      - Gebouwen
+      - Waterwegen
+      - Industrie
+  - name: gaslek bij stadhuis
+    domeinen:
+      - nutsbedrijven
+      - brandweer
+      - politie
+    layers:
+      - Gasnetwerk
+      - Gebouwen
+      - Publieke ruimte
+  - name: zinkgat bij stadhuis
+    domeinen:
+      - nutsbedrijven
+      - waterstaat
+      - brandweer
+    layers:
+      - Riolering
+      - Wegen
+      - Gebouwen
+      - Publieke ruimte
+      - Gasnetwerk
+  - name: stormschade bij school
+    domeinen:
+      - verkeerregelaars
+      - brandweer
+    layers:
+      - Bermen
+      - scholen
+      - Gebouwen
+      - Wegen
+  - name: brand bij treinstation
+    domeinen:
+      - brandweer
+      - politie
+    layers:
+      - Gebouwen
+      - Spoorwegen
+  - name: vechtpartij in de haven
+    domeinen:
+      - handhaving
+      - politie
+    layers:
+      - Industrie
+      - Waterwegen
+      - Publieke ruimte
+  - name: gaslek in tunnel
+    domeinen:
+      - nutsbedrijven
+      - brandweer
+      - politie
+    layers:
+      - Gasnetwerk
+      - Gebouwen
+      - Sluisen en Bruggen
+      - Wegen
+  - name: vechtpartij bij parkeergarage
+    domeinen:
+      - handhaving
+      - politie
+    layers:
+      - Wegen
+      - Gebouwen
+      - Publieke ruimte
+  - name: brand in kinderopvang
+    domeinen:
+      - brandweer
+      - politie
+    layers:
+      - kinderdagverblijven
+      - Gebouwen
+  - name: gaslek bij parkeergarage
+    domeinen:
+      - nutsbedrijven
+      - brandweer
+      - politie
+    layers:
+      - Gasnetwerk
+      - Gebouwen
+      - Wegen
+  - name: demonstratie bij stadhuis
+    domeinen:
+      - handhaving
+      - ambulance
+      - politie
+    layers:
+      - Gebouwen
+      - Publieke ruimte
+  - name: wateroverlast ziekenhuis in kinderopvang
+    domeinen:
+      - gezondheidzorg
+      - brandweer
+      - technische dienst
+    layers:
+      - Riolering
+      - kinderdagverblijven
+      - Gebouwen
+      - Waterwegen
+  - name: gaslek op kruispunt
+    domeinen:
+      - nutsbedrijven
+      - brandweer
+      - politie
+    layers:
+      - Gasnetwerk
+      - Electriciteit
+      - Gebouwen
+      - Wegen
+  - name: uitval verkeerslichten op industrieterrein
+    domeinen:
+      - verkeerregelaars
+      - politie
+    layers:
+      - Electriciteit
+      - Gebouwen
+      - Industrie
+      - Wegen
+  - name: uitval verkeerslichten in het bos
+    domeinen:
+      - verkeerregelaars
+      - politie
+    layers:
+      - Electriciteit
+      - Natuurgebieden
+      - Wegen
+  - name: wateroverlast ziekenhuis in ziekenhuis
+    domeinen:
+      - gezondheidzorg
+      - brandweer
+      - technische dienst
+    layers:
+      - Riolering
+      - Gebouwen
+      - Waterwegen
+  - name: grote brand in kantoorpand
+    domeinen:
+      - gezondheidzorg
+      - ambulance
+      - brandweer
+      - politie
+    layers:
+      - Gebouwen
+      - Wegen
+  - name: stormschade in ziekenhuis
+    domeinen:
+      - verkeerregelaars
+      - brandweer
+    layers:
+      - Bermen
+      - gezondheidzorg
+      - Gebouwen
+      - Wegen
+  - name: bommelding op kruispunt
+    domeinen:
+      - defensie
+      - brandweer
+      - politie
+    layers:
+      - Electriciteit
+      - Wegen
+      - Gebouwen
+      - Publieke ruimte
+  - name: drugslab aangetroffen op provinciale weg
+    domeinen:
+      - milieu
+      - brandweer
+      - politie
+    layers:
+      - Milieu zones
+      - Electriciteit
+      - Gebouwen
+      - Wegen
+      - Industrie
+  - name: aanrijding met letsel in kantoorpand
+    domeinen:
+      - verkeerregelaars
+      - ambulance
+      - politie
+    layers:
+      - Bermen
+      - Gebouwen
+      - Wegen
+  - name: uitslaande brand in woonwijk
+    domeinen:
+      - gezondheidzorg
+      - brandweer
+      - politie
+    layers:
+      - kinderdagverblijven
+      - Gebouwen
+      - scholen
+  - name: wateroverlast in kantoorpand
+    domeinen:
+      - waterstaat
+      - brandweer
+      - technische dienst
+    layers:
+      - Riolering
+      - Gebouwen
+      - Waterwegen
+  - name: vechtpartij in woonwijk
+    domeinen:
+      - handhaving
+      - politie
+    layers:
+      - Gebouwen
+      - Publieke ruimte
+  - name: uitslaande brand bij treinstation
+    domeinen:
+      - gezondheidzorg
+      - brandweer
+      - politie
+    layers:
+      - kinderdagverblijven
+      - Spoorwegen
+      - Gebouwen
+      - scholen
+  - name: zinkgat bij datacenter
+    domeinen:
+      - nutsbedrijven
+      - waterstaat
+      - brandweer
+    layers:
+      - Riolering
+      - Electriciteit
+      - Wegen
+      - Gasnetwerk
+      - Industrie
+  - name: gaslek in het bos
+    domeinen:
+      - nutsbedrijven
+      - brandweer
+      - politie
+    layers:
+      - Gasnetwerk
+      - Gebouwen
+      - Natuurgebieden
+  - name: bommelding op provinciale weg
+    domeinen:
+      - defensie
+      - brandweer
+      - politie
+    layers:
+      - Milieu zones
+      - Wegen
+      - Gebouwen
+      - Publieke ruimte
+  - name: defecte sluisdeur op kruispunt
+    domeinen:
+      - verkeerregelaars
+      - waterstaat
+    layers:
+      - Electriciteit
+      - Sluisen en Bruggen
+      - Waterwegen
+      - Wegen
+  - name: vechtpartij op snelweg A12
+    domeinen:
+      - handhaving
+      - politie
+    layers:
+      - Bermen
+      - Wegen
+      - Publieke ruimte
+  - name: drugslab aangetroffen in woonwijk
+    domeinen:
+      - milieu
+      - brandweer
+      - politie
+    layers:
+      - Electriciteit
+      - Gebouwen
+      - Industrie
+  - name: stroomstoring bij treinstation
+    domeinen:
+      - nutsbedrijven
+      - politie
+    layers:
+      - Gebouwen
+      - Electriciteit
+      - Spoorwegen
+      - Industrie
+  - name: defecte sluisdeur bij parkeergarage
+    domeinen:
+      - verkeerregelaars
+      - waterstaat
+    layers:
+      - Gebouwen
+      - Sluisen en Bruggen
+      - Waterwegen
+      - Wegen
+  - name: uitval verkeerslichten bij school
+    domeinen:
+      - verkeerregelaars
+      - politie
+    layers:
+      - scholen
+      - Electriciteit
+      - Gebouwen
+      - Wegen
+  - name: wateroverlast bij stadhuis
+    domeinen:
+      - waterstaat
+      - brandweer
+      - technische dienst
+    layers:
+      - Riolering
+      - Gebouwen
+      - Waterwegen
+      - Publieke ruimte
+  - name: vermissing bij datacenter
+    domeinen:
+      - gezondheidzorg
+      - brandweer
+      - politie
+    layers:
+      - Electriciteit
+      - Waterwegen
+      - Natuurgebieden
+      - Industrie
+  - name: stroomstoring in kinderopvang
+    domeinen:
+      - nutsbedrijven
+      - politie
+    layers:
+      - kinderdagverblijven
+      - Electriciteit
+      - Gebouwen
+      - Industrie
+  - name: stormschade in kinderopvang
+    domeinen:
+      - verkeerregelaars
+      - brandweer
+    layers:
+      - Bermen
+      - kinderdagverblijven
+      - Gebouwen
+      - Wegen
+  - name: uitslaande brand op provinciale weg
+    domeinen:
+      - gezondheidzorg
+      - brandweer
+      - politie
+    layers:
+      - kinderdagverblijven
+      - scholen
+      - Milieu zones
+      - Gebouwen
+      - Wegen
+  - name: wateroverlast ziekenhuis in woonwijk
+    domeinen:
+      - gezondheidzorg
+      - brandweer
+      - technische dienst
+    layers:
+      - Riolering
+      - Gebouwen
+      - Waterwegen
+  - name: vechtpartij bij parkeergarage
+    domeinen:
+      - handhaving
+      - politie
+    layers:
+      - Wegen
+      - Gebouwen
+      - Publieke ruimte
+  - name: zinkgat op snelweg A12
+    domeinen:
+      - nutsbedrijven
+      - waterstaat
+      - brandweer
+    layers:
+      - Bermen
+      - Riolering
+      - Gasnetwerk
+      - Wegen
+  - name: wateroverlast op provinciale weg
+    domeinen:
+      - waterstaat
+      - brandweer
+      - technische dienst
+    layers:
+      - Milieu zones
+      - Waterwegen
+      - Riolering
+      - Gebouwen
+      - Wegen
+  - name: gaslek op snelweg A12
+    domeinen:
+      - nutsbedrijven
+      - brandweer
+      - politie
+    layers:
+      - Bermen
+      - Gasnetwerk
+      - Gebouwen
+      - Wegen
+  - name: stormschade in ziekenhuis
+    domeinen:
+      - verkeerregelaars
+      - brandweer
+    layers:
+      - Bermen
+      - gezondheidzorg
+      - Gebouwen
+      - Wegen
+  - name: wateroverlast in de haven
+    domeinen:
+      - waterstaat
+      - brandweer
+      - technische dienst
+    layers:
+      - Riolering
+      - Gebouwen
+      - Waterwegen
+      - Industrie
+  - name: stormschade bij parkeergarage
+    domeinen:
+      - verkeerregelaars
+      - brandweer
+    layers:
+      - Bermen
+      - Gebouwen
+      - Wegen
+  - name: demonstratie op snelweg A12
+    domeinen:
+      - handhaving
+      - ambulance
+      - politie
+    layers:
+      - Bermen
+      - Wegen
+      - Gebouwen
+      - Publieke ruimte
+  - name: brand op kruispunt
+    domeinen:
+      - brandweer
+      - politie
+    layers:
+      - Electriciteit
+      - Gebouwen
+      - Wegen
+  - name: stormschade bij treinstation
+    domeinen:
+      - verkeerregelaars
+      - brandweer
+    layers:
+      - Bermen
+      - Gebouwen
+      - Spoorwegen
+      - Wegen
+  - name: bommelding op industrieterrein
+    domeinen:
+      - defensie
+      - brandweer
+      - politie
+    layers:
+      - Gebouwen
+      - Industrie
+      - Publieke ruimte
+  - name: bommelding bij treinstation
+    domeinen:
+      - defensie
+      - brandweer
+      - politie
+    layers:
+      - Spoorwegen
+      - Gebouwen
+      - Publieke ruimte
+  - name: uitval verkeerslichten in kinderopvang
+    domeinen:
+      - verkeerregelaars
+      - politie
+    layers:
+      - kinderdagverblijven
+      - Electriciteit
+      - Gebouwen
+      - Wegen
+  - name: grote brand op de brug
+    domeinen:
+      - gezondheidzorg
+      - ambulance
+      - brandweer
+      - politie
+    layers:
+      - Gebouwen
+      - Sluisen en Bruggen
+      - Wegen
+  - name: grote brand in tunnel
+    domeinen:
+      - gezondheidzorg
+      - ambulance
+      - brandweer
+      - politie
+    layers:
+      - Gebouwen
+      - Sluisen en Bruggen
+      - Wegen
+  - name: oliespoor op snelweg A12
+    domeinen:
+      - verkeerregelaars
+      - reinigingsdienst
+    layers:
+      - Bermen
+      - Milieu zones
+      - Wegen
+  - name: verdacht pakketje op industrieterrein
+    domeinen:
+      - handhaving
+      - defensie
+      - politie
+    layers:
+      - Publieke ruimte
+      - Gebouwen
+      - Industrie
+      - Spoorwegen
+  - name: vechtpartij in tunnel
+    domeinen:
+      - handhaving
+      - politie
+    layers:
+      - Wegen
+      - Sluisen en Bruggen
+      - Publieke ruimte
+  - name: drugslab aangetroffen bij datacenter
+    domeinen:
+      - milieu
+      - brandweer
+      - politie
+    layers:
+      - Electriciteit
+      - Gebouwen
+      - Industrie
+  - name: brand op provinciale weg
+    domeinen:
+      - brandweer
+      - politie
+    layers:
+      - Milieu zones
+      - Gebouwen
+      - Wegen
+  - name: uitval verkeerslichten in kinderopvang
+    domeinen:
+      - verkeerregelaars
+      - politie
+    layers:
+      - kinderdagverblijven
+      - Electriciteit
+      - Gebouwen
+      - Wegen
+  - name: vermissing op industrieterrein
+    domeinen:
+      - gezondheidzorg
+      - brandweer
+      - politie
+    layers:
+      - Gebouwen
+      - Waterwegen
+      - Natuurgebieden
+      - Industrie
+  - name: aanrijding met letsel in kinderopvang
+    domeinen:
+      - verkeerregelaars
+      - ambulance
+      - politie
+    layers:
+      - Bermen
+      - kinderdagverblijven
+      - Gebouwen
+      - Wegen
+  - name: bommelding in ziekenhuis
+    domeinen:
+      - defensie
+      - brandweer
+      - politie
+    layers:
+      - gezondheidzorg
+      - Gebouwen
+      - Publieke ruimte
+  - name: verdacht pakketje in woonwijk
+    domeinen:
+      - handhaving
+      - defensie
+      - politie
+    layers:
+      - Publieke ruimte
+      - Gebouwen
+      - Spoorwegen
+  - name: defecte sluisdeur bij recreatieplas
+    domeinen:
+      - verkeerregelaars
+      - waterstaat
+    layers:
+      - Recreatiegebieden
+      - Sluisen en Bruggen
+      - Waterwegen
+      - Wegen
+  - name: uitslaande brand in loods
+    domeinen:
+      - gezondheidzorg
+      - brandweer
+      - politie
+    layers:
+      - kinderdagverblijven
+      - scholen
+      - Electriciteit
+      - Gebouwen
+      - Wegen
+  - name: uitval verkeerslichten in tunnel
+    domeinen:
+      - verkeerregelaars
+      - politie
+    layers:
+      - Electriciteit
+      - Sluisen en Bruggen
+      - Wegen
+  - name: stormschade in ziekenhuis
+    domeinen:
+      - verkeerregelaars
+      - brandweer
+    layers:
+      - Bermen
+      - gezondheidzorg
+      - Gebouwen
+      - Wegen
+  - name: wateroverlast ziekenhuis in de haven
+    domeinen:
+      - gezondheidzorg
+      - brandweer
+      - technische dienst
+    layers:
+      - Riolering
+      - Gebouwen
+      - Waterwegen
+      - Industrie
+  - name: aanrijding met letsel in kinderopvang
+    domeinen:
+      - verkeerregelaars
+      - ambulance
+      - politie
+    layers:
+      - Bermen
+      - kinderdagverblijven
+      - Gebouwen
+      - Wegen
+  - name: brand in de haven
+    domeinen:
+      - brandweer
+      - politie
+    layers:
+      - Gebouwen
+      - Waterwegen
+      - Industrie
+  - name: drugslab aangetroffen in het bos
+    domeinen:
+      - milieu
+      - brandweer
+      - politie
+    layers:
+      - Natuurgebieden
+      - Electriciteit
+      - Gebouwen
+      - Industrie
+  - name: uitslaande brand bij school
+    domeinen:
+      - gezondheidzorg
+      - brandweer
+      - politie
+    layers:
+      - kinderdagverblijven
+      - Gebouwen
+      - scholen
+  - name: gaslek in tunnel
+    domeinen:
+      - nutsbedrijven
+      - brandweer
+      - politie
+    layers:
+      - Gasnetwerk
+      - Gebouwen
+      - Sluisen en Bruggen
+      - Wegen
+  - name: stroomstoring bij treinstation
+    domeinen:
+      - nutsbedrijven
+      - politie
+    layers:
+      - Gebouwen
+      - Electriciteit
+      - Spoorwegen
+      - Industrie
+  - name: uitval verkeerslichten bij stadhuis
+    domeinen:
+      - verkeerregelaars
+      - politie
+    layers:
+      - Publieke ruimte
+      - Electriciteit
+      - Gebouwen
+      - Wegen
+  - name: drukknopmelding op snelweg A12
+    domeinen:
+      - gezondheidzorg
+      - politie
+    layers:
+      - Bermen
+      - Electriciteit
+      - Industrie
+      - Wegen
+  - name: verdacht pakketje in tunnel
+    domeinen:
+      - handhaving
+      - defensie
+      - politie
+    layers:
+      - Spoorwegen
+      - Sluisen en Bruggen
+      - Wegen
+      - Gebouwen
+      - Publieke ruimte
