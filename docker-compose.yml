@@ -16,8 +16,8 @@ services:
       - ./frontend/app/api/predict/model_metadata.json:/app/api/predict/model_metadata.json
     networks:
       - ckan-network
-    #profiles:
-    #  - ignore # This excludes it from a standard 'up' when you want to run yarn dev with the backend. Disable this line to run the container.
+    profiles:
+      - ignore # This excludes it from a standard 'up' when you want to run yarn dev with the backend. Disable this line to run the container.
   ckan:
     platform: linux/amd64
     build:
