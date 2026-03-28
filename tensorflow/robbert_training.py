@@ -61,8 +61,8 @@ def main():
     print("Generating RobBERT embeddings (this may take a while)...")
     bert_embeddings = get_bert_embeddings(names)
 
-    # Concatenate BERT embeddings with domeinen features
-    X = np.hstack((bert_embeddings, domeinen_encoded))
+    # Concatenate [domeinen, embeddings] to match existing frontend/test convention
+    X = np.hstack((domeinen_encoded, bert_embeddings))
     y = layers_encoded
 
     print(f"Feature shape: {X.shape}")
@@ -93,8 +93,8 @@ def main():
         text_emb = get_bert_embeddings([text])
         # Embed domeinen
         dom_emb = mlb_domeinen.transform([input_domeinen])
-        # Combine
-        combined_X = np.hstack((text_emb, dom_emb))
+        # Combine [domeinen, embeddings]
+        combined_X = np.hstack((dom_emb, text_emb))
         # Predict
         pred_probs = model.predict(combined_X)
         # Binarize
@@ -116,8 +116,8 @@ def main():
     model_export_path = os.path.join(base_dir, 'tf_serving_models/activity_predictor/2')
     
     print(f"Saving model for TF Serving to {model_export_path}...")
-    # TF 2.x saves in SavedModel format when given a directory path
-    model.save(model_export_path)
+    # Keras 3: use export() for SavedModel format (for TF Serving)
+    model.export(model_export_path)
 
     # Export metadata for frontend use
     metadata = {
@@ -128,10 +128,20 @@ def main():
         "input_dim": input_dim
     }
     
+    # Also save to frontend if it exists
     metadata_path = os.path.join(base_dir, 'model_metadata_robbert.json')
+    frontend_metadata_path = os.path.join(os.path.dirname(base_dir), 'frontend/app/api/predict/model_metadata.json')
+    
     with open(metadata_path, 'w') as f:
         json.dump(metadata, f, indent=2)
     print(f"Metadata exported to {metadata_path}")
+    
+    try:
+        with open(frontend_metadata_path, 'w') as f:
+            json.dump(metadata, f, indent=2)
+        print(f"Metadata also exported to {frontend_metadata_path}")
+    except Exception as e:
+        print(f"Could not export metadata to frontend: {e}")
 
 if __name__ == "__main__":
     main()
