@@ -21,8 +21,10 @@ export default function RootLayout({
         <html lang="nl">
         <body>
         <Header />
-        <main className="max-w-6xl mx-auto p-6 lg:flex lg:gap-8">
-            {children}
+        <main className="max-w-6xl mx-auto p-6">
+            <div className="flex flex-col lg:flex-row lg:gap-8">
+                {children}
+            </div>
         </main>
         <footer className="py-8 text-center text-gray-800 text-sm">
             <p>&copy; {new Date().getFullYear()} NIPV - Data4OOV</p>
