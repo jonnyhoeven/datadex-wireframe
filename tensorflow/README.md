@@ -7,7 +7,18 @@ This directory contains the machine learning pipeline, training scripts, and ser
 The model is a **Multi-Input Neural Network** built using the Keras Functional API. It combines two distinct information streams:
 
 1.  **Textual Input (`bert_input`):** 768-dimensional embeddings generated from the activity title using **RobBERT** (a Dutch BERT model: `pdelobelle/robbert-v2-dutch-base`).
+    - **Mean Pooling:** Since BERT produces an embedding for every single token, the pipeline uses "Mean Pooling" to create a single vector for the entire title. It ignores padding tokens, sums the embeddings of real tokens, and divides by the sentence length to capture the average semantic meaning.
 2.  **Categorical Input (`domain_input`):** A multi-label binarized vector representing the involved domains (e.g., `brandweer`, `politie`, `GGD`).
+
+### Semantic Processing (Mean Pooling)
+
+To convert token-level outputs into a single fixed-length vector, the `robbert_training.py` script performs the following steps:
+- **Retrieve Embeddings:** Extracts the `last_hidden_state` from the transformer.
+- **Mask Alignment:** Expands the attention mask to match the embedding dimensions.
+- **Summation:** Zeroes out padding tokens and sums the remaining "real" token vectors.
+- **Averaging:** Divides the sum by the number of real tokens (clamped to prevent division by zero).
+
+This ensures the classifier receives a clean, dense representation of the title's overall meaning.
 
 ### How it Works
 - The **BERT branch** processes semantic meaning from the title.

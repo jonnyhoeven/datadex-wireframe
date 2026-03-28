@@ -22,7 +22,7 @@ def load_data(file_path=None):
     layers = [a['layers'] for a in activities]
     return names, domeinen, layers
 
-# 2. Feature Engineering (BERT Embeddings)
+# 2. BERT Embeddings
 def get_bert_embeddings(texts, model_name='pdelobelle/robbert-v2-dutch-base'):
     print(f"Loading {model_name}...")
     tokenizer = AutoTokenizer.from_pretrained(model_name)
