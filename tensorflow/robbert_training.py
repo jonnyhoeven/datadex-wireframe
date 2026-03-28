@@ -50,19 +50,27 @@ def get_bert_embeddings(texts, model_name='pdelobelle/robbert-v2-dutch-base'):
 
 # 3. Model Architecture (Functional API)
 def build_model(domain_dim, bert_dim, output_dim):
+    # --- HYPERPARAMETERS FOR TUNING ---
+    DOMAIN_WEIGHT = 0.3  # Set < 1.0 to make domains LESS important than text
+    DOMAIN_UNITS = 64    # Narrower bottleneck = less influence
+    BERT_UNITS = 256
+    # ----------------------------------
+
     # Inputs
     domain_input = tf.keras.layers.Input(shape=(domain_dim,), name='domain_input')
     bert_input = tf.keras.layers.Input(shape=(bert_dim,), name='bert_input')
     
-    # Domain branch: Upsample the categorical features to give them more weight
-    domain_branch = tf.keras.layers.Dense(128, activation='relu')(domain_input)
+    # Domain branch: Narrower and Scaled Down
+    domain_branch = tf.keras.layers.Dense(DOMAIN_UNITS, activation='relu')(domain_input)
     domain_branch = tf.keras.layers.BatchNormalization()(domain_branch)
+    # Apply the weight multiplier to dampen the signal
+    domain_branch = tf.keras.layers.Lambda(lambda x: x * DOMAIN_WEIGHT)(domain_branch)
     
-    # BERT branch: Process embeddings slightly
-    bert_branch = tf.keras.layers.Dense(256, activation='relu')(bert_input)
+    # BERT branch: Main information source
+    bert_branch = tf.keras.layers.Dense(BERT_UNITS, activation='relu')(bert_input)
     bert_branch = tf.keras.layers.BatchNormalization()(bert_branch)
     
-    # Concatenate processed branches
+    # Concatenate branches
     x = tf.keras.layers.Concatenate()([domain_branch, bert_branch])
     
     # Hidden Layers
