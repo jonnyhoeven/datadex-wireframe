@@ -2,7 +2,11 @@ import { CKANResponse } from '../types/ckan';
 
 const CKAN_BASE_URL = process.env.CKAN_BASE_URL || 'http://localhost:4000';
 
-export async function fetchCKAN<T>(action: string, params?: URLSearchParams | Record<string, string>, options?: RequestInit): Promise<T | null> {
+interface FetchOptions extends RequestInit {
+  ignoreErrors?: boolean;
+}
+
+export async function fetchCKAN<T>(action: string, params?: URLSearchParams | Record<string, string>, options?: FetchOptions): Promise<T | null> {
   const url = new URL(`${CKAN_BASE_URL}/api/3/action/${action}`);
   
   if (params) {
@@ -23,14 +27,18 @@ export async function fetchCKAN<T>(action: string, params?: URLSearchParams | Re
     });
 
     if (!res.ok) {
-      console.error(`CKAN API error: ${res.status} ${res.statusText} for ${url.toString()}`);
+      if (!options?.ignoreErrors) {
+        console.error(`CKAN API error: ${res.status} ${res.statusText} for ${url.toString()}`);
+      }
       return null;
     }
 
     const data: CKANResponse<T> = await res.json();
     return data.result;
   } catch (error) {
-    console.error(`Failed to fetch from CKAN: ${error} for ${url.toString()}`);
+    if (!options?.ignoreErrors) {
+      console.error(`Failed to fetch from CKAN: ${error} for ${url.toString()}`);
+    }
     return null;
   }
 }
