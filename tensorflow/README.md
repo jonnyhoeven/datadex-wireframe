@@ -1,10 +1,32 @@
-# Activity Predictor API
+# Activity Predictor Model
 
-This directory contains the TensorFlow Serving configuration for the `activity_predictor` model.
+This directory contains the machine learning pipeline, training scripts, and serving configuration for the **Activity Predictor**. This model is a multi-label classifier designed to suggest relevant map layers based on an activity's title and its associated emergency domains.
 
-## Model Training
+## The Model Architecture
 
-The `robbert_training.py` script trains the activity predictor using **RobBERT embeddings**.
+The model is a **Multi-Input Neural Network** built using the Keras Functional API. It combines two distinct information streams:
+
+1.  **Textual Input (`bert_input`):** 768-dimensional embeddings generated from the activity title using **RobBERT** (a Dutch BERT model: `pdelobelle/robbert-v2-dutch-base`).
+2.  **Categorical Input (`domain_input`):** A multi-label binarized vector representing the involved domains (e.g., `brandweer`, `politie`, `GGD`).
+
+### How it Works
+- The **BERT branch** processes semantic meaning from the title.
+- The **Domain branch** acts as a categorical filter/prior, though it is intentionally weighted lower (`0.3x`) to ensure the text remains the primary driver of predictions.
+- These branches are concatenated and passed through several dense layers with **Batch Normalization** and **Dropout** to prevent overfitting.
+- The output layer uses a **Sigmoid** activation for multi-label classification, optimized using **Binary Focal Crossentropy** to handle class imbalance.
+
+## Model Derivation & Training
+
+The model is derived from `mockdata.yaml`, which contains a curated set of Dutch emergency activities, their standard domains, and the corresponding map layers they typically require.
+
+### Training Pipeline (`robbert_training.py`):
+1.  **Data Loading:** Parses `mockdata.yaml`.
+2.  **Label Encoding:** Uses `MultiLabelBinarizer` for both input domains and output layers.
+3.  **Embedding Generation:** Uses the `transformers` library to compute mean-pooled RobBERT embeddings for every activity name.
+4.  **Training:** Fits the functional model with early stopping and learning rate reduction.
+5.  **Export:**
+    - **Model:** Saved in `SavedModel` format to `tf_serving_models/activity_predictor/1/`.
+    - **Metadata:** Exported to `model_metadata.json` (and synced to the frontend). This file contains the class mappings (e.g., `layers_classes`) required to decode the model's raw output.
 
 ### Local Setup
 
@@ -18,17 +40,13 @@ pip install -r tensorflow/requirements.txt
 python tensorflow/robbert_training.py
 ```
 
-### Script Output
-- **Model:** Exported to `tf_serving_models/activity_predictor/4/`.
-- **Metadata:** Exported to `model_metadata.json`.
+## Services & Orchestration
 
-## Services
+The "Complete Model" is actually a distributed system of three components:
 
-This project uses three services for predictions:
-
-1.  **TensorFlow Serving (Port 8501):** Hosts the trained neural network.
-2.  **Embedding Service (Port 8000):** A FastAPI service that generates RobBERT embeddings for text.
-3.  **Frontend API Route:** Orchestrates the flow: `Input -> Embedding Service -> TF Serving -> Output`.
+1.  **Embedding Service (Port 8000):** A FastAPI wrapper around RobBERT. It turns "brand in schouwburg" into a 768D vector.
+2.  **TensorFlow Serving (Port 8501):** Hosts the trained `.pb` model. It receives the 768D vector + Domain vector and returns raw probabilities.
+3.  **Frontend API (`/api/predict`):** The orchestrator. It fetches embeddings, calls TF Serving, and uses `model_metadata.json` to turn raw floats back into human-readable layer names.
 
 ### Running with Docker
 
