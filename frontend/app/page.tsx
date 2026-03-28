@@ -43,26 +43,11 @@ const HomePage = () => {
                             Het Data4OOV portaal draait op een robuuste ckan backend. Applicaties kunnen data naadloos via de proxy benaderen via <code>/api</code>.
                         </p>
                         <a href="/api" className="text-white font-semibold hover:underline flex items-center gap-1">
-                            Gebruik de ckan API tester
-                            <span aria-hidden="true">&rarr;</span>
+                            Gebruik de API testers <span aria-hidden="true">&rarr;</span>
                         </a>
-                        <a href="/api/3/action/status_show" className="text-white font-semibold hover:underline flex items-center gap-1">
-                           Direct verbinden naar de ckan API
-                            <span aria-hidden="true">&rarr;</span>
+                        <a href="http://localhost:4000" className="text-white font-semibold hover:underline flex items-center gap-1">
+                            Login op ckan: <span aria-hidden="true">&rarr;</span>
                         </a>
-
-                        <div>
-                            <h4 className="mt-3">While developing links:</h4>
-                            <a href="http://localhost:4000" className="text-white font-semibold hover:underline flex items-center gap-1">
-                                Login to ckan (use: admin - password)
-                                <span aria-hidden="true">&rarr;</span>
-                            </a>
-                            <a href="/api/activity-predictor/v1/models/activity_predictor/metadata" className="text-white font-semibold hover:underline flex items-center gap-1">
-                                Activity predictor model in tensorflow serving
-                                <span aria-hidden="true">&rarr;</span>
-                            </a>
-                        </div>
-
                     </div>
                 </div>
             </main>

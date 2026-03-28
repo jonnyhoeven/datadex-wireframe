@@ -112,7 +112,8 @@
     "Ziekenhuizen",
     "Zonneparken",
     "Zorginstellingen (Overig)",
-    "Zwembaden"
+    "Zwembaden",
+    "metrolijnen-rotterdam"
   ],
   "feature_type": "robbert",
   "bert_model": "pdelobelle/robbert-v2-dutch-base",

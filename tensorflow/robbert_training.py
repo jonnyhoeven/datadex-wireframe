@@ -81,7 +81,7 @@ def main():
     model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
     
     print("Starting training...")
-    model.fit(X_train, y_train, epochs=50, batch_size=2, verbose=1, validation_data=(X_test, y_test))
+    model.fit(X_train, y_train, epochs=200, batch_size=4, verbose=1, validation_data=(X_test, y_test))
 
     # 5. Save model for TF Serving (Always version 1)
     base_dir = os.path.dirname(os.path.abspath(__file__))

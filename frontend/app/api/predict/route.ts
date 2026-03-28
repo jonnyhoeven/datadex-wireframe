@@ -142,12 +142,12 @@ export async function POST(req: NextRequest) {
 
     // Filter by threshold for the "positive" predictions (but they are now sorted!)
     const predictedLayers = scoredLayers
-      .filter((l: any) => l.score > 0.01)
+      .filter((l: any) => l.score > 0.0001)
       .map((l: any) => l.name);
 
     return NextResponse.json({
       predicted_layers: predictedLayers,
-      scored_predictions: scoredLayers.filter((l: any) => l.score > 0.01), // return all with at least 1% confidence
+      scored_predictions: scoredLayers.filter((l: any) => l.score > 0.0001),
       //raw_predictions: predictions
     });
 
