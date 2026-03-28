@@ -1,0 +1,100 @@
+activities:
+  - name: brand bij zwembad
+    domeinen:
+      - gezondheidzorg
+      - politie
+      - verkeerregelaars
+  - name: drukknopmelding Schindler liften Engy
+    domeinen:
+      - gezondheidzorg
+      - politie
+    layers:
+      - A Industrie
+      - C Electriciteit
+  - name: gaslek in woonomgeving
+    domeinen:
+      - brandweer
+      - politie
+      - nutsbedrijven
+  - name: aanrijding met zwaar letsel A21
+    domeinen:
+      - gezondheidzorg
+      - politie
+      - verkeerregelaars
+  - name: wateroverlast ziekenhuis
+    domeinen:
+      - gezondheidzorg
+      - brandweer
+      - technische dienst
+    layers:
+      - E Gebouwen
+      - D Waterwegen
+      - F Riolering
+  - name: stroomstoring datacenter
+    domeinen:
+      - politie
+      - nutsbedrijven
+    layers:
+      - A Industrie
+      - C Electriciteit
+  - name: verdacht pakketje treinstation
+    domeinen:
+      - politie
+      - handhaving
+      - defensie
+    layers:
+      - B Spoorwegen
+      - E Gebouwen
+  - name: oliespoor op provinciale weg
+    domeinen:
+      - verkeerregelaars
+      - reinigingsdienst
+    layers:
+      - A Wegen
+      - I Milieu zones
+  - name: demonstratie stadhuis
+    domeinen:
+      - politie
+      - handhaving
+      - ambulance
+    layers:
+      - E Gebouwen
+      - J Publieke ruimte
+  - name: vermiste zwemmer recreatieplas
+    domeinen:
+      - brandweer
+      - politie
+      - gezondheidzorg
+    layers:
+      - D Waterwegen
+      - K Natuurgebieden
+  - name: uitslaande brand basisschool
+    domeinen:
+      - brandweer
+      - politie
+      - gezondheidzorg
+    layers:
+      - E Gebouwen
+      - G scholen
+  - name: defecte sluisdeur hoofdvaart
+    domeinen:
+      - waterstaat
+      - verkeerregelaars
+    layers:
+      - D Waterwegen
+      - L Kunstwerken
+  - name: uitval verkeerslichten kruispunt
+    domeinen:
+      - politie
+      - verkeerregelaars
+    layers:
+      - A Wegen
+      - C Electriciteit
+  - name: drugslab aangetroffen in loods
+    domeinen:
+      - politie
+      - brandweer
+      - mileu
+    layers:
+      - A Wegen
+      - C Electriciteit
