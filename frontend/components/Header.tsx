@@ -12,9 +12,6 @@ const Header = () => {
             </div>
 
             <div className="flex items-center space-x-4">
-                <button className="text-gray-500">
-                    <FontAwesomeIcon icon={faMoon} />
-                </button>
                 <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center font-bold text-gray-600">DMO</div>
             </div>
         </header>
