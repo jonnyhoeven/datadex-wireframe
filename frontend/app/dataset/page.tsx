@@ -2,6 +2,7 @@ import React from 'react';
 import {DebugOutput} from '../../components/DebugOutput'
 import {Description, InfoRow} from "../../components/PackageInfo";
 import SearchBar from '../../components/SearchBar';
+import {SearchResultsHeader} from '../../components/SearchResultsHeader';
 import Link from 'next/link';
 
 async function getSearchResults(searchString: string | undefined) {
@@ -36,16 +37,11 @@ const searchResults = async ({searchParams}: { searchParams: Promise<{ q: string
         <div className="lg:w-1/1">
             <SearchBar initialValue={q} className="mb-5" />
 
-            <div className="card">
-                <h4 className="text-2xl font-bold">
-                    {results.count === 1 ? '1 resultaat' : results.count === 0 ? 'Geen resultaten' : results.count + ' resultaten'} gevonden
-                    voor: <i>{q}</i>
-                </h4>
-            </div>
+            <SearchResultsHeader count={results.count} query={q} />
 
             {results.results.map((result) => (
                 <div key={result.id} className="card">
-                    <h2 className="text-2xl font-bold mb-6"><Link href={'dataset/'+ result.name}>{result.title}</Link></h2>
+                    <h2 className="text-2xl font-bold mb-6"><Link href={'/dataset/'+ result.name}>{result.title}</Link></h2>
                     <div className="space-y-4 mb-8">
                         <InfoRow label="Type" value={result.type}/>
                         <InfoRow label="Bron" value={result.organization?.title}/>
@@ -56,8 +52,8 @@ const searchResults = async ({searchParams}: { searchParams: Promise<{ q: string
                             border={false}
                             value={
                                 <div className="flex flex-wrap gap-2">
-                                    {result.tags?.map((tag, index) => (
-                                        <span key={index} className="tag">
+                                    {result.tags?.map((tag) => (
+                                        <span key={tag.name} className="tag">
                                             {tag.display_name}
                                         </span>
                                     ))}
