@@ -6,3 +6,4 @@
 /db/data/
 /unshared-docs/
 /.playwright-mcp/*.log
+/.venv_ml/
