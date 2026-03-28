@@ -65,12 +65,12 @@ export async function GET() {
 
   return NextResponse.json({
     status: 'Ready',
-    description: 'Activity Predictor API',
+    description: 'Activity Predictor API (BERT Enabled)',
     usage: 'POST to this endpoint with { title: string, domeinen: string[] }',
     metadata: {
       domeinen_classes: meta.domeinen_classes,
       layers_classes: meta.layers_classes,
-      vocabulary_size: Object.keys(meta.tfidf_vocabulary).length
+      feature_type: meta.feature_type
     }
   });
 }
@@ -78,7 +78,7 @@ export async function GET() {
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { title, domeinen } = body;
+    const { title, domeinen, version } = body;
 
     if (!title || !Array.isArray(domeinen)) {
       return NextResponse.json({ error: 'Missing title or domeinen array' }, { status: 400 });
@@ -89,19 +89,32 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Model metadata not found' }, { status: 500 });
     }
 
-    // 1. Vectorize inputs
+    // 1. Get BERT Embeddings from the Python Service
+    const embeddingServiceUrl = process.env.EMBEDDING_SERVICE_URL || 'http://127.0.0.1:8000/embed';
+    
+    const embResponse = await fetch(embeddingServiceUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ texts: [title] })
+    });
+
+    if (!embResponse.ok) {
+      const errorText = await embResponse.text();
+      return NextResponse.json({ error: 'Embedding Service error', details: errorText }, { status: embResponse.status });
+    }
+
+    const embData = await embResponse.json();
+    const titleEmbedding = embData.embeddings[0]; // 768 dimensions
+
+    // 2. Encode domeinen
     const domeinenEncoded = encodeDomeinen(domeinen, meta.domeinen_classes);
-    const titleEncoded = vectorizeTitle(title, meta.tfidf_vocabulary, meta.tfidf_idf);
 
-    // 2. Concatenate (domeinen first, then title, matching api_test.py)
-    const X_encoded = [...domeinenEncoded, ...titleEncoded];
+    // 3. Concatenate [domeinen, titleEmbedding]
+    const X_encoded = [...domeinenEncoded, ...titleEmbedding];
 
-    // 3. Call TensorFlow Serving
-    // We use the rewrite-capable relative URL or the direct one.
-    // Inside the server, calling 127.0.0.1:8501 is fine if it's mapped.
-    // If running inside Docker network, we might need 'http://tensorflow:8501'.
-    // But since this is Next.js running on the host (usually), 127.0.0.1 works.
-    const tfServingUrl = process.env.TF_SERVING_URL || 'http://127.0.0.1:8501/v1/models/activity_predictor:predict';
+    // 4. Call TensorFlow Serving (Always uses latest version, which is now fixed to '1')
+    const modelName = process.env.TF_MODEL_NAME || 'activity_predictor';
+    const tfServingUrl = process.env.TF_SERVING_URL || `http://127.0.0.1:8501/v1/models/${modelName}:predict`;
     
     const response = await fetch(tfServingUrl, {
       method: 'POST',
@@ -118,12 +131,24 @@ export async function POST(req: NextRequest) {
     const result = await response.json();
     const predictions = result.predictions[0];
 
-    // 4. Decode (threshold at 0.5)
-    const predictedLayers = meta.layers_classes.filter((_: string, i: number) => predictions[i] > 0.5);
+    // 5. Decode and Sort by relevance
+    const scoredLayers = meta.layers_classes.map((name: string, i: number) => ({
+      name,
+      score: predictions[i]
+    }));
+
+    // Sort descending by score
+    scoredLayers.sort((a: any, b: any) => b.score - a.score);
+
+    // Filter by threshold for the "positive" predictions (but they are now sorted!)
+    const predictedLayers = scoredLayers
+      .filter((l: any) => l.score > 0.01)
+      .map((l: any) => l.name);
 
     return NextResponse.json({
       predicted_layers: predictedLayers,
-      raw_predictions: predictions
+      scored_predictions: scoredLayers.filter((l: any) => l.score > 0.01), // return all with at least 1% confidence
+      //raw_predictions: predictions
     });
 
   } catch (error: any) {
