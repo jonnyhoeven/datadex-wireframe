@@ -14,7 +14,7 @@ const LatestDatasets = async () => {
 
     return (
         <div className="text-[#004562] p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-            <h2 className="text-2xl font-bold mb-3">Nieuwste datasets</h2>
+            <h2 className="text-2xl font-bold mb-3">Nieuw</h2>
             <div className="space-y-4">
                 {datasets.map((dataset) => (
                     <div key={dataset.id} className="border-b border-gray-100 pb-3 last:border-0 last:pb-0">
