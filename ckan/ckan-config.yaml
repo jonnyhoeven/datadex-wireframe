@@ -6,7 +6,6 @@ organizations:
     title: "European Data Portal"
     description: "Dataportaal van de EU"
 
-
 groups:
   - name: "vertrouwelijk"
     title: "Vertrouwelijke Groep"
