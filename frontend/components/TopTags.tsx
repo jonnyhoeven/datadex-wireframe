@@ -1,29 +1,20 @@
 import React from 'react';
 import Link from 'next/link';
+import { fetchCKAN } from '../lib/ckan';
+import { SearchResult } from '../types/ckan';
 
 async function getTopTags() {
-    const params = new URLSearchParams({
+    const params = {
         'facet.field': '["tags"]',
         'facet.limit': '10',
         'rows': '0'
-    });
+    };
 
-    try {
-        const res = await fetch(`http://localhost:3000/api/3/action/package_search?${params.toString()}`, {
-            next: { revalidate: 3600 } // Cache results for 1 hour
-        });
-        
-        if (!res.ok) {
-            console.error('Failed to fetch tags:', res.statusText);
-            return [];
-        }
-        
-        const data = await res.json();
-        return data.result?.search_facets?.tags?.items || [];
-    } catch (error) {
-        console.error('Error fetching top tags:', error);
-        return [];
-    }
+    const result = await fetchCKAN<SearchResult>('package_search', params, {
+        next: { revalidate: 3600 } // Cache results for 1 hour
+    });
+    
+    return result?.search_facets?.tags?.items || [];
 }
 
 const TopTags = async () => {
@@ -42,7 +33,7 @@ const TopTags = async () => {
             {tags.map((tag: any) => (
                 <Link 
                     key={tag.name} 
-                    href={`/tag/${encodeURIComponent(tag.display_name)}`}
+                    href={`/tag/${encodeURIComponent(tag.name)}`}
                 >
                     <div className="tag hover:bg-gray-200 transition-colors text-[#004562] border border-gray-100">
                     {tag.display_name} <span className="text-xs text-gray-400 font-normal ml-1">({tag.count})</span>
