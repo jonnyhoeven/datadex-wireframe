@@ -1,5 +1,6 @@
 {
   "domeinen_classes": [
+    "GGD",
     "ambulance",
     "brandweer",
     "defensie",
@@ -115,7 +116,8 @@
     "Zwembaden",
     "metrolijnen-rotterdam"
   ],
-  "feature_type": "robbert",
+  "feature_type": "robbert_functional",
   "bert_model": "pdelobelle/robbert-v2-dutch-base",
-  "input_dim": 778
+  "domain_dim": 11,
+  "bert_dim": 768
 }

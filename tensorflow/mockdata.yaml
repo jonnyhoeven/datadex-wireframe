@@ -12335,3 +12335,221 @@ activities:
   - BGT Wegdelen
   - Gebiedsindeling Veiligheidsregio's
   - metrolijnen-rotterdam
+- name: vuur in theater
+  domeinen:
+  - brandweer
+  - politie
+  layers:
+  - BAG Panden
+  - BGT Wegdelen
+  - Brandkranen (Publiek)
+  - Brandweerkazernes
+  - Gebiedsindeling Veiligheidsregio's
+  - Open Waterwinplaatsen
+- name: rookontwikkeling bij podium
+  domeinen:
+  - brandweer
+  - politie
+  layers:
+  - BAG Panden
+  - BGT Wegdelen
+  - Evenementenlocaties
+  - Gebiedsindeling Veiligheidsregio's
+  - Brandweerkazernes
+- name: ontploffing bij centraal station
+  domeinen:
+  - politie
+  - defensie
+  - ambulance
+  layers:
+  - Explosieven (Onontplofte resten)
+  - BAG Panden
+  - BGT Wegdelen
+  - Gebiedsindeling Veiligheidsregio's
+  - Tunnels (Spoor)
+  - BRT Spoorbaandelen
+  - Ziekenhuizen
+- name: vliegtuigcrash op de hei
+  domeinen:
+  - brandweer
+  - politie
+  - ambulance
+  - defensie
+  layers:
+  - BAG Panden
+  - BGT Wegdelen
+  - Gebiedsindeling Veiligheidsregio's
+  - Natura 2000
+  - Toegangspunten Natuur
+  - Helipads
+- name: grote wateroverlast in parkeergarage
+  domeinen:
+  - brandweer
+  - waterstaat
+  layers:
+  - BAG Panden
+  - BGT Wegdelen
+  - Gebiedsindeling Veiligheidsregio's
+  - Gemalen en Stuwen
+  - Overstromingsdiepte (1:100)
+  - Parkeergarages (In/Uitgang)
+- name: verwarde persoon met wapen in winkelstraat
+  domeinen:
+  - politie
+  - ambulance
+  layers:
+  - BAG Panden
+  - BGT Wegdelen
+  - Gebiedsindeling Veiligheidsregio's
+  - Cameratoezicht (Openbare Ruimte)
+  - Sectorindeling Politie
+- name: gaslucht geroken in appartementencomplex
+  domeinen:
+  - brandweer
+  - nutsbedrijven
+  layers:
+  - BAG Panden
+  - BGT Wegdelen
+  - Gebiedsindeling Veiligheidsregio's
+  - Buisleidingen Gevaarlijke Stoffen
+  - Gasontvangststations
+  - Regelstations Gas
+- name: stroomuitval in ziekenhuis
+  domeinen:
+  - nutsbedrijven
+  - politie
+  layers:
+  - BAG Panden
+  - BGT Wegdelen
+  - Gebiedsindeling Veiligheidsregio's
+  - Transformatorstations
+  - Ziekenhuizen
+  - Hoogspanningsnet
+- name: demonstratie bij ambassade
+  domeinen:
+  - politie
+  - handhaving
+  layers:
+  - BAG Panden
+  - BGT Wegdelen
+  - Gebiedsindeling Veiligheidsregio's
+  - Cameratoezicht (Openbare Ruimte)
+  - Stadions
+- name: vermoeden van drugslab in boerderij
+  domeinen:
+  - politie
+  - milieu
+  layers:
+  - BAG Panden
+  - BGT Wegdelen
+  - Gebiedsindeling Veiligheidsregio's
+  - Bodemverontreiniging
+  - Grondwaterbescherming
+- name: gevaarlijk afval gedumpt in natuurgebied
+  domeinen:
+  - milieu
+  - politie
+  layers:
+  - BAG Panden
+  - BGT Wegdelen
+  - Gebiedsindeling Veiligheidsregio's
+  - Natura 2000
+  - Toegangspunten Natuur
+  - Grondwaterbescherming
+- name: boot in de problemen op het IJ
+  domeinen:
+  - politie
+  - waterstaat
+  - brandweer
+  layers:
+  - BAG Panden
+  - BGT Wegdelen
+  - Gebiedsindeling Veiligheidsregio's
+  - BRT Wateroppervlakken
+  - Havengebieden (ISPS)
+  - Kades en Aanlegplaatsen
+- name: overval op juwelier
+  domeinen:
+  - politie
+  layers:
+  - BAG Panden
+  - BGT Wegdelen
+  - Gebiedsindeling Veiligheidsregio's
+  - Cameratoezicht (Openbare Ruimte)
+  - Sectorindeling Politie
+- name: cyberaanval op drinkwaterbedrijf
+  domeinen:
+  - defensie
+  - politie
+  - nutsbedrijven
+  layers:
+  - BAG Panden
+  - BGT Wegdelen
+  - Gebiedsindeling Veiligheidsregio's
+  - Datacenters
+  - Drinkwaterleidingen (Hoofd)
+  - Waterwingebieden
+- name: hittegolf in verzorgingstehuis
+  domeinen:
+  - ambulance
+  - GGD
+  layers:
+  - BAG Panden
+  - BGT Wegdelen
+  - Gebiedsindeling Veiligheidsregio's
+  - Verpleegtehuizen
+  - Ziekenhuizen
+- name: instorting van balkon bij flat
+  domeinen:
+  - brandweer
+  - politie
+  - ambulance
+  layers:
+  - BAG Panden
+  - BGT Wegdelen
+  - Gebiedsindeling Veiligheidsregio's
+  - Ziekenhuizen
+  - Brandweerkazernes
+- name: asbest vrijgekomen bij renovatie
+  domeinen:
+  - milieu
+  - handhaving
+  layers:
+  - BAG Panden
+  - BGT Wegdelen
+  - Gebiedsindeling Veiligheidsregio's
+  - Asbestverdachte Locaties
+  - Meetstations Luchtkwaliteit
+- name: verkeersinfarct door gekantelde vrachtwagen
+  domeinen:
+  - politie
+  - verkeerregelaars
+  - reinigingsdienst
+  layers:
+  - BAG Panden
+  - BGT Wegdelen
+  - Gebiedsindeling Veiligheidsregio's
+  - Filegevoelige Trajecten
+  - Evacuatie-hoofdroutes
+- name: verdacht pakketje bij rechtbank
+  domeinen:
+  - politie
+  - defensie
+  layers:
+  - BAG Panden
+  - BGT Wegdelen
+  - Gebiedsindeling Veiligheidsregio's
+  - Explosieven (Onontplofte resten)
+  - Cameratoezicht (Openbare Ruimte)
+- name: persoon te water bij de gracht
+  domeinen:
+  - brandweer
+  - ambulance
+  - politie
+  layers:
+  - BAG Panden
+  - BGT Wegdelen
+  - Gebiedsindeling Veiligheidsregio's
+  - BRT Wateroppervlakken
+  - Ziekenhuizen
+  - Open Waterwinplaatsen
