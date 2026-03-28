@@ -1,6 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
 import SearchBar from '../components/SearchBar';
+import {InfoRow} from "../components/PackageInfo";
+
+import TopTags from '../components/TopTags';
 
 const HomePage = () => {
     return (
@@ -34,6 +37,14 @@ const HomePage = () => {
                             <span aria-hidden="true">&rarr;</span>
                         </Link>
                     </div>
+
+
+                    <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                        <div className="inline-block bg-orange-100 text-orange-800 text-xs font-bold px-3 py-1 rounded-full mb-4 uppercase tracking-wide">Top 10 Themas</div>
+                        <TopTags />
+                    </div>
+
+
 
                     {/* Backend API Info */}
                     <div className="bg-[#004562] text-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
