@@ -6,6 +6,7 @@ import { config } from '@fortawesome/fontawesome-svg-core';
 config.autoAddCss = false;
 
 import Header from '../components/Header';
+import Breadcrumbs from '../components/Breadcrumbs';
 
 export const metadata: Metadata = {
     title: "Data4OOV Catalogus",
@@ -22,6 +23,7 @@ export default function RootLayout({
         <body>
         <Header />
         <main className="max-w-6xl mx-auto p-6">
+            <Breadcrumbs />
             <div className="flex flex-col lg:flex-row lg:gap-8">
                 {children}
             </div>
