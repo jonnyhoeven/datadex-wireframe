@@ -1,21 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
-
-// Load model metadata for vectorization and decoding
-const metadataPath = path.join(process.cwd(), 'app/api/predict/model_metadata.json');
-let metadata: any = null;
+import metadata from './model_metadata.json';
 
 function loadMetadata() {
-  if (!metadata) {
-    try {
-      const data = fs.readFileSync(metadataPath, 'utf8');
-      metadata = JSON.parse(data);
-    } catch (error) {
-      console.error('Error loading model metadata:', error);
-    }
-  }
-  return metadata;
+  return metadata as any;
 }
 
 /**
