@@ -14,8 +14,8 @@ As an AI agent working on the Datadex Wireframe project, you must adhere strictl
 - **Primary References:** Always focus on the root `README.md` and `frontend/README.md` for context on development and
   coding tasks. These files contain essential details regarding the Dockerized CKAN backend, the Next.js frontend, and
   the Infrastructure as Code (IaC) setup.
-- **Frontend Tasks:** For frontend development, the local development server should be used. This server is started by
-  running `yarn dev` from inside the `frontend/` directory.
+- **Frontend Tasks:** For frontend development, the docker-compose development server has been disabled during development,
+  instead start the frontend service by running `yarn dev` from inside the `frontend/` directory.
 - **ckan data harvest** reload the harvester data from the eu data provider if the user asks for it.
   ```bash
   ckan --config=/srv/app/ckan.ini harvester gather-consumer
