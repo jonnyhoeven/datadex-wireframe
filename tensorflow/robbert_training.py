@@ -54,10 +54,16 @@ def build_model(domain_dim, bert_dim, output_dim):
     domain_input = tf.keras.layers.Input(shape=(domain_dim,), name='domain_input')
     bert_input = tf.keras.layers.Input(shape=(bert_dim,), name='bert_input')
     
-    # Concatenate inputs
-    # Note: We can give domains more weight by repeating them or using a dense layer
-    # but for now simple concatenation is a good start.
-    x = tf.keras.layers.Concatenate()([domain_input, bert_input])
+    # Domain branch: Upsample the categorical features to give them more weight
+    domain_branch = tf.keras.layers.Dense(64, activation='relu')(domain_input)
+    domain_branch = tf.keras.layers.BatchNormalization()(domain_branch)
+    
+    # BERT branch: Process embeddings slightly
+    bert_branch = tf.keras.layers.Dense(256, activation='relu')(bert_input)
+    bert_branch = tf.keras.layers.BatchNormalization()(bert_branch)
+    
+    # Concatenate processed branches
+    x = tf.keras.layers.Concatenate()([domain_branch, bert_branch])
     
     # Hidden Layers
     x = tf.keras.layers.Dense(256, activation='relu')(x)
@@ -76,7 +82,12 @@ def build_model(domain_dim, bert_dim, output_dim):
     model.compile(
         optimizer=tf.keras.optimizers.Adam(learning_rate=0.001),
         loss='binary_crossentropy',
-        metrics=[tf.keras.metrics.Precision(name='precision'), tf.keras.metrics.Recall(name='recall'), 'accuracy']
+        metrics=[
+            tf.keras.metrics.Precision(name='precision'), 
+            tf.keras.metrics.Recall(name='recall'), 
+            'accuracy',
+            tf.keras.metrics.TopKCategoricalAccuracy(k=5, name='top_5_accuracy')
+        ]
     )
     
     return model
