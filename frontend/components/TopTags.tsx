@@ -6,7 +6,7 @@ import { SearchResult } from '../types/ckan';
 async function getTopTags() {
     const params = {
         'facet.field': '["tags"]',
-        'facet.limit': '10',
+        'facet.limit': '35',
         'rows': '0'
     };
 

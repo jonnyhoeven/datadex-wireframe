@@ -10,7 +10,7 @@ interface SearchBarProps {
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({ 
-    placeholder = "Doorzoek het CKAN archief (bijv. Water)...",
+    placeholder = "Doorzoek in de catalogus (bijv. Water)...",
     initialValue = "",
     className = ""
 }) => {
