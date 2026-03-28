@@ -4,11 +4,9 @@ This directory contains the TensorFlow Serving configuration for the `activity_p
 
 ## Model Training
 
-The `robbert_training.py` script uses **RobBERT** (a Dutch BERT model) to generate embeddings for activity titles, combined with a multi-label classifier.
+The `robbert_training.py` script trains the activity predictor using **RobBERT embeddings**.
 
 ### Local Setup
-
-It is recommended to use a dedicated Python environment (e.g., Python 3.11+).
 
 ```bash
 # Using a virtualenv
@@ -21,15 +19,21 @@ python tensorflow/robbert_training.py
 ```
 
 ### Script Output
-- **Model:** Exported to `tf_serving_models/activity_predictor/2/` in `SavedModel` format.
-- **Metadata:** Exported to `model_metadata_robbert.json` (and automatically copied to `frontend/app/api/predict/model_metadata.json`).
+- **Model:** Exported to `tf_serving_models/activity_predictor/4/`.
+- **Metadata:** Exported to `model_metadata.json`.
 
-## Serving with Docker
+## Services
 
-The model is served using TensorFlow Serving.
+This project uses three services for predictions:
+
+1.  **TensorFlow Serving (Port 8501):** Hosts the trained neural network.
+2.  **Embedding Service (Port 8000):** A FastAPI service that generates RobBERT embeddings for text.
+3.  **Frontend API Route:** Orchestrates the flow: `Input -> Embedding Service -> TF Serving -> Output`.
+
+### Running with Docker
 
 ```bash
-docker-compose up tensorflow
+docker-compose up tensorflow embedding_service
 ```
 
 The `Dockerfile` in this directory copies the models into the container and starts the server on port `8501`.
