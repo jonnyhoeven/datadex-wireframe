@@ -730,7 +730,7 @@ activities:
   - Spoorwegovergangen
   - Transformatorstations
   - Tunnels (Spoor)
-- name: "su\xEFcidepoging bij vrijstaande woning"
+- name: "suidepoging bij vrijstaande woning"
   domeinen:
   - politie
   layers:
@@ -896,7 +896,7 @@ activities:
   - Gebiedsindeling Veiligheidsregio's
   - Open Waterwinplaatsen
   - Sectorindeling Brandweer
-- name: "su\xEFcidepoging in winkelcentrum"
+- name: "suidepoging in winkelcentrum"
   domeinen:
   - politie
   layers:
@@ -1472,7 +1472,7 @@ activities:
   - Gebiedsindeling Veiligheidsregio's
   - Open Waterwinplaatsen
   - Sectorindeling Brandweer
-- name: "su\xEFcidepoging in de haven"
+- name: "suidepoging in de haven"
   domeinen:
   - politie
   layers:
@@ -2595,7 +2595,7 @@ activities:
   - Brandweerliften
   - Gebiedsindeling Veiligheidsregio's
   - Ondergrondse Gasopslag
-- name: "su\xEFcidepoging op industrieterrein"
+- name: "suidepoging op industrieterrein"
   domeinen:
   - politie
   layers:
@@ -3153,7 +3153,7 @@ activities:
   - Kades en Aanlegplaatsen
   - Ondergrondse Gasopslag
   - Stadions
-- name: "su\xEFcidepoging bij de speeltuin"
+- name: "suidepoging bij de speeltuin"
   domeinen:
   - politie
   layers:
@@ -4663,7 +4663,7 @@ activities:
   - BGT Wegdelen
   - Gebiedsindeling Veiligheidsregio's
   - Ziekenhuizen
-- name: brand in meterkast op het metro station beurs perron
+- name: brand in meterkast op metro station beurs perron
   domeinen:
   - brandweer
   - politie
@@ -4852,7 +4852,7 @@ activities:
   - Gebiedsindeling Veiligheidsregio's
   - LPG Tankstations
   - Politiebureaus
-- name: "su\xEFcidepoging bij de gevangenis"
+- name: "suidepoging bij de gevangenis"
   domeinen:
   - politie
   layers:
@@ -6393,7 +6393,7 @@ activities:
   - Sluiscomplexen
   - Tunnels (Weg)
   - Vluchtwegen
-- name: "su\xEFcidepoging bij rijtjeshuis"
+- name: "suidepoging bij rijtjeshuis"
   domeinen:
   - politie
   layers:
@@ -7508,7 +7508,7 @@ activities:
   - Gebiedsindeling Veiligheidsregio's
   - Open Waterwinplaatsen
   - Sectorindeling Brandweer
-- name: "su\xEFcidepoging in tunnel"
+- name: "suidepoging in tunnel"
   domeinen:
   - politie
   - verkeerregelaars
@@ -8316,9 +8316,10 @@ activities:
   - Gemalen en Stuwen
   - Transportroutes Gevaarlijke Stoffen (Water)
   - Transportroutes Gevaarlijke Stoffen (Weg)
-- name: "su\xEFcidepoging bij bibliotheek"
+- name: suicidepoging bij bibliotheek
   domeinen:
   - politie
+  - ambulance
   layers:
   - BAG Panden
   - BGT Wegdelen
@@ -8689,7 +8690,7 @@ activities:
   - Natura 2000
   - Toegangspunten Natuur
   - Ziekenhuizen
-- name: "su\xEFcidepoging bij de sportschool"
+- name: "suidepoging bij de sportschool"
   domeinen:
   - politie
   layers:
@@ -8762,7 +8763,7 @@ activities:
   - Droge Blusleidingen
   - Gebiedsindeling Veiligheidsregio's
   - Politiebureaus
-- name: "su\xEFcidepoging bij transformatorhuisje"
+- name: "suidepoging bij transformatorhuisje"
   domeinen:
   - politie
   layers:
@@ -9259,7 +9260,7 @@ activities:
   - Gebiedsindeling Veiligheidsregio's
   - Spoorwegovergangen
   - Tunnels (Spoor)
-- name: "su\xEFcidepoging bij de huisartsenpost"
+- name: "suidepoging bij de huisartsenpost"
   domeinen:
   - politie
   layers:
@@ -10276,7 +10277,7 @@ activities:
   - Gebiedsindeling Veiligheidsregio's
   - Kinderdagverblijven
   - Risicocontouren (PR 10-6)
-- name: "su\xEFcidepoging bij laadstation"
+- name: "suidepoging bij laadstation"
   domeinen:
   - politie
   layers:
@@ -11616,7 +11617,7 @@ activities:
   - Gemalen en Stuwen
   - Kades en Aanlegplaatsen
   - Straatmeubilair (Bollards)
-- name: "su\xEFcidepoging bij het restaurant"
+- name: "suidepoging bij het restaurant"
   domeinen:
   - politie
   layers:
