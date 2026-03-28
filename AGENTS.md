@@ -7,7 +7,7 @@ As an AI agent working on the Datadex Wireframe project, you must adhere strictl
 - **NEVER restart Docker or Docker Compose services.** You are strictly prohibited from restarting Docker or modifying
   the running Docker Compose state (do not run `docker compose up`, `down`, or `restart`). Assume the backend
   infrastructure is managed by the user and is already running.
-- If you edit `ckan-config.yaml` make sure you run `docker compose exec ckan python3 /srv/app/ckan-init.py` to update the ckan api state
+- If you edit `ckan-config.yaml` make sure you run `docker compose exec ckan python3 /srv/app/ckan-init.py` to update the ckan api state.
 
 ## Development Workflow
 
@@ -16,7 +16,7 @@ As an AI agent working on the Datadex Wireframe project, you must adhere strictl
   the Infrastructure as Code (IaC) setup.
 - **Frontend Tasks:** For frontend development, the local development server should be used. This server is started by
   running `yarn dev` from inside the `frontend/` directory.
-- **ckan data harvest** reload the harvester data from the eu daya provider if the user asks for it.
+- **ckan data harvest** reload the harvester data from the eu data provider if the user asks for it.
   ```bash
   ckan --config=/srv/app/ckan.ini harvester gather-consumer
   ckan --config=/srv/app/ckan.ini harvester fetch-consumer
