@@ -34,7 +34,7 @@ const HomePage = () => {
                         <h2 className="text-2xl font-bold mb-3">Thema's</h2>
                         <TopTags />
                         <div className="mt-6">
-                            <Link href="/tag/">
+                            <Link href="/tag">
                                 <div className="text-[#004562] font-semibold hover:underline flex items-center gap-1 text-sm">
                                     Bekijk alle thema's
                                     <span aria-hidden="true">&rarr;</span>

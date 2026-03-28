@@ -7,12 +7,14 @@ interface SearchBarProps {
     placeholder?: string;
     initialValue?: string;
     className?: string;
+    basePath?: string;
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({ 
     placeholder = "Doorzoek in de catalogus (bijv. Water)...",
     initialValue = "",
-    className = ""
+    className = "",
+    basePath = "/dataset"
 }) => {
     const [query, setQuery] = useState(initialValue);
     const router = useRouter();
@@ -20,7 +22,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
     const handleSearch = (e: React.FormEvent) => {
         e.preventDefault();
         if (query.trim()) {
-            router.push(`/dataset?q=${encodeURIComponent(query.trim())}`);
+            router.push(`${basePath}?q=${encodeURIComponent(query.trim())}`);
         }
     };
 
