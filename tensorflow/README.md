@@ -2,6 +2,38 @@
 
 This directory contains the TensorFlow Serving configuration for the `activity_predictor` model.
 
+## Model Training
+
+The `robbert_training.py` script uses **RobBERT** (a Dutch BERT model) to generate embeddings for activity titles, combined with a multi-label classifier.
+
+### Local Setup
+
+It is recommended to use a dedicated Python environment (e.g., Python 3.11+).
+
+```bash
+# Using a virtualenv
+python -m venv .venv_ml
+source .venv_ml/bin/activate
+pip install -r tensorflow/requirements.txt
+
+# Run the training script
+python tensorflow/robbert_training.py
+```
+
+### Script Output
+- **Model:** Exported to `tf_serving_models/activity_predictor/2/` in `SavedModel` format.
+- **Metadata:** Exported to `model_metadata_robbert.json` (and automatically copied to `frontend/app/api/predict/model_metadata.json`).
+
+## Serving with Docker
+
+The model is served using TensorFlow Serving.
+
+```bash
+docker-compose up tensorflow
+```
+
+The `Dockerfile` in this directory copies the models into the container and starts the server on port `8501`.
+
 ## For Frontend Developers
 
 The TensorFlow service is hosted inside the Docker stack on port `8501`, but it is **proxied via the Next.js frontend** to simplify development, avoid CORS issues, and provide a high-level friendly API.
