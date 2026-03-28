@@ -12,6 +12,7 @@ const labelMap: Record<string, string> = {
   'tag': 'Thema\'s',
   'api': 'API Tester',
   'gebruik': 'Gebruiksvoorwaarden',
+  'status': 'Systeem Status',
 };
 
 const Breadcrumbs = () => {
