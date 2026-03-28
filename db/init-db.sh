@@ -6,7 +6,6 @@ CKAN_APP_USER="${POSTGRES_USER:-ckan_default}"
 CKAN_APP_PASSWORD="${POSTGRES_PASSWORD:-password}"
 
 # Define the user for the CKAN Datastore read-only operations
-# The error indicates CKAN expects a user named 'datastore_default' for the datastore read-only access.
 DATASTORE_READONLY_USER="datastore_default"
 DATASTORE_READONLY_PASSWORD="${POSTGRES_PASSWORD:-password}" # Using the same password for simplicity, can be changed.
 
@@ -34,7 +33,7 @@ psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "postgres" <<-EOSQL
 
     -- Create the main CKAN database
     DROP DATABASE IF EXISTS "ckan_default";
-    CREATE DATABASE "ckan_default" OWNER "$POSTGRES_USER"; -- Owner can be POSTGRES_USER or CKAN_APP_USER
+    CREATE DATABASE "ckan_default" OWNER "$POSTGRES_USER";
     GRANT ALL PRIVILEGES ON DATABASE "ckan_default" TO "$POSTGRES_USER";
     GRANT CONNECT ON DATABASE "ckan_default" TO "$CKAN_APP_USER";
 EOSQL
