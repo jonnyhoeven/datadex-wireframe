@@ -4,64 +4,60 @@ This directory contains the TensorFlow Serving configuration for the `activity_p
 
 ## For Frontend Developers
 
-The TensorFlow service is hosted inside the Docker stack on port `8501`, but it is **proxied via the Next.js frontend** to simplify development and avoid CORS issues.
+The TensorFlow service is hosted inside the Docker stack on port `8501`, but it is **proxied via the Next.js frontend** to simplify development, avoid CORS issues, and provide a high-level friendly API.
 
-### Base Proxy URL
-Use relative paths in your frontend code:
-` /api/activity-predictor/v1/models/activity_predictor `
+### 1. High-Level Prediction API (Recommended)
 
-### 1. Check Model Metadata
-To check if the model is loaded and see the required input/output tensor names:
+Use the friendly API route that handles vectorization and decoding automatically. This is the easiest way to integrate predictions.
+
+**Endpoint:** `/api/predict`
+
+#### GET /api/predict
+Returns status information and model metadata (classes for domeinen and layers).
 ```javascript
-const response = await fetch('/api/activity-predictor/v1/models/activity_predictor/metadata');
-const data = await response.json();
-console.log(data);
+const response = await fetch('/api/predict');
+const status = await response.json();
+console.log(status.metadata.domeinen_classes); 
 ```
 
-### 2. Make a Prediction
-To get a prediction, send a POST request to the `:predict` endpoint.
+#### POST /api/predict
+Submit an activity to get predicted relevant map layers.
 
-**Endpoint:** `POST /api/activity-predictor/v1/models/activity_predictor:predict`
-
-**Example Code:**
-```javascript
-async function getPrediction(inputData) {
-  const response = await fetch('/api/activity-predictor/v1/models/activity_predictor:predict', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      // Input data must be wrapped in an "instances" array
-      // Each element in the array is one input sample
-      instances: [
-        inputData // e.g., [1.0, 0.5, 0.2]
-      ]
-    })
-  });
-
-  if (!response.ok) {
-    throw new Error('Prediction request failed');
-  }
-
-  const result = await response.json();
-  return result.predictions;
+**Body:**
+```json
+{
+  "title": "brand bij schouwburg",
+  "domeinen": ["brandweer", "politie"]
 }
 ```
 
-### Important Notes
-- **Input Format**: The `instances` array is mandatory. Each item in the array should match the input shape of the model (usually an array of numbers).
-- **CORS**: By using the `/api/activity-predictor/` path, you avoid all Cross-Origin Resource Sharing (CORS) issues because the request stays on the same origin (`localhost:3000`).
-- **Configuration**: The proxy logic is defined in `frontend/next.config.mjs`.
+**Example Code:**
+```javascript
+const response = await fetch('/api/predict', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    title: "brand bij schouwburg",
+    domeinen: ["brandweer", "politie"]
+  })
+});
 
-## Example Predictions
-To see what the model predicts for the activities in `mockdata.yaml`, you can check the reference output file:
-`tensorflow/api_test_output.json`
+const result = await response.json();
+console.log(result.predicted_layers); // e.g., ["A Wegen", "E Gebouwen", "G scholen"]
+```
 
-This file contains an array of objects showing the input activity name, the actual layers (from the mock data), and the layers predicted by the model.
+### 2. Low-Level Proxy URL (Advanced)
 
-## Reference Implementation
-If you need to see how to preprocess the data in Python (which matches the training logic), refer to `tensorflow/api_test.py`.
+If you need direct access to the TensorFlow Serving REST API (e.g., for raw tensor access), use the proxy rewrite:
+` /api/activity-predictor/v1/models/activity_predictor `
 
-## Docker Configuration
-The service runs using the `emacski/tensorflow-serving:latest` image (compatible with ARM64/Apple Silicon). It loads models from the `tf_serving_models/` directory.
+#### Check Raw Model Metadata
+```javascript
+const response = await fetch('/api/activity-predictor/v1/models/activity_predictor/metadata');
+const data = await response.json();
+```
+
+## Testing
+
+You can test both the CKAN API and the Activity Predictor API using the built-in tester page:
+[http://localhost:3000/api](http://localhost:3000/api)

@@ -1,10 +1,121 @@
 "use client";
 
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faMoon} from "@fortawesome/free-regular-svg-icons";
 import Link from 'next/link';
 import {faArrowUpRightFromSquare} from "@fortawesome/free-solid-svg-icons";
+import Select from 'react-select';
+
+const PredictApiTester = () => {
+    const [title, setTitle] = useState('brand bij schouwburg');
+    const [selectedDomeinen, setSelectedDomeinen] = useState<any>([]);
+    const [response, setResponse] = useState<any>(null);
+    const [loading, setLoading] = useState(false);
+    const [domeinOptions, setDomeinOptions] = useState<any>([]);
+
+    useEffect(() => {
+        // Fetch metadata to get domeinen classes
+        fetch('/api/predict')
+            .then(res => res.json())
+            .then(data => {
+                if (data.metadata?.domeinen_classes) {
+                    const options = data.metadata.domeinen_classes.map((d: string) => ({ value: d, label: d }));
+                    setDomeinOptions(options);
+                    // Set default
+                    setSelectedDomeinen([options.find((o: any) => o.value === 'brandweer')].filter(Boolean));
+                }
+            })
+            .catch(err => console.error('Error fetching metadata:', err));
+    }, []);
+
+    const handlePredict = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setLoading(true);
+        setResponse(null);
+
+        try {
+            const res = await fetch('/api/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    title,
+                    domeinen: selectedDomeinen.map((d: any) => d.value)
+                })
+            });
+
+            const data = await res.json();
+            setResponse({status: res.status, ok: res.ok, data});
+        } catch (error: any) {
+            setResponse({error: error.message || String(error)});
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    return (
+        <div className="card mt-8">
+            <h2 className="text-2xl font-bold mb-6">Activity Predictor API Tester</h2>
+            
+            <div className="space-y-4 mb-8">
+                <p className="text-gray-600 mb-4">
+                    Voorspel welke kaartlagen relevant zijn op basis van een activiteitstitel en domeinen.
+                </p>
+
+                <form onSubmit={handlePredict} className="space-y-4">
+                    <div className="flex flex-col w-full">
+                        <label className="font-semibold text-sm mb-1 text-gray-700">Activiteit Titel</label>
+                        <input
+                            type="text"
+                            className="border border-gray-300 p-2 rounded w-full focus:ring-2 focus:ring-blue-500 outline-none"
+                            value={title}
+                            onChange={(e) => setTitle(e.target.value)}
+                            placeholder="bijv. Brand in parkeergarage"
+                        />
+                    </div>
+
+                    <div className="flex flex-col w-full">
+                        <label className="font-semibold text-sm mb-1 text-gray-700">Domeinen</label>
+                        <Select
+                            isMulti
+                            options={domeinOptions}
+                            value={selectedDomeinen}
+                            onChange={setSelectedDomeinen}
+                            className="text-sm"
+                            placeholder="Selecteer domeinen..."
+                        />
+                    </div>
+
+                    <button type="submit"
+                            className="bg-green-600 hover:bg-green-700 transition text-white px-6 py-2 rounded font-medium"
+                            disabled={loading}>
+                        {loading ? 'Analyzing...' : 'Predict Layers'}
+                    </button>
+                </form>
+            </div>
+
+            {response && (
+                <div className="mt-8 border-t pt-6">
+                    <h3 className="text-xl font-bold mb-4 flex items-center gap-3">
+                        Prediction Result
+                        {response.status && (
+                            <span
+                                className={`text-sm px-2 py-1 rounded text-white ${response.ok ? 'bg-green-500' : 'bg-red-500'}`}>
+                                {response.status}
+                            </span>
+                        )}
+                    </h3>
+                    <div className="bg-gray-800 text-green-400 p-4 rounded overflow-x-auto">
+                        <pre className="text-sm font-mono whitespace-pre-wrap">
+                            {JSON.stringify(response.data || response.error, null, 2)}
+                        </pre>
+                    </div>
+                </div>
+            )}
+        </div>
+    );
+};
 
 const ApiTester = () => {
     const [method, setMethod] = useState('GET');
@@ -137,6 +248,8 @@ const ApiTester = () => {
                     </Link>
 
                 </div>
+
+                <PredictApiTester />
             </div>
         </>
     );
