@@ -10,10 +10,12 @@ services:
     environment:
       - API_KEY=
       - CKAN_BASE_URL=http://ckan:4000
+      - EMBEDDING_SERVICE_URL=http://embedding_service:8000/embed
+      - TF_SERVING_URL=http://tensorflow:8501/v1/models/activity_predictor:predict
     networks:
       - ckan-network
-    profiles:
-      - ignore  # This excludes it from a standard 'up' when you want to run yarn dev with the backend. Disable this line to run the container.
+    #profiles:
+    #  - ignore # This excludes it from a standard 'up' when you want to run yarn dev with the backend. Disable this line to run the container.
   ckan:
     platform: linux/amd64
     build:
@@ -52,7 +54,6 @@ services:
     #  - /var/lib/ckan:uid=92,gid=92,mode=0777
     networks:
       - ckan-network
-
   tensorflow:
     build:
       context: tensorflow
@@ -63,7 +64,6 @@ services:
       - ckan-network
     volumes:
       - ./tensorflow/tf_serving_models:/models/
-
   embedding_service:
     build:
       context: tensorflow
@@ -72,7 +72,6 @@ services:
       - "8000:8000"
     networks:
       - ckan-network
-
   db:
     image: postgres:12-alpine
     ports:
@@ -84,25 +83,20 @@ services:
     volumes:
       - ./db/init-db.sh:/docker-entrypoint-initdb.d/init-db.sh:ro
       - db-data:/var/lib/postgresql/data:rw
-    #tmpfs: /var/lib/postgresql/data
     networks:
       - ckan-network
-
   solr:
     platform: linux/amd64
     image: ckan/ckan-solr:2.10-solr9
     networks:
       - ckan-network
-
   redis:
     image: redis:6-alpine
     networks:
       - ckan-network
-
 networks:
   ckan-network:
     driver: bridge
-
 volumes:
   ckan-data:
   db-data:

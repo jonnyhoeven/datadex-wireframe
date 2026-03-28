@@ -3,6 +3,9 @@ FROM node:24-alpine AS builder
 
 WORKDIR /app
 
+# Set default CKAN_BASE_URL for build time
+ENV CKAN_BASE_URL=http://ckan:4000
+
 # Install dependencies
 COPY package.json ./
 RUN yarn install
@@ -20,12 +23,16 @@ WORKDIR /app
 
 # Set environment variables for Next.js
 ENV NODE_ENV production
+ENV CKAN_BASE_URL=http://ckan:4000
+ENV EMBEDDING_SERVICE_URL=http://embedding_service:8000/embed
+ENV TF_SERVING_URL=http://tensorflow:8501/v1/models/activity_predictor:predict
 
 # Copy necessary files from the builder stage
 COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./package.json
 COPY --from=builder /app/public ./public
+COPY --from=builder /app/next.config.mjs ./next.config.mjs
 
 EXPOSE 3000
 
