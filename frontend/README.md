@@ -68,8 +68,8 @@ The frontend will be accessible at [http://localhost:3000](http://localhost:3000
 
 The frontend expects to communicate with a CKAN backend. When running locally outside of Docker, you may need to set environment variables such as:
 
-- `API_URL`: The URL of the CKAN API (default in Docker: `http://ckan:4000/api/3/action/status_show`)
-- `API_KEY`: If required for API access.
+- `CKAN_BASE_URL`: The URL of the CKAN backend (default: `http://localhost:4000`)
+- `NEXT_PUBLIC_CKAN_URL`: The public-facing URL of CKAN for browser-side links (default: `http://localhost:4000`)
 
 ## Project Structure
 

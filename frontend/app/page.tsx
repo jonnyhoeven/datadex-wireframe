@@ -50,7 +50,7 @@ const HomePage = () => {
                         <p className="text-blue-100 mb-6 leading-relaxed">
                             Beheerders kunnen inloggen via de Data4OOV ckan backend om metadata bij te werken.
                         </p>
-                        <a href="http://localhost:4000" className="text-white font-semibold hover:underline flex items-center gap-1">
+                        <a href={process.env.NEXT_PUBLIC_CKAN_URL || "http://localhost:4000"} className="text-white font-semibold hover:underline flex items-center gap-1">
                             Beheerportaal: <span aria-hidden="true">&rarr;</span>
                         </a>
                     </div>
