@@ -4714,7 +4714,7 @@ activities:
   - Sectorindeling Brandweer
   - Spoorwegovergangen
   - Tunnels (Spoor)
-- name: data-lek bij tankstation
+- name: data-lek bij tankstation naast spoor
   domeinen:
   - politie
   layers:
@@ -4733,9 +4733,7 @@ activities:
   layers:
   - BAG Panden
   - BGT Wegdelen
-  - Brandcompartimentering
   - Gebiedsindeling Veiligheidsregio's
-  - Overstromingsdiepte (1:100)
   - Tunnels (Weg)
 - name: zinkgat in tunnel
   domeinen:
