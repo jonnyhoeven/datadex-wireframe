@@ -42,10 +42,11 @@ const TopTags = async () => {
             {tags.map((tag: any) => (
                 <Link 
                     key={tag.name} 
-                    href={`/tag?q=${encodeURIComponent(tag.display_name)}`}
-                    className="tag hover:bg-gray-200 transition-colors text-[#004562] border border-gray-100"
+                    href={`/tag/${encodeURIComponent(tag.display_name)}`}
                 >
+                    <div className="tag hover:bg-gray-200 transition-colors text-[#004562] border border-gray-100">
                     {tag.display_name} <span className="text-xs text-gray-400 font-normal ml-1">({tag.count})</span>
+                    </div>
                 </Link>
             ))}
         </div>

@@ -44,22 +44,39 @@ const HomePage = () => {
                         <TopTags />
                     </div>
 
+                    <div className="bg-[#004562] text-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                        <div className="inline-block bg-white/20 text-white text-xs font-bold px-3 py-1 rounded-full mb-4 uppercase tracking-wide">Voor Beheerders</div>
+                        <h2 className="text-2xl font-bold mb-3">Powered by ckan</h2>
+                        <p className="text-blue-100 mb-6 leading-relaxed">
+                            Beheerders kunnen inloggen via de Data4OOV ckan backend om metadata bij te werken.
+                        </p>
+                        <a href="http://localhost:4000" className="text-white font-semibold hover:underline flex items-center gap-1">
+                            Beheerportaal: <span aria-hidden="true">&rarr;</span>
+                        </a>
+                    </div>
 
-
-                    {/* Backend API Info */}
                     <div className="bg-[#004562] text-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
                         <div className="inline-block bg-white/20 text-white text-xs font-bold px-3 py-1 rounded-full mb-4 uppercase tracking-wide">Voor Ontwikkelaars</div>
-                        <h2 className="text-2xl font-bold mb-3">Powered by ckan</h2>
+                        <h2 className="text-2xl font-bold mb-3">API Access</h2>
                         <p className="text-blue-100 mb-6 leading-relaxed">
                             Het Data4OOV portaal draait op een robuuste ckan backend. Applicaties kunnen data naadloos via de proxy benaderen via <code>/api</code>.
                         </p>
                         <a href="/api" className="text-white font-semibold hover:underline flex items-center gap-1">
-                            Gebruik de API testers <span aria-hidden="true">&rarr;</span>
-                        </a>
-                        <a href="http://localhost:4000" className="text-white font-semibold hover:underline flex items-center gap-1">
-                            Login op ckan: <span aria-hidden="true">&rarr;</span>
+                            API voorbeelden <span aria-hidden="true">&rarr;</span>
                         </a>
                     </div>
+
+                    <div className="bg-[#004562] text-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+
+                        <h2 className="text-2xl font-bold mb-3">Gebruiksvoorwaarden</h2>
+                        <p className="text-blue-100 mb-6 leading-relaxed">
+                            Voor het gebruik van deze dienst gaat u akkoord met de algemene gebruiksvoorwaarden.
+                        </p>
+                        <a href="/gebruik" className="text-white font-semibold hover:underline flex items-center gap-1">
+                            Gebruiksvoorwaarden <span aria-hidden="true">&rarr;</span>
+                        </a>
+                    </div>
+
                 </div>
             </main>
         </div>

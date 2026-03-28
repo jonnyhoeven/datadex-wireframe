@@ -3,6 +3,7 @@ import {notFound} from 'next/navigation';
 import {Description, InfoRow, MapPreview, MetadataTable} from '../../../components/PackageInfo';
 import Sidebar from '../../../components/Sidebar';
 import {DebugOutput} from '../../../components/DebugOutput'
+import Link from "next/link";
 
 async function getPackage(slug: string) {
     const res = await fetch(`http://localhost:3000/api/3/action/package_show?id=${slug}`);
@@ -33,13 +34,18 @@ const Package = async ({params}: { params: Promise<{ slug: string }> }) => {
                             border={false}
                             value={
                                 <div className="flex flex-wrap gap-2">
-                                    {result.tags?.map((tag, index) => (
-                                        <span key={index} className="tag">
-                                            {tag.display_name}
-                                        </span>
+                                    {result.tags?.map((tag) => (
+                                        <Link
+                                            key={tag.name}
+                                            href={`/tag/${encodeURIComponent(tag.display_name)}`}
+                                        >
+                                            <div className="tag hover:bg-gray-200 transition-colors text-[#004562] border border-gray-100">
+                                                {tag.display_name} <span className="text-xs text-gray-400 font-normal ml-1"></span>
+                                            </div>
+                                        </Link>
                                     ))}
                                     <a href="#"
-                                       className="text-blue-600 text-sm font-medium ml-auto underline">Meer...</a>
+                                       className="text-blue-600 text-sm font-medium ml-auto underline"></a>
                                 </div>
                             }
                         />
