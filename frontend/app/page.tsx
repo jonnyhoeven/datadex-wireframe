@@ -65,7 +65,7 @@ const HomePage = () => {
                                 <span>Activity Predictor</span>
                             </div>
                             <p className="text-blue-100 mb-6 leading-relaxed">
-                                Vul een scenario in en zie hoe de Machine Learning pipeline direct kaartlagen voorspelt..
+                                Vul een scenario in en zie hoe de Machine Learning pipeline direct relevante kaartlagen voorspelt.
                             </p>
                             <div className="text-white font-semibold hover:underline flex items-center gap-1">
                                 Demo <span aria-hidden="true">&rarr;</span>
@@ -95,7 +95,7 @@ const HomePage = () => {
                                 <span>Voorwaarden</span>
                             </div>
                             <p className="text-blue-100 mb-6 leading-relaxed">
-                                Voor het gebruik van deze dienst gaat u akkoord met de algemene gebruiksvoorwaarden.
+                                Bij het gebruik van deze dienst gaat  akkoord met de algemene gebruiksvoorwaarden.
                             </p>
                             <div className="text-white font-semibold hover:underline flex items-center gap-1">
                                 Lees meer <span aria-hidden="true">&rarr;</span>
