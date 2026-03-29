@@ -264,7 +264,7 @@ const PredictApiTester = () => {
                                     ) : (
                                         <>
                                             <Zap size={20} />
-                                            <span>Kaartlagen Voorspellen</span>
+                                            <span>Kaartlagen Selecteren</span>
                                         </>
                                     )}
                                 </button>
