@@ -2,10 +2,10 @@ import React from 'react';
 import {DebugOutput} from '../../components/DebugOutput'
 import SearchBar from '../../components/SearchBar';
 import {SearchResultsHeader} from '../../components/SearchResultsHeader';
-import { fetchCKAN } from '../../lib/ckan';
-import { SearchResult } from '../../types/ckan';
-import { DatasetCard } from '../../components/DatasetCard';
-import { Metadata } from 'next';
+import {fetchCKAN} from '../../lib/ckan';
+import {SearchResult} from '../../types/ckan';
+import {DatasetCard} from '../../components/DatasetCard';
+import {Metadata} from 'next';
 
 async function getSearchResults(searchString: string | undefined) {
     // If no search string, show all datasets using the Solr match-all query '*:*'
@@ -13,7 +13,7 @@ async function getSearchResults(searchString: string | undefined) {
     const query = searchString?.trim()
         ? searchString.trim().split(/\s+/).map(term => `${term}*`).join(' ')
         : '*:*';
-    
+
     const params = {
         q: query,
         defType: 'edismax',
@@ -41,12 +41,12 @@ const SearchResults = async ({searchParams}: { searchParams: Promise<{ q: string
 
     return (
         <div className="lg:w-1/1 w-full">
-            <SearchBar initialValue={q} className="mb-5" />
+            <SearchBar initialValue={q} className="mb-5"/>
 
-            <SearchResultsHeader count={results.count} query={q} />
+            <SearchResultsHeader count={results.count} query={q}/>
 
             {results.results.map((result) => (
-                <DatasetCard key={result.id} dataset={result} />
+                <DatasetCard key={result.id} dataset={result}/>
             ))}
 
             {process.env.NODE_ENV === 'development' && <DebugOutput obj={results}/>}
