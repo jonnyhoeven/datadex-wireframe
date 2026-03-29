@@ -143,7 +143,7 @@ const PredictApiTester = () => {
                             </p>
                         </div>
 
-                        {/* Snel aan de slag Card */}
+                        {/* Quick start card */}
                         <div className="w-full md:w-80 shrink-0">
                             <div
                                 className="bg-[#75b9d8] bg-gradient-to-br from-black/20 to-transparent text-white p-6 rounded-2xl shadow-xl transform ">
