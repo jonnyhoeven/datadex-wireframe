@@ -56,24 +56,6 @@ services:
     #  - /var/lib/ckan:uid=92,gid=92,mode=0777
     networks:
       - ckan-network
-  tensorflow:
-    build:
-      context: tensorflow
-      dockerfile: Dockerfile
-    ports:
-     - "8501:8501"
-    networks:
-      - ckan-network
-    volumes:
-      - ./tensorflow/tf_serving_models:/models/
-  embedding_service:
-    build:
-      context: tensorflow
-      dockerfile: Dockerfile.embedding
-    ports:
-      - "8000:8000"
-    networks:
-      - ckan-network
   db:
     image: postgres:12-alpine
     ports:
@@ -85,6 +67,24 @@ services:
     volumes:
       - ./db/init-db.sh:/docker-entrypoint-initdb.d/init-db.sh:ro
       - db-data:/var/lib/postgresql/data:rw
+    networks:
+      - ckan-network
+  tensorflow:
+    build:
+      context: tensorflow
+      dockerfile: Dockerfile
+    ports:
+      - "8501:8501"
+    networks:
+      - ckan-network
+    volumes:
+      - ./tensorflow/tf_serving_models:/models/
+  embedding_service:
+    build:
+      context: tensorflow
+      dockerfile: Dockerfile.embedding
+    ports:
+      - "8000:8000"
     networks:
       - ckan-network
   solr:
