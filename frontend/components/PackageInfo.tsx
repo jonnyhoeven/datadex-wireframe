@@ -45,14 +45,6 @@ export const Description: React.FC<DescriptionProps> = ({text, links}) => (
     </div>
 );
 
-export const MapPreview: React.FC = () => (
-    <div className="rounded-xl overflow-hidden border border-gray-200 mb-8 bg-gray-50">
-        <div className="relative h-64 md:h-80 w-full z-0">
-            <MapWrapper />
-        </div>
-    </div>
-);
-
 export const MetadataTable: React.FC<{ extras?: Array<{ key: string; value: any }> }> = ({ extras }) => (
     <div>
         <h3 className="font-bold mb-4">Metadata velden</h3>
