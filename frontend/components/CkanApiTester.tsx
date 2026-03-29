@@ -245,7 +245,7 @@ curl 'https://data4oov.nl/ckan/api/3/action/package_search?q=water' \\
                                     ) : (
                                         <>
                                             <Send size={20}/>
-                                            <span>Send Request</span>
+                                            <span>Versturen</span>
                                         </>
                                     )}
                                 </button>
