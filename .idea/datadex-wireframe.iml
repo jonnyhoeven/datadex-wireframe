@@ -6,6 +6,7 @@
       <sourceFolder url="file://$MODULE_DIR$/.venv_ml/lib/python3.9/site-packages" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/.venv_ml/lib/python3.9/site-packages/numpy" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/.venv_ml/lib/python3.9/site-packages/tensorflow/_api/v2/compat/v1" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/.venv_ml/lib/python3.9/site-packages/pip/_vendor" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/.idea/dataSources" />
       <excludeFolder url="file://$MODULE_DIR$/ckan/data" />
       <excludeFolder url="file://$MODULE_DIR$/db/data" />
