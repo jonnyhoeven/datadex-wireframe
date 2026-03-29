@@ -1,6 +1,7 @@
 import React from 'react';
 import {notFound} from 'next/navigation';
-import {Description, InfoRow, MapPreview, MetadataTable} from '../../../components/PackageInfo';
+import {Description, InfoRow, MetadataTable} from '../../../components/PackageInfo';
+import MapWrapper from '../../../components/MapWrapper';
 import Sidebar from '../../../components/Sidebar';
 import {DebugOutput} from '../../../components/DebugOutput'
 import Link from "next/link";
