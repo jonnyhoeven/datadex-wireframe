@@ -28,7 +28,7 @@ export default function RootLayout({
         <footer className="bg-white border-t border-gray-200 py-12 mt-12">
             <div className="max-w-6xl mx-auto px-4 text-center">
                 <p className="text-gray-500 text-sm">
-                    © {new Date().getFullYear()} Data4OOV Portal - Ondersteund door CKAN Open Data.
+                    © {new Date().getFullYear()} Data4OOV Portaal - Ondersteund door CKAN Open Data.
                 </p>
             </div>
         </footer>
