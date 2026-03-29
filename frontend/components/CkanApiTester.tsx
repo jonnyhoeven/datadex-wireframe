@@ -184,7 +184,7 @@ curl 'https://data4oov.nl/ckan/api/3/action/package_search?q=water' \\
                     {/* Content Area */}
                     <div className="lg:col-span-2 space-y-12 order-1 lg:order-2 text-left">
 
-                        {/* API Tester Console (De gevraagde Next.js implementatie) */}
+                        {/* API Tester Console */}
                         <section id="api-tester" className="bg-white p-8 rounded-2xl shadow-sm border border-gray-200">
                             <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
                                 <Terminal className="text-[#f6a732]"/>
