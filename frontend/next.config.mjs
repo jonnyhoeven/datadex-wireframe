@@ -5,7 +5,7 @@ const nextConfig = {
 
         return [
             {
-                source: '/api/3/action/:path*',
+                source: '/ckan/api/3/action/:path*',
                 destination: `${ckanBaseUrl}/api/3/action/:path*`,
             }
         ]
