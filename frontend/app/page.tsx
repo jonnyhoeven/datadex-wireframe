@@ -44,7 +44,7 @@ const HomePage = () => {
                     </div>
 
                     <a href={process.env.NEXT_PUBLIC_CKAN_URL || "http://localhost:4000"} >
-                        <div className="bg-[#004562] text-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                        <div className="bg-[#004562] bg-gradient-to-br from-black/20 to-transparent text-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
                             <h2 className="text-2xl font-bold mb-3">Beheerders</h2>
                             <p className="text-blue-100 mb-6 leading-relaxed">
                                 Beheerders kunnen inloggen via de Data4OOV ckan backend om metadata bij te werken.
@@ -57,7 +57,7 @@ const HomePage = () => {
 
 
                     <a href="/predict">
-                        <div className="bg-[#75b9d8] text-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                        <div className="bg-[#75b9d8] bg-gradient-to-br from-black/20 to-transparent text-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
                             <h2 className="text-2xl font-bold mb-3">Activity Predictor Demo</h2>
                             <p className="text-blue-100 mb-6 leading-relaxed">
                                 Data4OOV kan ook Machine Learning Modellen delen en hosten.
@@ -69,7 +69,7 @@ const HomePage = () => {
                     </a>
 
                     <a href="/ckan">
-                        <div className="bg-[#f6a732] text-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                        <div className="bg-[#f6a732] bg-gradient-to-br from-black/20 to-transparent text-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
                             <h2 className="text-2xl font-bold mb-3">API toegang</h2>
                             <p className=" mb-6 leading-relaxed">
                                 Data4OOV maakt gebruik van een robuuste ckan backend. Applicaties kunnen metadata vinden via de ckan <code>/api</code>.
@@ -82,7 +82,7 @@ const HomePage = () => {
 
 
                     <a href="/gebruik">
-                        <div className="bg-[#bb1413] text-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                        <div className="bg-[#bb1413] bg-gradient-to-br from-black/20 to-transparent text-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
                             <h2 className="text-2xl font-bold mb-3">Voorwaarden</h2>
                             <p className="text-blue-100 mb-6 leading-relaxed">
                                 Voor het gebruik van deze dienst gaat u akkoord met de algemene gebruiksvoorwaarden.
