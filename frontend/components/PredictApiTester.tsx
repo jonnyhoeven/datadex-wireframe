@@ -144,7 +144,7 @@ const PredictApiTester = () => {
                         
                         {/* Snel aan de slag Card */}
                         <div className="w-full md:w-80 shrink-0">
-                            <div className="bg-[#75b9d8] text-white p-6 rounded-2xl shadow-xl transform hover:scale-105 transition-transform">
+                            <div className="bg-[#75b9d8] bg-gradient-to-br from-black/20 to-transparent text-white p-6 rounded-2xl shadow-xl transform hover:scale-105 transition-transform">
                                 <h2 className="text-xl font-bold mb-3">Probeer het zelf</h2>
                                 <p className="text-sm opacity-90 mb-6 leading-relaxed">
                                     Vul een scenario in en zie hoe de Machine Learning pipeline direct kaartlagen voorspelt.
