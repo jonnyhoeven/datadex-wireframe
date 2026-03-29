@@ -160,7 +160,6 @@ def main():
         shutil.rmtree(model_export_path)
 
     print(f"Saving model to {model_export_path}...")
-    # Use SavedModel format for TF Serving
     model.export(model_export_path)
 
     # 6. Export metadata
