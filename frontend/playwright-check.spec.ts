@@ -9,8 +9,6 @@ test('check index page', async ({ page }) => {
   // Take a screenshot to see how it looks
   await page.screenshot({ path: 'index-page-check.png' });
   
-  // Check for some common elements if possible, e.g., a heading
-  // Since I don't know the content yet, I'll just log the title
   const title = await page.title();
   console.log('Page title:', title);
 });
