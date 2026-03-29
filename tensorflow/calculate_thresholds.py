@@ -114,7 +114,7 @@ def calculate_optimal_thresholds():
         json.dump(metadata, f, indent=2)
     
     # Update frontend
-    frontend_metadata_path = os.path.join(os.path.dirname(base_dir), 'frontend/app/api/predict/model_metadata.json')
+    frontend_metadata_path = os.path.join(os.path.dirname(base_dir), 'frontend/app/predict/api/model_metadata.json')
     try:
         with open(frontend_metadata_path, 'w', encoding='utf-8') as f:
             json.dump(metadata, f, indent=2)

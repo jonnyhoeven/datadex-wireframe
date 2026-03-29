@@ -175,7 +175,7 @@ def main():
     }
     
     metadata_path = os.path.join(base_dir, 'model_metadata.json')
-    frontend_metadata_path = os.path.join(os.path.dirname(base_dir), 'frontend/app/api/predict/model_metadata.json')
+    frontend_metadata_path = os.path.join(os.path.dirname(base_dir), 'frontend/app/predict/model_metadata.json')
     
     with open(metadata_path, 'w') as f:
         json.dump(metadata, f, indent=2)

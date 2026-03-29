@@ -5,9 +5,6 @@ function loadMetadata() {
   return metadata as any;
 }
 
-/**
- * MultiLabelBinarizer-style encoding for domeinen
- */
 function encodeDomeinen(inputDomeinen: string[], domeinenClasses: string[]) {
   return domeinenClasses.map(cls => (inputDomeinen.includes(cls) ? 1 : 0));
 }
@@ -64,7 +61,7 @@ export async function POST(req: NextRequest) {
     // 2. Encode domeinen
     const domeinenEncoded = encodeDomeinen(domeinen, meta.domeinen_classes);
 
-    // 3. Call TensorFlow Serving using Functional API format
+    // 3. Call TensorFlow Serving using the Functional API format
     const modelName = process.env.TF_MODEL_NAME || 'activity_predictor';
     const tfServingUrl = process.env.TF_SERVING_URL || `http://127.0.0.1:8501/v1/models/${modelName}:predict`;
     

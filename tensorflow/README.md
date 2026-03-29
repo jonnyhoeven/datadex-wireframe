@@ -57,7 +57,7 @@ The "Complete Model" is actually a distributed system of three components:
 
 1.  **Embedding Service (Port 8000):** A FastAPI wrapper around RobBERT. It turns "brand in schouwburg" into a 768D vector.
 2.  **TensorFlow Serving (Port 8501):** Hosts the trained `.pb` model. It receives the 768D vector + Domain vector and returns raw probabilities.
-3.  **Frontend API (`/api/predict`):** The orchestrator. It fetches embeddings, calls TF Serving, and uses `model_metadata.json` to turn raw floats back into human-readable layer names.
+3.  **Frontend API (`/predict/api`):** The orchestrator. It fetches embeddings, calls TF Serving, and uses `model_metadata.json` to turn raw floats back into human-readable layer names.
 
 ### Running with Docker
 
@@ -75,17 +75,17 @@ The TensorFlow service is hosted inside the Docker stack on port `8501`, but it 
 
 Use the friendly API route that handles vectorization and decoding automatically. This is the easiest way to integrate predictions.
 
-**Endpoint:** `/api/predict`
+**Endpoint:** `/predict/api`
 
-#### GET /api/predict
+#### GET /predict/api
 Returns status information and model metadata (classes for domeinen and layers).
 ```javascript
-const response = await fetch('/api/predict');
+const response = await fetch('/predict/');
 const status = await response.json();
 console.log(status.metadata.domeinen_classes); 
 ```
 
-#### POST /api/predict
+#### POST /predict/api
 Submit an activity to get predicted relevant map layers.
 
 **Body:**
@@ -98,7 +98,7 @@ Submit an activity to get predicted relevant map layers.
 
 **Example Code:**
 ```javascript
-const response = await fetch('/api/predict', {
+const response = await fetch('/predict/api', {
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
   body: JSON.stringify({

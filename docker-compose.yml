@@ -13,7 +13,7 @@ services:
       - EMBEDDING_SERVICE_URL=http://embedding_service:8000/embed
       - TF_SERVING_URL=http://tensorflow:8501/v1/models/activity_predictor:predict
     volumes:
-      - ./frontend/app/api/predict/model_metadata.json:/app/api/predict/model_metadata.json
+      - ./frontend/app/predict/api/model_metadata.json:/app/predict/api/model_metadata.json
     networks:
       - ckan-network
     profiles:
