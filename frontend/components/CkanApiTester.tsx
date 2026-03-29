@@ -61,7 +61,7 @@ const CkanApiTester = () => {
                 options.headers = { ...options.headers, 'Content-Type': 'application/json' };
                 if (requestBody.trim()) options.body = requestBody;
             }
-            const res = await fetch(`/api/3/action/${endpoint.replace(/^\/+/, '')}`, options);
+            const res = await fetch(`/ckan/api/3/action/${endpoint.replace(/^\/+/, '')}`, options);
             const data = await res.json();
             setResponse({status: res.status, ok: res.ok, data});
         } catch (error: any) {
@@ -73,7 +73,7 @@ const CkanApiTester = () => {
 
     const codeExamples: any = {
         js: `// Voorbeeld: Haal een lijst met pakketten op via JavaScript
-fetch('https://data4oov.nl/api/3/action/package_list')
+fetch('https://data4oov.nl/ckan/api/3/action/package_list')
   .then(response => response.json())
   .then(data => {
     console.log('Beschikbare datasets:', data.result);
@@ -82,7 +82,7 @@ fetch('https://data4oov.nl/api/3/action/package_list')
         python: `# Voorbeeld: Gebruik de 'requests' bibliotheek in Python
 import requests
 
-url = 'https://data4oov.nl/api/3/action/package_search'
+url = 'https://data4oov.nl/ckan/api/3/action/package_search'
 params = {'q': 'brandweer', 'rows': 5}
 
 response = requests.get(url, params=params)
@@ -92,7 +92,7 @@ if data['success']:
     for result in data['result']['results']:
         print(f"Dataset gevonden: {result['title']}")`,
         curl: `# Voorbeeld: Zoek naar datasets via cURL
-curl 'https://data4oov.nl/api/3/action/package_search?q=water' \\
+curl 'https://data4oov.nl/ckan/api/3/action/package_search?q=water' \\
      -H 'Accept: application/json'`
     };
 
@@ -200,7 +200,7 @@ curl 'https://data4oov.nl/api/3/action/package_search?q=water' \\
                                         <label className="font-semibold text-sm mb-2 text-gray-700">Action / Endpoint</label>
                                         <div className="flex items-stretch w-full">
                                             <span className="bg-gray-100 px-4 flex items-center border border-gray-300 border-r-0 rounded-l-lg text-gray-500 font-mono text-sm whitespace-nowrap">
-                                                /api/3/action/
+                                                /ckan/api/3/action/
                                             </span>
                                             <input
                                                 type="text"
@@ -275,17 +275,17 @@ curl 'https://data4oov.nl/api/3/action/package_search?q=water' \\
                             </h2>
                             <div className="space-y-4">
                                 {[
-                                    { method: 'GET', path: '/api/3/action/package_list', desc: 'Lijst met alle datasets' },
-                                    { method: 'GET', path: '/api/3/action/package_search?q={query}', desc: 'Zoeken in metadata' },
-                                    { method: 'GET', path: '/api/3/action/organization_list', desc: 'Overzicht van alle organisaties' },
-                                    { method: 'GET', path: '/api/3/action/package_show?id={id}', desc: 'Details van een specifieke dataset' }
+                                    { method: 'GET', path: '/ckan/api/3/action/package_list', desc: 'Lijst met alle datasets' },
+                                    { method: 'GET', path: '/ckan/api/3/action/package_search?q={query}', desc: 'Zoeken in metadata' },
+                                    { method: 'GET', path: '/ckan/api/3/action/organization_list', desc: 'Overzicht van alle organisaties' },
+                                    { method: 'GET', path: '/ckan/api/3/action/package_show?id={id}', desc: 'Details van een specifieke dataset' }
                                 ].map((endpoint, idx) => (
                                     <div 
                                         key={idx} 
                                         className="bg-white p-4 rounded-lg border border-gray-200 flex items-start sm:items-center gap-4 group hover:border-[#f6a732] transition-colors cursor-pointer"
                                         onClick={() => {
                                             setMethod(endpoint.method);
-                                            setEndpoint(endpoint.path.replace('/api/3/action/', ''));
+                                            setEndpoint(endpoint.path.replace('/ckan/api/3/action/', ''));
                                             const element = document.getElementById('api-tester');
                                             element?.scrollIntoView({ behavior: 'smooth' });
                                         }}
@@ -363,14 +363,6 @@ curl 'https://data4oov.nl/api/3/action/package_search?q=water' \\
                 </div>
             </main>
 
-            {/* Footer */}
-            <footer className="bg-white border-t border-gray-200 py-12 mt-12">
-                <div className="max-w-6xl mx-auto px-4 text-center">
-                    <p className="text-gray-500 text-sm">
-                        © {new Date().getFullYear()} Data4OOV Portal - Ondersteund door CKAN Open Data.
-                    </p>
-                </div>
-            </footer>
         </div>
     );
 };
