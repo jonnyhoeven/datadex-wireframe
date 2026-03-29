@@ -1,6 +1,5 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowUpRightFromSquare, faMap, faTable, faCloudArrowDown, faLink } from '@fortawesome/free-solid-svg-icons';
+import { ExternalLink } from 'lucide-react';
 import { Dataset } from '../types/ckan';
 
 interface SidebarProps {
@@ -21,40 +20,12 @@ export const ServicesCard: React.FC<{ dataset: Dataset }> = ({ dataset }) => {
                 {services.map((res) => (
 
                     <button key={res.name} className="btn-outline">
-                        <FontAwesomeIcon icon={faArrowUpRightFromSquare} className="fa-solid mr-3 text-gray-400 text-sm" />
+                        <ExternalLink className="mr-3 text-gray-400" size={16} />
                         <span className="font-bold text-sm"><a href={res.url}>{res.name}</a></span>
                     </button>
 
                 ))}
             </div>
-            <a href="/gebruik" className="text-blue-600 text-xs font-medium underline block mt-2">
-                Meer informatie over gebruik services
-            </a>
-        </div>
-    );
-};
-
-export const PreviewCard: React.FC<{ dataset: Dataset }> = ({ dataset }) => {
-    // Determine what previews make sense based on resources
-    const hasMapServices = dataset.resources?.some(r => ['WMS', 'WFS', 'MVT'].includes(r.format?.toUpperCase() || ''));
-    
-    return (
-        <div className="card">
-            <h3 className="font-bold mb-4 text-gray-700">Preview</h3>
-            {hasMapServices && (
-                <button className="btn-outline">
-                    <FontAwesomeIcon icon={faMap} className="mr-3 text-gray-400 text-sm" />
-                    <span className="font-bold text-sm">Kaart</span>
-                </button>
-            )}
-            <button className="btn-outline">
-                <FontAwesomeIcon icon={faTable} className="mr-3 text-gray-400 text-sm" />
-                <span className="font-bold text-sm">Table</span>
-            </button>
-            <button className="btn-outline">
-                <FontAwesomeIcon icon={faCloudArrowDown} className="mr-3 text-gray-400 text-sm" />
-                <span className="font-bold text-sm">Download</span>
-            </button>
         </div>
     );
 };
@@ -69,16 +40,10 @@ export const StatusCard: React.FC<{ dataset: Dataset }> = ({ dataset }) => {
 
     return (
         <div className="card space-y-4">
-            <h3 className="font-bold mb-4">Status</h3>
+            <h3 className="font-bold mb-4">Metadata</h3>
             <div>
                 <div className="text-xs text-gray-500">Metadata laatste wijziging</div>
                 <div className="font-bold text-sm">{formatDate(dataset.metadata_modified)}</div>
-            </div>
-            <div>
-                <div className="text-xs text-gray-500">Status metadata</div>
-                <div className="flex items-center text-sm font-medium text-green-600">
-                    <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span> {dataset.state === 'active' ? 'Actief' : 'Consistent'}
-                </div>
             </div>
             <div>
                 <div className="text-xs text-gray-500">Gegevens laatste wijziging</div>
@@ -94,44 +59,11 @@ export const StatusCard: React.FC<{ dataset: Dataset }> = ({ dataset }) => {
                     {dataset.extras?.find((e: any) => e.key === 'frequency')?.value || 'Onbekend'}
                 </div>
             </div>
-            <div>
-                <div className="text-xs text-gray-500">Status gegevens</div>
-                <div className="flex items-center text-sm font-medium text-green-600">
-                    <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span> Actueel
-                </div>
-            </div>
         </div>
     );
 };
 
-export const RelatedObjectsCard: React.FC<{ dataset: Dataset }> = ({ dataset }) => {
-    // Combine relationships as subjects and objects
-    const related = [
-        ...(dataset.relationships_as_subject || []),
-        ...(dataset.relationships_as_object || [])
-    ];
-
-    if (related.length === 0) {
-        return null;
-    }
-
-    return (
-        <div className="card">
-            <h3 className="font-bold mb-4">Gerelateerde objecten</h3>
-            <ul className="space-y-2 text-sm">
-                {related.map((obj, i) => (
-                    <li key={i}>
-                        <a href="#" className="flex items-center text-blue-600 hover:underline">
-                            {obj.object_id || obj.subject_id} <FontAwesomeIcon icon={faLink} className="ml-2 text-xs text-gray-400" />
-                        </a>
-                    </li>
-                ))}
-            </ul>
-        </div>
-    );
-};
-
-export const KeywordsCard: React.FC<{ dataset: Dataset }> = ({ dataset }) => {
+export const TagsCard: React.FC<{ dataset: Dataset }> = ({ dataset }) => {
     const tags = dataset.tags || [];
 
     if (tags.length === 0) {
@@ -158,10 +90,8 @@ const Sidebar: React.FC<SidebarProps> = ({ dataset }) => {
     return (
         <aside className="lg:w-1/3 space-y-4">
             <ServicesCard dataset={dataset} />
-            <PreviewCard dataset={dataset} />
             <StatusCard dataset={dataset} />
-            <RelatedObjectsCard dataset={dataset} />
-            <KeywordsCard dataset={dataset} />
+            <TagsCard dataset={dataset} />
         </aside>
     );
 };

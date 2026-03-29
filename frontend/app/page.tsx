@@ -5,6 +5,7 @@ import {InfoRow} from "../components/PackageInfo";
 
 import TopTags from '../components/TopTags';
 import LatestDatasets from '../components/LatestDatasets';
+import {BrainCircuit} from "lucide-react";
 
 const HomePage = () => {
     return (
@@ -58,9 +59,12 @@ const HomePage = () => {
 
                     <a href="/predict">
                         <div className="bg-[#75b9d8] bg-gradient-to-br from-black/20 to-transparent text-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                            <h2 className="text-2xl font-bold mb-3">Activity Predictor Demo</h2>
+                            <h2 className="text-2xl font-bold mb-3">
+                                <BrainCircuit size={24}/>
+                                Activity Predictor Demo
+                            </h2>
                             <p className="text-blue-100 mb-6 leading-relaxed">
-                                Data4OOV kan ook Machine Learning Modellen delen en hosten.
+                               Vul een scenario in en zie hoe de Machine Learning pipeline direct kaartlagen voorspelt..
                             </p>
                             <div className="text-white font-semibold hover:underline flex items-center gap-1">
                                 Demo <span aria-hidden="true">&rarr;</span>
@@ -79,7 +83,6 @@ const HomePage = () => {
                             </div>
                         </div>
                     </a>
-
 
                     <a href="/gebruik">
                         <div className="bg-[#bb1413] bg-gradient-to-br from-black/20 to-transparent text-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">

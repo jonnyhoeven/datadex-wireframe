@@ -2,8 +2,7 @@ import React from 'react';
 import { fetchCKAN } from '../../lib/ckan';
 import { Dataset, LinkReport } from '../../types/ckan';
 import Link from 'next/link';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheckCircle, faExclamationCircle, faQuestionCircle, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
+import { CheckCircle, AlertCircle, HelpCircle, ExternalLink } from 'lucide-react';
 
 async function getResourceReport(resourceId: string): Promise<LinkReport | null> {
     return fetchCKAN<LinkReport>('check_link_report_show', { resource_id: resourceId }, { ignoreErrors: true });
@@ -94,12 +93,12 @@ const StatusPage = async () => {
                                                     <div className="mt-1">
                                                         {report ? (
                                                             report.is_available ? (
-                                                                <FontAwesomeIcon icon={faCheckCircle} className="text-green-500 w-4 h-4" title="Beschikbaar" />
+                                                                <CheckCircle className="text-green-500 w-4 h-4" title="Beschikbaar" />
                                                             ) : (
-                                                                <FontAwesomeIcon icon={faExclamationCircle} className="text-red-500 w-4 h-4" title="Onbereikbaar" />
+                                                                <AlertCircle className="text-red-500 w-4 h-4" title="Onbereikbaar" />
                                                             )
                                                         ) : (
-                                                            <FontAwesomeIcon icon={faQuestionCircle} className="text-gray-300 w-4 h-4" title="Status onbekend" />
+                                                            <HelpCircle className="text-gray-300 w-4 h-4" title="Status onbekend" />
                                                         )}
                                                     </div>
                                                     <div>
@@ -107,7 +106,7 @@ const StatusPage = async () => {
                                                             {resource.name || 'Naamloze resource'}
                                                             <span className="text-[10px] bg-gray-100 px-1 rounded uppercase">{resource.format}</span>
                                                             <a href={resource.url} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-blue-600 ml-1">
-                                                                <FontAwesomeIcon icon={faExternalLinkAlt} className="text-[10px]" />
+                                                                <ExternalLink className="w-2.5 h-2.5" />
                                                             </a>
                                                         </div>
                                                         {report && !report.is_available && (
@@ -142,7 +141,7 @@ const StatusPage = async () => {
             <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="bg-green-50 border border-green-100 p-6 rounded-xl">
                     <div className="flex items-center gap-3 mb-2">
-                        <FontAwesomeIcon icon={faCheckCircle} className="text-green-600 text-xl" />
+                        <CheckCircle className="text-green-600 w-5 h-5" />
                         <h3 className="font-bold text-green-900">Operationeel</h3>
                     </div>
                     <p className="text-sm text-green-700">
@@ -151,7 +150,7 @@ const StatusPage = async () => {
                 </div>
                 <div className="bg-red-50 border border-red-100 p-6 rounded-xl">
                     <div className="flex items-center gap-3 mb-2">
-                        <FontAwesomeIcon icon={faExclamationCircle} className="text-red-600 text-xl" />
+                        <AlertCircle className="text-red-600 w-5 h-5" />
                         <h3 className="font-bold text-red-900">Aandacht Vereist</h3>
                     </div>
                     <p className="text-sm text-red-700">
@@ -160,7 +159,7 @@ const StatusPage = async () => {
                 </div>
                 <div className="bg-gray-50 border border-gray-100 p-6 rounded-xl">
                     <div className="flex items-center gap-3 mb-2">
-                        <FontAwesomeIcon icon={faQuestionCircle} className="text-gray-400 text-xl" />
+                        <HelpCircle className="text-gray-400 w-5 h-5" />
                         <h3 className="font-bold text-gray-900">Onbekend</h3>
                     </div>
                     <p className="text-sm text-gray-600">
