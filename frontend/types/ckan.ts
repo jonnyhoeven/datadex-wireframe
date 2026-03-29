@@ -58,7 +58,20 @@ export interface LinkReport {
   status: string;
   last_check: string;
   is_available: boolean;
+  state: string;
   message?: string;
+  created_at?: string;
+  details?: {
+    code?: number;
+    reason?: string;
+    explanation?: string;
+    [key: string]: any;
+  };
+}
+
+export interface LinkReportSearchResult {
+  count: number;
+  results: LinkReport[];
 }
 
 export interface SearchResult {

@@ -7,9 +7,25 @@ interface FetchOptions extends RequestInit {
 }
 
 export async function fetchCKAN<T>(action: string, params?: URLSearchParams | Record<string, string>, options?: FetchOptions): Promise<T | null> {
+  const method = options?.method || 'GET';
   const url = new URL(`${CKAN_BASE_URL}/api/3/action/${action}`);
   
-  if (params) {
+  let body: string | undefined;
+  const headers = new Headers(options?.headers);
+  headers.set('Accept', 'application/json');
+
+  if (method === 'POST') {
+    headers.set('Content-Type', 'application/json');
+    if (params) {
+      if (params instanceof URLSearchParams) {
+        const obj: Record<string, string> = {};
+        params.forEach((value, key) => obj[key] = value);
+        body = JSON.stringify(obj);
+      } else {
+        body = JSON.stringify(params);
+      }
+    }
+  } else if (params) {
     if (params instanceof URLSearchParams) {
       params.forEach((value, key) => url.searchParams.append(key, value));
     } else {
@@ -20,10 +36,9 @@ export async function fetchCKAN<T>(action: string, params?: URLSearchParams | Re
   try {
     const res = await fetch(url.toString(), {
       ...options,
-      headers: {
-        'Accept': 'application/json',
-        ...options?.headers,
-      },
+      method,
+      headers,
+      body,
     });
 
     if (!res.ok) {
