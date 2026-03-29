@@ -11,7 +11,7 @@ interface SearchBarProps {
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({ 
-    placeholder = "Doorzoek in de catalogus (bijv. Water)...",
+    placeholder = "Doorzoek Data4OOV (bijv. Water)...",
     initialValue = "",
     className = "",
     basePath = "/dataset"

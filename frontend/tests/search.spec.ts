@@ -9,7 +9,7 @@ test.describe('Search Functionality', () => {
     await expect(page).toHaveTitle(/Data4OOV/);
 
     // 3. Find the search input and type a query
-    const searchInput = page.getByPlaceholder('Doorzoek de Data4OOV catalogus');
+    const searchInput = page.getByPlaceholder('Doorzoek Data4OOV');
     await searchInput.fill('water');
 
     // 4. Click the search button
@@ -19,7 +19,7 @@ test.describe('Search Functionality', () => {
     await page.waitForURL(/\/dataset\?q=water/);
     
     // 6. Check that the query is preserved in the search results page input
-    const resultsSearchInput = page.getByPlaceholder('Doorzoek de Data4OOV catalogus');
+    const resultsSearchInput = page.getByPlaceholder('Doorzoek Data4OOV');
     await expect(resultsSearchInput).toHaveValue('water');
 
     // 7. Check for results heading (optional, depends on if CKAN is up)
@@ -31,7 +31,7 @@ test.describe('Search Functionality', () => {
     await page.goto('http://localhost:3000/dataset?q=water');
 
     // 2. Clear and type a new query
-    const searchInput = page.getByPlaceholder('Doorzoek de Data4OOV catalogus');
+    const searchInput = page.getByPlaceholder('Doorzoek Data4OOV');
     await searchInput.fill('brand');
     await page.getByRole('button', { name: 'Zoeken' }).click();
 

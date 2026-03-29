@@ -22,7 +22,7 @@ const HomePage = () => {
                         voor operationele bedrijfsvoering, beleid en onderzoek omtrent veiligheid in Nederland.
                     </p>
 
-                    <SearchBar placeholder="Doorzoek de Data4OOV (bijv. Water )..." />
+                    <SearchBar placeholder="Doorzoek Data4OOV (bijv. Water )..." />
                 </div>
 
                 {/* Info Cards */}

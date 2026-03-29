@@ -33,7 +33,7 @@ const TagIndex = async () => {
             <div className="mb-8 pb-6">
                 <h1 className="text-4xl font-extrabold text-gray-900 mb-2">Thema's</h1>
                 <p className="text-xl text-gray-600">
-                    Blader door de volledige lijst met thema's binnen de Data4OOV catalogus.
+                    Blader door de volledige lijst met thema's binnen de Data4OOV.
                 </p>
             </div>
 
