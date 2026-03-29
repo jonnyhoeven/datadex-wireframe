@@ -66,15 +66,17 @@ const HomePage = () => {
                         </div>
                     </a>
 
-                    <div className="bg-[#004562] text-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                        <h2 className="text-2xl font-bold mb-3">Voorwaarden</h2>
-                        <p className="text-blue-100 mb-6 leading-relaxed">
-                            Voor het gebruik van deze dienst gaat u akkoord met de algemene gebruiksvoorwaarden.
-                        </p>
-                        <a href="/gebruik" className="text-white font-semibold hover:underline flex items-center gap-1">
-                            Lees meer <span aria-hidden="true">&rarr;</span>
-                        </a>
-                    </div>
+                    <a href="/gebruik">
+                        <div className="bg-[#004562] text-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                            <h2 className="text-2xl font-bold mb-3">Voorwaarden</h2>
+                            <p className="text-blue-100 mb-6 leading-relaxed">
+                                Voor het gebruik van deze dienst gaat u akkoord met de algemene gebruiksvoorwaarden.
+                            </p>
+                            <div className="text-white font-semibold hover:underline flex items-center gap-1">
+                                Lees meer <span aria-hidden="true">&rarr;</span>
+                            </div>
+                        </div>
+                    </a>
 
                 </div>
             </main>
