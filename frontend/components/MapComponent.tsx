@@ -52,10 +52,18 @@ const WmsMapItem: React.FC<{ link: MapResourceLink }> = ({ link }) => {
                 
                 const nameNodes = xmlDoc.querySelectorAll('Layer > Name');
                 const layerOptions = Array.from(nameNodes)
-                    .map(node => ({
-                        value: node.textContent || '',
-                        label: node.textContent || ''
-                    }))
+                    .map(nameNode => {
+                        const name = nameNode.textContent || '';
+                        const layerNode = nameNode.parentElement;
+                        const titleNode = Array.from(layerNode?.children || [])
+                            .find(c => c.tagName === 'Title');
+                        const title = titleNode?.textContent || name;
+                        
+                        return {
+                            value: name,
+                            label: title
+                        };
+                    })
                     .filter(opt => opt.value.length > 0);
 
                 if (layerOptions.length > 0) {
