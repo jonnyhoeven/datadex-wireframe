@@ -68,8 +68,8 @@ const Package = async ({params}: { params: Promise<{ slug: string }> }) => {
                     />
 
                     <div className="rounded-xl overflow-hidden border border-gray-200 mb-8 bg-gray-50">
-                        <div className="relative h-64 md:h-80 w-full z-0">
-                            <MapWrapper links={result.resources?.map(r => ({ label: r.name, url: r.url, id: r.id })) || []}/>
+                        <div className="relative w-full z-0">
+                            <MapWrapper links={result.resources?.map(r => ({ label: r.name, url: r.url, id: r.id, format: r.format })) || []}/>
                         </div>
                     </div>
 
