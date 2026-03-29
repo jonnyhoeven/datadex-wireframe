@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import dynamic from 'next/dynamic';
 import {
     Terminal,
@@ -22,7 +22,7 @@ import Link from 'next/link';
 
 const defaultTitle = 'brand bij schouwburg'
 const defaultDomain = 'brandweer'
-const Select = dynamic(() => import('react-select'), { ssr: false });
+const Select = dynamic(() => import('react-select'), {ssr: false});
 
 const PredictApiTester = () => {
     const [mounted, setMounted] = useState(false);
@@ -40,12 +40,12 @@ const PredictApiTester = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.metadata?.domeinen_classes) {
-                    const dOptions = data.metadata.domeinen_classes.map((d: string) => ({ value: d, label: d }));
+                    const dOptions = data.metadata.domeinen_classes.map((d: string) => ({value: d, label: d}));
                     setDomeinOptions(dOptions);
                     setSelectedDomeinen([dOptions.find((o: any) => o.value === defaultDomain)].filter(Boolean));
                 }
                 if (data.metadata?.layers_classes) {
-                    const lOptions = data.metadata.layers_classes.map((l: string) => ({ value: l, label: l }));
+                    const lOptions = data.metadata.layers_classes.map((l: string) => ({value: l, label: l}));
                     setAllLayerOptions(lOptions);
                 }
             })
@@ -61,21 +61,21 @@ const PredictApiTester = () => {
         try {
             const res = await fetch('/predict/api', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
                     title,
                     domeinen: selectedDomeinen.map((d: any) => d.value)
                 })
             });
             const data = await res.json();
-            setResponse({ status: res.status, ok: res.ok, data });
+            setResponse({status: res.status, ok: res.ok, data});
 
             if (res.ok && data.predicted_layers) {
-                const predicted = data.predicted_layers.map((l: string) => ({ value: l, label: l }));
+                const predicted = data.predicted_layers.map((l: string) => ({value: l, label: l}));
                 setSelectedLayers(predicted);
             }
         } catch (error: any) {
-            setResponse({ error: error.message || String(error) });
+            setResponse({error: error.message || String(error)});
         } finally {
             setLoading(false);
         }
@@ -117,7 +117,7 @@ const PredictApiTester = () => {
 
     if (!mounted) {
         return <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-            <Loader2 className="animate-spin text-[#75b9d8]" size={48} />
+            <Loader2 className="animate-spin text-[#75b9d8]" size={48}/>
         </div>;
     }
 
@@ -130,7 +130,7 @@ const PredictApiTester = () => {
                         <div className="flex-1">
                             <div
                                 className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#75b9d8]/10 text-[#75b9d8] font-semibold text-sm mb-4">
-                                <BrainCircuit size={16} />
+                                <BrainCircuit size={16}/>
                                 <span>Activity Predictor v1.0</span>
                             </div>
                             <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">
@@ -153,10 +153,10 @@ const PredictApiTester = () => {
                                     voorspelt.
                                 </p>
                                 <button
-                                    onClick={() => document.getElementById('predictor-console')?.scrollIntoView({ behavior: 'smooth' })}
+                                    onClick={() => document.getElementById('predictor-console')?.scrollIntoView({behavior: 'smooth'})}
                                     className="bg-white text-[#75b9d8] w-full px-4 py-2 rounded-lg font-bold text-sm hover:bg-blue-50 transition-colors flex items-center justify-center gap-2"
                                 >
-                                    Start Demo <ArrowRight size={16} />
+                                    Start Demo <ArrowRight size={16}/>
                                 </button>
                             </div>
                         </div>
@@ -173,10 +173,10 @@ const PredictApiTester = () => {
                             <h3 className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-4">Mogelijkheden</h3>
                             <ul className="space-y-3 text-left">
                                 {[
-                                    { icon: <Zap size={18} />, label: 'Real-time Suggesties' },
-                                    { icon: <Layers size={18} />, label: 'Automatische Selectie' },
-                                    { icon: <Search size={18} />, label: 'Contextueel Begrip' },
-                                    { icon: <Cpu size={18} />, label: 'Gedistribueerde ML' }
+                                    {icon: <Zap size={18}/>, label: 'Real-time Suggesties'},
+                                    {icon: <Layers size={18}/>, label: 'Automatische Selectie'},
+                                    {icon: <Search size={18}/>, label: 'Contextueel Begrip'},
+                                    {icon: <Cpu size={18}/>, label: 'Gedistribueerde ML'}
                                 ].map((item, idx) => (
                                     <li key={idx}
                                         className="flex items-center gap-3 p-3 rounded-lg bg-white border border-gray-100 shadow-sm c transition-colors group">
@@ -190,7 +190,7 @@ const PredictApiTester = () => {
 
                         <section className="bg-blue-50 border border-blue-100 p-6 rounded-xl text-left">
                             <h4 className="flex items-center gap-2 font-bold text-blue-800 mb-2">
-                                <Microscope size={18} />
+                                <Microscope size={18}/>
                                 Technologie
                             </h4>
                             <p className="text-sm text-blue-700 leading-relaxed mb-4">
@@ -198,8 +198,8 @@ const PredictApiTester = () => {
                                 en <strong>TensorFlow</strong> voor de voorspellingen.
                             </p>
                             <Link href="https://pieter.ai/robbert/" target="_blank"
-                                className="text-xs font-bold text-blue-600 hover:underline flex items-center gap-1">
-                                Meer over RobBERT <ChevronRight size={12} />
+                                  className="text-xs font-bold text-blue-600 hover:underline flex items-center gap-1">
+                                Meer over RobBERT <ChevronRight size={12}/>
                             </Link>
                         </section>
                     </aside>
@@ -209,9 +209,9 @@ const PredictApiTester = () => {
 
                         {/* Predictor Console */}
                         <section id="predictor-console"
-                            className="bg-white p-8 rounded-2xl shadow-sm border border-gray-200">
+                                 className="bg-white p-8 rounded-2xl shadow-sm border border-gray-200">
                             <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-                                <Terminal className="text-[#75b9d8]" />
+                                <Terminal className="text-[#75b9d8]"/>
                                 Predictor Console
                             </h2>
                             <form onSubmit={handlePredict} className="space-y-6">
@@ -258,12 +258,12 @@ const PredictApiTester = () => {
                                 >
                                     {loading ? (
                                         <>
-                                            <Loader2 className="animate-spin" size={20} />
+                                            <Loader2 className="animate-spin" size={20}/>
                                             <span>Analyseren...</span>
                                         </>
                                     ) : (
                                         <>
-                                            <Zap size={20} />
+                                            <Zap size={20}/>
                                             <span>Kaartlagen Selecteren</span>
                                         </>
                                     )}
@@ -278,7 +278,7 @@ const PredictApiTester = () => {
                                         {response?.ok && (
                                             <span
                                                 className="text-[10px] uppercase tracking-wider font-bold text-green-600 bg-green-50 px-3 py-1 rounded-full border border-green-100 flex items-center gap-1">
-                                                <Zap size={10} /> AI Gesuggereerd
+                                                <Zap size={10}/> AI Gesuggereerd
                                             </span>
                                         )}
                                     </div>
@@ -302,7 +302,7 @@ const PredictApiTester = () => {
                                         }}
                                     />
                                     <p className="mt-3 text-xs text-gray-500 italic flex items-center gap-1">
-                                        <Info size={14} />
+                                        <Info size={14}/>
                                         {response?.ok
                                             ? "De AI heeft de meest relevante lagen bovenaan gezet en automatisch geselecteerd."
                                             : "Nog geen voorspelling gedaan. Start de demo voor AI-suggesties."}
@@ -314,7 +314,7 @@ const PredictApiTester = () => {
                         {/* Hoe het werkt sectie */}
                         <section className="bg-white p-8 rounded-2xl shadow-sm border border-gray-200">
                             <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-                                <BookOpen className="text-[#75b9d8]" />
+                                <BookOpen className="text-[#75b9d8]"/>
                                 Hoe het werkt
                             </h2>
                             <div className="grid md:grid-cols-3 gap-8">
@@ -341,8 +341,8 @@ const PredictApiTester = () => {
                                             {step.desc}
                                         </p>
                                         <Link href={step.link} target="_blank"
-                                            className="text-xs font-semibold text-[#75b9d8] hover:underline flex items-center gap-1">
-                                            Details <ExternalLink size={12} />
+                                              className="text-xs font-semibold text-[#75b9d8] hover:underline flex items-center gap-1">
+                                            Details <ExternalLink size={12}/>
                                         </Link>
                                     </div>
                                 ))}
@@ -370,7 +370,7 @@ const PredictApiTester = () => {
                                         onClick={() => copyToClipboard(JSON.stringify(response.data || response.error, null, 2))}
                                         className="absolute top-4 right-4 p-2 bg-gray-800 hover:bg-gray-700 text-gray-400 hover:text-white rounded-lg transition-all border border-gray-700 opacity-0 group-hover:opacity-100"
                                     >
-                                        <Copy size={18} />
+                                        <Copy size={18}/>
                                     </button>
                                 </div>
                             </section>
