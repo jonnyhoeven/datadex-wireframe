@@ -74,7 +74,7 @@ const Package = async ({params}: { params: Promise<{ slug: string }> }) => {
                             {result.resources ? result.resources.map((resource, index) => (
                                 <li key={index} className="flex flex-wrap items-center">
                                     <a href={resource.url} target="_blank" rel="noopener noreferrer" className="text-blue-600 underline ml-1 break-all">
-                                        {resource.url}
+                                        {resource.name}
                                     </a>
                                     {resource.id && (
                                         <React.Suspense fallback={<span className="ml-2 text-[10px] text-gray-400">Status laden...</span>}>
