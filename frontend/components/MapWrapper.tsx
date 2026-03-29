@@ -1,6 +1,7 @@
 'use client';
 
 import dynamic from 'next/dynamic';
+import { MapProps } from './MapComponent';
 
 const DynamicMap = dynamic(() => import('./MapComponent'), {
     ssr: false,
@@ -11,6 +12,6 @@ const DynamicMap = dynamic(() => import('./MapComponent'), {
     )
 });
 
-export default function MapWrapper() {
-    return <DynamicMap />;
+export default function MapWrapper(props: MapProps) {
+    return <DynamicMap {...props} />;
 }

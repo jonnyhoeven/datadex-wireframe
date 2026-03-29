@@ -3,7 +3,18 @@
 import { MapContainer, TileLayer, WMSTileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 
-const MapComponent: React.FC = () => {
+export interface MapResourceLink {
+    label: string;
+    url: string;
+    id: string;
+    format?: string;
+}
+
+export interface MapProps {
+    links?: MapResourceLink[];
+}
+
+const MapComponent: React.FC<MapProps> = ({ links }) => {
     const center: [number, number] = [52.09, 5.10]; // Near Utrecht roughly
 
     return (
