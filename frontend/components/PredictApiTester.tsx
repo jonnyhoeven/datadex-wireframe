@@ -16,7 +16,9 @@ import {
   Zap,
   Microscope,
   Cpu,
-  Copy
+  Copy,
+  BookOpen,
+  ExternalLink
 } from 'lucide-react';
 import Link from 'next/link';
 
