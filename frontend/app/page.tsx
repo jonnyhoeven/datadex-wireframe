@@ -59,7 +59,7 @@ const HomePage = () => {
                     </a>
 
                     <a href="/predict">
-                        <div className="bg-[#75b9d8] bg-gradient-to-br from-black/20 to-transparent text-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                        <div className="bg-[#75b9d8] bg-gradient-to-br shadow-blue-200  from-black/20 to-transparent text-white p-8 rounded-xl shadow-sm hover:shadow-md">
                             <div className="inline-flex items-center gap-2 text-2xl font-bold mb-3">
                                 <BrainCircuit size={24} />
                                 <span>Activity Predictor</span>
