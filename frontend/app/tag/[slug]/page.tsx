@@ -16,7 +16,7 @@ export async function generateMetadata({params}: { params: Promise<{ slug: strin
     const {slug} = await params;
     const decodedSlug = decodeURIComponent(slug);
     return {
-        title: `Thema: ${decodedSlug} - Data4OOV Catalogus`,
+        title: `Thema: ${decodedSlug} - Data4OOV`,
     };
 }
 

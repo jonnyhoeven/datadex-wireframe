@@ -27,7 +27,7 @@ async function getSearchResults(searchString: string | undefined) {
 export async function generateMetadata({searchParams}: { searchParams: Promise<{ q: string }> }): Promise<Metadata> {
     const {q} = await searchParams;
     return {
-        title: q ? `Zoekresultaten voor "${q}" - Data4OOV Catalogus` : 'Datasets - Data4OOV Catalogus',
+        title: q ? `Zoekresultaten voor "${q}" - Data4OOV` : 'Datasets - Data4OOV',
     };
 }
 

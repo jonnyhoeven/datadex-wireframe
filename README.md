@@ -7,7 +7,7 @@ this repository.
 ## Features
 
 - **CKAN 2.10+**: Core CKAN platform.
-- **Next.js Frontend**: Custom React-based interface (Data4OOV Catalogus).
+- **Next.js Frontend**: Custom React-based interface (Data4OOV Catalog).
 - **Dockerized Architecture**: Simplified setup using Docker Compose.
 - **Extensions Included**:
     - `ckanext-spatial`: Geospatial capabilities.

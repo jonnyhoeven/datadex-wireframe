@@ -1,11 +1,11 @@
 import React from 'react';
 import Link from 'next/link';
 import SearchBar from '../components/SearchBar';
-import {InfoRow} from "../components/PackageInfo";
+import { InfoRow } from "../components/PackageInfo";
 
 import TopTags from '../components/TopTags';
 import LatestDatasets from '../components/LatestDatasets';
-import {BrainCircuit} from "lucide-react";
+import { BrainCircuit, PackagePlus, Cable, HandHeart } from "lucide-react";
 
 const HomePage = () => {
     return (
@@ -18,18 +18,17 @@ const HomePage = () => {
                         Hét data portaal voor <span className="text-[#004562]">Openbare Orde en Veiligheid</span>
                     </h1>
                     <p className="text-xl text-gray-600 mb-10 leading-relaxed">
-                        Ontdek, analyseer en deel essentiële (geo-)informatie. Data4OOV maakt data toegankelijk 
+                        Ontdek, analyseer en deel essentiële (geo-)informatie. Data4OOV maakt data toegankelijk
                         voor operationele bedrijfsvoering, beleid en onderzoek omtrent veiligheid in Nederland.
                     </p>
 
-                    <SearchBar placeholder="Doorzoek de Data4OOV catalogus (bijv. Water )..." />
+                    <SearchBar placeholder="Doorzoek de Data4OOV (bijv. Water )..." />
                 </div>
 
                 {/* Info Cards */}
                 <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                    {/* Latest Datasets */}
-                    <LatestDatasets />
 
+                    <LatestDatasets />
 
                     <div className="text-[#004562] p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
                         <h2 className="text-2xl font-bold mb-3">Thema's</h2>
@@ -46,9 +45,12 @@ const HomePage = () => {
 
                     <a href={process.env.NEXT_PUBLIC_CKAN_URL || "http://localhost:4000"} >
                         <div className="bg-[#004562] bg-gradient-to-br from-black/20 to-transparent text-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                            <h2 className="text-2xl font-bold mb-3">Beheerders</h2>
+                            <div className="inline-flex items-center gap-2 text-2xl font-bold mb-3">
+                                <PackagePlus size={24} />
+                                <span>Beheerders</span>
+                            </div>
                             <p className="text-blue-100 mb-6 leading-relaxed">
-                                Beheerders kunnen inloggen via de Data4OOV ckan backend om metadata bij te werken.
+                                Beheerders kunnen inloggen via de Data4OOV ckan backend om metadata te beheren.
                             </p>
                             <div className="text-white font-semibold hover:underline flex items-center gap-1">
                                 Beheerportaal <span aria-hidden="true">&rarr;</span>
@@ -56,15 +58,14 @@ const HomePage = () => {
                         </div>
                     </a>
 
-
                     <a href="/predict">
                         <div className="bg-[#75b9d8] bg-gradient-to-br from-black/20 to-transparent text-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                            <h2 className="text-2xl font-bold mb-3">
-                                <BrainCircuit size={24}/>
-                                Activity Predictor Demo
-                            </h2>
+                            <div className="inline-flex items-center gap-2 text-2xl font-bold mb-3">
+                                <BrainCircuit size={24} />
+                                <span>Activity Predictor</span>
+                            </div>
                             <p className="text-blue-100 mb-6 leading-relaxed">
-                               Vul een scenario in en zie hoe de Machine Learning pipeline direct kaartlagen voorspelt..
+                                Vul een scenario in en zie hoe de Machine Learning pipeline direct kaartlagen voorspelt..
                             </p>
                             <div className="text-white font-semibold hover:underline flex items-center gap-1">
                                 Demo <span aria-hidden="true">&rarr;</span>
@@ -74,7 +75,10 @@ const HomePage = () => {
 
                     <a href="/ckan">
                         <div className="bg-[#f6a732] bg-gradient-to-br from-black/20 to-transparent text-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                            <h2 className="text-2xl font-bold mb-3">API toegang</h2>
+                            <div className="inline-flex items-center gap-2 text-2xl font-bold mb-3">
+                                <Cable size={24} />
+                                <span>CKAN Backend v3</span>
+                            </div>
                             <p className=" mb-6 leading-relaxed">
                                 Data4OOV maakt gebruik van een robuuste ckan backend. Applicaties kunnen metadata vinden via de ckan <code>/api</code>.
                             </p>
@@ -86,7 +90,10 @@ const HomePage = () => {
 
                     <a href="/gebruik">
                         <div className="bg-[#bb1413] bg-gradient-to-br from-black/20 to-transparent text-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                            <h2 className="text-2xl font-bold mb-3">Voorwaarden</h2>
+                            <div className="inline-flex items-center gap-2 text-2xl font-bold mb-3">
+                                <HandHeart size={24} />
+                                <span>Voorwaarden</span>
+                            </div>
                             <p className="text-blue-100 mb-6 leading-relaxed">
                                 Voor het gebruik van deze dienst gaat u akkoord met de algemene gebruiksvoorwaarden.
                             </p>

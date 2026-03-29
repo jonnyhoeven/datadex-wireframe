@@ -6,8 +6,8 @@ import Header from '../components/Header';
 import Breadcrumbs from '../components/Breadcrumbs';
 
 export const metadata: Metadata = {
-    title: "Data4OOV Catalogus",
-    description: "Data4OOV Catalogus - Hét data portaal voor Openbare Orde en Veiligheid",
+    title: "Data4OOV",
+    description: "Data4OOV - Hét data portaal voor Openbare Orde en Veiligheid",
 };
 
 export default function RootLayout({

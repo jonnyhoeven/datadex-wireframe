@@ -22,7 +22,7 @@ async function getAllTags() {
 }
 
 export const metadata: Metadata = {
-    title: 'Alle Thema\'s - Data4OOV Catalogus',
+    title: 'Alle Thema\'s - Data4OOV',
 };
 
 const TagIndex = async () => {

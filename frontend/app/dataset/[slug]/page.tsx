@@ -21,7 +21,7 @@ export async function generateMetadata({params}: { params: Promise<{ slug: strin
     if (!result) return { title: 'Dataset niet gevonden' };
 
     return {
-        title: `${result.title} - Data4OOV Catalogus`,
+        title: `${result.title} - Data4OOV`,
         description: result.notes?.slice(0, 160),
     };
 }
