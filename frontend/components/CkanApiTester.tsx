@@ -193,7 +193,7 @@ curl 'https://data4oov.nl/ckan/api/3/action/package_search?q=water' \\
                             <form onSubmit={handleTestApi} className="space-y-6">
                                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                                     <div className="flex flex-col">
-                                        <label className="font-semibold text-sm mb-2 text-gray-700">Method</label>
+                                        <label className="font-semibold text-sm mb-2 text-gray-700">Methode</label>
                                         <select
                                             className="bg-gray-50 border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-[#f6a732] outline-none transition-shadow"
                                             value={method}
