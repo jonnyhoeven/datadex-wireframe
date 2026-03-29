@@ -69,7 +69,7 @@ const HomePage = () => {
 
                     <a href="/predict">
                         <div className="bg-[#004562] text-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                            <h2 className="text-2xl font-bold mb-3">Tensorflow Demo</h2>
+                            <h2 className="text-2xl font-bold mb-3">Activity Predictor Demo</h2>
                             <p className="text-blue-100 mb-6 leading-relaxed">
                                 Data4OOV kan ook Machine Learning Modellen delen en hosten.
                             </p>

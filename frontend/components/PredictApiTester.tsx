@@ -3,10 +3,12 @@
 import React, {useState, useEffect} from 'react';
 import dynamic from 'next/dynamic';
 
+const defaultTitle = 'brand bij schouwburg'
+const defaultDomain = 'brandweer'
 const Select = dynamic(() => import('react-select'), {ssr: false});
 
 const PredictApiTester = () => {
-    const [title, setTitle] = useState('brand bij schouwburg');
+    const [title, setTitle] = useState(defaultTitle);
     const [selectedDomeinen, setSelectedDomeinen] = useState<any>([]);
     const [selectedLayers, setSelectedLayers] = useState<any>([]);
     const [response, setResponse] = useState<any>(null);
@@ -21,7 +23,7 @@ const PredictApiTester = () => {
                 if (data.metadata?.domeinen_classes) {
                     const dOptions = data.metadata.domeinen_classes.map((d: string) => ({value: d, label: d}));
                     setDomeinOptions(dOptions);
-                    setSelectedDomeinen([dOptions.find((o: any) => o.value === 'brandweer')].filter(Boolean));
+                    setSelectedDomeinen([dOptions.find((o: any) => o.value === defaultDomain)].filter(Boolean));
                 }
                 if (data.metadata?.layers_classes) {
                     const lOptions = data.metadata.layers_classes.map((l: string) => ({value: l, label: l}));
@@ -106,32 +108,38 @@ const PredictApiTester = () => {
                     </p>
 
                     <div className="bg-blue-50 p-8 rounded-2xl border border-blue-100 my-8">
-                        <h3 className="text-xl font-bold text-[#004562] mb-4">Hoe de magie werkt</h3>
+                        <h3 className="text-xl font-bold text-[#004562] mb-4">Hoe het werkt</h3>
                         <div className="grid md:grid-cols-3 gap-6">
                             <div>
                                 <h4 className="font-bold text-gray-900 text-sm mb-2">1. Taal Begrijpen</h4>
                                 <p className="text-sm">
-                                    We gebruiken een krachtig AI-taalmodel (<strong className="text-blue-800"><a
-                                    href="https://pieter.ai/robbert/" target="_blank">RobBERT</a></strong>) dat de
-                                    dieperliggende betekenis en context van jouw tekst begrijpt en vertaalt naar
+                                    We gebruiken het AI-taalmodel <strong className="text-blue-800"><a
+                                    href="https://pieter.ai/robbert/" target="_blank">RobBERT</a></strong> dat de
+                                    dieperliggende context van jouw tekst vertaalt naar
                                     wiskundige vectoren.
                                 </p>
                             </div>
                             <div>
-                                <h4 className="font-bold text-gray-900 text-sm mb-2">2. De Voorspelling</h4>
+                                <h4 className="font-bold text-gray-900 text-sm mb-2">2. Training</h4>
                                 <p className="text-sm">
-                                    Ons <strong className="text-blue-800"><a href="https://www.tensorflow.org/"
-                                                                             target="_blank">Neurale
-                                    Netwerk</a></strong> (het 'brein') combineert de tekst met de gekozen domeinen om te
-                                    bepalen welke kaartlagen cruciaal zijn voor dit scenario op basis van bestaande
-                                    activiteiten.
+                                    Ons
+                                    <strong className="text-blue-800">
+                                        <a href="https://www.tensorflow.org/" target="_blank"> Neurale Netwerk </a>
+                                    </strong>
+                                    combineert de tekst met de gekozen domeinen om te bepalen wat de "waarde" is van
+                                    elke laag op basis van de <
+                                    strong className="text-blue-800">
+                                    <a href={"https://github.com/jonnyhoeven/datadex-wireframe/blob/main/tensorflow/mockdata.yaml"}
+                                       target={"_blank"}> training data
+                                    </a>
+                                </strong>.
                                 </p>
                             </div>
                             <div>
-                                <h4 className="font-bold text-gray-900 text-sm mb-2">3. De Orkestrator</h4>
+                                <h4 className="font-bold text-gray-900 text-sm mb-2">3. Prediction</h4>
                                 <p className="text-sm">
-                                    Deze applicatie fungeert als dirigent: het koppelt het taalmodel aan het brein en
-                                    vertaalt de resultaten direct naar bruikbare kaartlagen op jouw scherm.
+                                    Deze applicatie fungeert als dirigent: het koppelt het taalmodel en
+                                    vertaalt de resultaten direct naar bruikbare kaartlaag suggesties op jouw scherm.
                                 </p>
                             </div>
                         </div>
