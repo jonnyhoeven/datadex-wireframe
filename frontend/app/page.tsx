@@ -54,7 +54,8 @@ const HomePage = () => {
                             </div>
                         </div>
                     </a>
-                    <a href="/api">
+
+                    <a href="/ckan">
                         <div className="bg-[#004562] text-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
                             <h2 className="text-2xl font-bold mb-3">API toegang</h2>
                             <p className="text-blue-100 mb-6 leading-relaxed">
@@ -62,6 +63,18 @@ const HomePage = () => {
                             </p>
                             <div className="text-white font-semibold hover:underline flex items-center gap-1">
                                 Voorbeelden <span aria-hidden="true">&rarr;</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="/predict">
+                        <div className="bg-[#004562] text-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                            <h2 className="text-2xl font-bold mb-3">Tensorflow Demo</h2>
+                            <p className="text-blue-100 mb-6 leading-relaxed">
+                                Data4OOV kan ook Machine Learning Modellen delen en hosten.
+                            </p>
+                            <div className="text-white font-semibold hover:underline flex items-center gap-1">
+                                Demo <span aria-hidden="true">&rarr;</span>
                             </div>
                         </div>
                     </a>
