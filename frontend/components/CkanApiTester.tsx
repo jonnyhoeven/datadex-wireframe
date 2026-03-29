@@ -130,7 +130,7 @@ curl 'https://data4oov.nl/ckan/api/3/action/package_search?q=water' \\
                                 className="bg-[#f6a732] bg-gradient-to-br   from-black/20 to-transparent text-white p-6 rounded-2xl shadow-xl transform hover:scale-105 transition-transform">
                                 <h2 className="text-xl font-bold mb-3">Snel aan de slag</h2>
                                 <p className="text-sm opacity-90 mb-6 leading-relaxed">
-                                    Direct toegang tot alle metadata via de <code>/api</code> endpoint van onze backend.
+                                    Direct toegang tot alle metadata via <code>/ckan/api</code> op deze site.
                                 </p>
                                 <Link
                                     href="https://docs.ckan.org/en/latest/api/index.html"
