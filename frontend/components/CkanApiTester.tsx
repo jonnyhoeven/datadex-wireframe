@@ -204,8 +204,7 @@ curl 'https://data4oov.nl/ckan/api/3/action/package_search?q=water' \\
                                         </select>
                                     </div>
                                     <div className="flex flex-col md:col-span-3">
-                                        <label className="font-semibold text-sm mb-2 text-gray-700">Action /
-                                            Endpoint</label>
+                                        <label className="font-semibold text-sm mb-2 text-gray-700">Actie</label>
                                         <div className="flex items-stretch w-full">
                                             <span
                                                 className="bg-gray-100 px-4 flex items-center border border-gray-300 border-r-0 rounded-l-lg text-gray-500 font-mono text-sm whitespace-nowrap">
