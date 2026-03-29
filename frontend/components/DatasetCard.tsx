@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { Dataset } from '../types/ckan';
-import { InfoRow, Description } from './PackageInfo';
+import { InfoRow } from './PackageInfo';
 
 interface DatasetCardProps {
     dataset: Dataset;
@@ -39,11 +39,6 @@ export const DatasetCard: React.FC<DatasetCardProps> = ({ dataset }) => {
                     }
                 />
             </div>
-
-            <Description
-                text={dataset.notes || ''}
-                links={dataset.resources?.map((r: any) => ({ label: r.name, url: r.url })) || []}
-            />
         </div>
     );
 };

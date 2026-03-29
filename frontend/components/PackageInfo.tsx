@@ -1,6 +1,4 @@
 import React from 'react';
-import MapWrapper from './MapWrapper';
-import ResourceHealth from './ResourceHealth';
 
 export interface InfoRowProps {
     label: string;
@@ -12,36 +10,6 @@ export const InfoRow: React.FC<InfoRowProps> = ({label, value, border = true}) =
     <div className="grid grid-cols-3 border-b border-gray-100 pb-2">
         <span className="text-gray-500 font-medium">{label}</span>
         <span className="col-span-2">{value}</span>
-    </div>
-);
-
-interface DescriptionProps {
-    text: string;
-    links: { label: string; url: string; id?: string }[];
-}
-
-export const Description: React.FC<DescriptionProps> = ({text, links}) => (
-    <div className="mb-8">
-        <h3 className="font-bold mb-2">Beschrijving</h3>
-        <p className="text-gray-600 text-sm leading-relaxed mb-4">
-            {text}
-        </p>
-        <h3 className="font-bold text-sm mb-2">Meer informatie:</h3>
-        <ul className="text-xs space-y-2 text-gray-500">
-            {links ? links.map((link, index) => (
-                <li key={index} className="flex flex-wrap items-center">
-                    <span className="font-medium">{link.label}:</span> 
-                    <a href={link.url} target="_blank" rel="noopener noreferrer" className="text-blue-600 underline ml-1 break-all">
-                        {link.url}
-                    </a>
-                    {link.id && (
-                        <React.Suspense fallback={<span className="ml-2 text-[10px] text-gray-400">Status laden...</span>}>
-                            <ResourceHealth resourceId={link.id} />
-                        </React.Suspense>
-                    )}
-                </li>
-            )) : null}
-        </ul>
     </div>
 );
 
