@@ -1,6 +1,7 @@
 import React from 'react';
 import {notFound} from 'next/navigation';
-import {Description, InfoRow, MetadataTable} from '../../../components/PackageInfo';
+import {InfoRow, MetadataTable} from '../../../components/PackageInfo';
+import ResourceHealth from '../../../components/ResourceHealth';
 import MapWrapper from '../../../components/MapWrapper';
 import Sidebar from '../../../components/Sidebar';
 import {DebugOutput} from '../../../components/DebugOutput'
@@ -63,16 +64,34 @@ const Package = async ({params}: { params: Promise<{ slug: string }> }) => {
                         />
                     </div>
 
-                    <Description
-                        text={result.notes || ''}
-                        links={result.resources?.map(r => ({ label: r.name, url: r.url, id: r.id })) || []}
-                    />
+                    <div className="mb-8">
+                        <h3 className="font-bold mb-2">Beschrijving</h3>
+                        <p className="text-gray-600 text-sm leading-relaxed mb-4">
+                            {result.notes || ''}
+                        </p>
+                        <h3 className="font-bold text-sm mb-2">Datasets:</h3>
+                        <ul className="text-xs space-y-2 text-gray-500">
+                            {result.resources ? result.resources.map((resource, index) => (
+                                <li key={index} className="flex flex-wrap items-center">
+                                    <a href={resource.url} target="_blank" rel="noopener noreferrer" className="text-blue-600 underline ml-1 break-all">
+                                        {resource.url}
+                                    </a>
+                                    {resource.id && (
+                                        <React.Suspense fallback={<span className="ml-2 text-[10px] text-gray-400">Status laden...</span>}>
+                                            <ResourceHealth resourceId={resource.id} />
+                                        </React.Suspense>
+                                    )}
+                                </li>
+                            )) : null}
+                        </ul>
+                    </div>
 
-                    <div className="rounded-xl overflow-hidden border border-gray-200 mb-8 bg-gray-50">
+                    <div>
                         <div className="relative w-full z-0">
                             <MapWrapper links={result.resources?.map(r => ({ label: r.name, url: r.url, id: r.id, format: r.format })) || []}/>
                         </div>
                     </div>
+
 
                     <MetadataTable extras={result.extras}/>
 
