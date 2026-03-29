@@ -124,7 +124,7 @@ curl 'https://data4oov.nl/ckan/api/3/action/package_search?q=water' \\
                             </p>
                         </div>
 
-                        {/* Snel aan de slag Card */}
+                        {/* Quick start card */}
                         <div className="w-full md:w-80 shrink-0">
                             <div
                                 className="bg-[#f6a732] bg-gradient-to-br  shadow-orange-200 from-black/20 to-transparent text-white p-6 rounded-2xl shadow-xl transform hover:scale-105 transition-transform">
