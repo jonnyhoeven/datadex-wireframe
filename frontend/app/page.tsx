@@ -77,10 +77,10 @@ const HomePage = () => {
                         <div className="bg-[#f6a732] bg-gradient-to-br from-black/20 to-transparent text-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
                             <div className="inline-flex items-center gap-2 text-2xl font-bold mb-3">
                                 <Cable size={24} />
-                                <span>CKAN Backend v3</span>
+                                <span>CKAN Backend</span>
                             </div>
                             <p className=" mb-6 leading-relaxed">
-                                Data4OOV maakt gebruik van een robuuste ckan backend. Applicaties kunnen metadata vinden via de ckan <code>/api</code>.
+                                Data4OOV maakt gebruik van een robuuste ckan backend. Applicaties kunnen metadata vinden via <code>/ckan/api</code>.
                             </p>
                             <div className=" font-semibold hover:underline flex items-center gap-1">
                                 Voorbeelden <span aria-hidden="true">&rarr;</span>
@@ -95,7 +95,7 @@ const HomePage = () => {
                                 <span>Voorwaarden</span>
                             </div>
                             <p className="text-blue-100 mb-6 leading-relaxed">
-                                Bij het gebruik van deze dienst gaat  akkoord met de algemene gebruiksvoorwaarden.
+                                Tijdens het gebruik van deze dienst gaat gaat u akkoord met de algemene gebruiksvoorwaarden.
                             </p>
                             <div className="text-white font-semibold hover:underline flex items-center gap-1">
                                 Lees meer <span aria-hidden="true">&rarr;</span>
