@@ -148,7 +148,7 @@ curl 'https://data4oov.nl/ckan/api/3/action/package_search?q=water' \\
             <main className="max-w-6xl mx-auto px-4 py-12">
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
 
-                    {/* Sidebar / Navigatie */}
+                    {/* Sidebar */}
                     <aside className="lg:col-span-1 space-y-8 order-2 lg:order-1">
                         <section>
                             <h3 className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-4">Kernfunctionaliteiten</h3>
