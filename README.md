@@ -92,7 +92,6 @@ docker compose exec ckan python3 /srv/app/ckan-init.py
 ```
 
 To run Harvester see [ckanext-harvester](https://github.com/ckan/ckanext-harvest/blob/master/README.rst#harvester-run)
-(Currently not working)
 
 ```bash
 docker compose exec ckan ckan --config=/srv/app/ckan.ini harvester gather-consumer
