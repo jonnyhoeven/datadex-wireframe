@@ -127,7 +127,7 @@ curl 'https://data4oov.nl/ckan/api/3/action/package_search?q=water' \\
                         {/* Snel aan de slag Card */}
                         <div className="w-full md:w-80 shrink-0">
                             <div
-                                className="bg-[#f6a732] bg-gradient-to-br from-black/20 to-transparent text-white p-6 rounded-2xl shadow-xl transform hover:scale-105 transition-transform">
+                                className="bg-[#f6a732] bg-gradient-to-br  shadow-orange-200 from-black/20 to-transparent text-white p-6 rounded-2xl shadow-xl transform hover:scale-105 transition-transform">
                                 <h2 className="text-xl font-bold mb-3">Snel aan de slag</h2>
                                 <p className="text-sm opacity-90 mb-6 leading-relaxed">
                                     Direct toegang tot alle metadata via de <code>/api</code> endpoint van onze backend.
@@ -160,7 +160,7 @@ curl 'https://data4oov.nl/ckan/api/3/action/package_search?q=water' \\
                                     {icon: <Info size={18}/>, label: 'Versiebeheer'}
                                 ].map((item, idx) => (
                                     <li key={idx}
-                                        className="flex items-center gap-3 p-3 rounded-lg bg-white border border-gray-100 shadow-sm hover:border-[#f6a732] transition-colors cursor-pointer group">
+                                        className="flex items-center gap-3 p-3 rounded-lg bg-white border border-gray-100 shadow-sm group">
                                         <span className="text-[#f6a732]">{item.icon}</span>
                                         <span
                                             className="font-medium text-gray-700 group-hover:text-gray-900">{item.label}</span>

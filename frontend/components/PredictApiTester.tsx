@@ -146,7 +146,7 @@ const PredictApiTester = () => {
                         {/* Snel aan de slag Card */}
                         <div className="w-full md:w-80 shrink-0">
                             <div
-                                className="bg-[#75b9d8] bg-gradient-to-br from-black/20 to-transparent text-white p-6 rounded-2xl shadow-xl transform hover:scale-105 transition-transform">
+                                className="bg-[#75b9d8] bg-gradient-to-br from-black/20 to-transparent text-white p-6 rounded-2xl shadow-xl transform ">
                                 <h2 className="text-xl font-bold mb-3">Probeer het zelf</h2>
                                 <p className="text-sm opacity-90 mb-6 leading-relaxed">
                                     Vul een scenario in en zie hoe de Machine Learning pipeline direct kaartlagen
@@ -179,7 +179,7 @@ const PredictApiTester = () => {
                                     { icon: <Cpu size={18} />, label: 'Gedistribueerde ML' }
                                 ].map((item, idx) => (
                                     <li key={idx}
-                                        className="flex items-center gap-3 p-3 rounded-lg bg-white border border-gray-100 shadow-sm hover:border-[#75b9d8] transition-colors cursor-pointer group">
+                                        className="flex items-center gap-3 p-3 rounded-lg bg-white border border-gray-100 shadow-sm c transition-colors group">
                                         <span className="text-[#75b9d8]">{item.icon}</span>
                                         <span
                                             className="font-medium text-gray-700 group-hover:text-gray-900">{item.label}</span>
