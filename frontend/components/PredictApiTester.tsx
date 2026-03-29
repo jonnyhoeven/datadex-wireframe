@@ -139,7 +139,9 @@ const PredictApiTester = () => {
                             <p className="text-lg text-gray-600 leading-relaxed max-w-2xl">
                                 Ontdek hoe AI helpt bij het ontsluiten van de juiste data. Onze Activity Predictor
                                 suggereert automatisch de meest relevante kaartlagen op basis van incidenttitels en
-                                betrokken domeinen.
+                                betrokken domeinen. Let op het huidige model is gebaseerd op <a
+                                href={"https://github.com/jonnyhoeven/datadex-wireframe/blob/main/tensorflow/mockdata.yaml"}>mock
+                                data</a>
                             </p>
                         </div>
 
