@@ -156,7 +156,7 @@ curl 'https://data4oov.nl/ckan/api/3/action/package_search?q=water' \\
                                 {[
                                     {icon: <Search size={18}/>, label: 'Metadata Doorzoeken'},
                                     {icon: <Layers size={18}/>, label: 'Organisatie Inzichten'},
-                                    {icon: <Database size={18}/>, label: 'Resource Downloaden'},
+                                    {icon: <Database size={18}/>, label: 'Resources Downloaden'},
                                     {icon: <Info size={18}/>, label: 'Versiebeheer'}
                                 ].map((item, idx) => (
                                     <li key={idx}
