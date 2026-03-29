@@ -278,7 +278,7 @@ curl 'https://data4oov.nl/ckan/api/3/action/package_search?q=water' \\
                             )}
                         </section>
 
-                        {/* Belangrijkste Eindpunten sectie */}
+                        {/* Endpoint sction */}
                         <section>
                             <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
                                 <Terminal className="text-[#f6a732]"/>
