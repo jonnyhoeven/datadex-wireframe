@@ -123,7 +123,7 @@ curl 'https://data4oov.nl/ckan/api/3/action/package_search?q=water' \\
                         
                         {/* Snel aan de slag Card */}
                         <div className="w-full md:w-80 shrink-0">
-                            <div className="bg-[#f6a732] text-white p-6 rounded-2xl shadow-xl transform hover:scale-105 transition-transform">
+                            <div className="bg-[#f6a732] bg-gradient-to-br from-black/20 to-transparent text-white p-6 rounded-2xl shadow-xl transform hover:scale-105 transition-transform">
                                 <h2 className="text-xl font-bold mb-3">Snel aan de slag</h2>
                                 <p className="text-sm opacity-90 mb-6 leading-relaxed">
                                     Direct toegang tot alle metadata via de <code>/api</code> endpoint van onze backend.
