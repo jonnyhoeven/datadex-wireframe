@@ -55,20 +55,9 @@ const HomePage = () => {
                         </div>
                     </a>
 
-                    <a href="/ckan">
-                        <div className="bg-[#004562] text-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                            <h2 className="text-2xl font-bold mb-3">API toegang</h2>
-                            <p className="text-blue-100 mb-6 leading-relaxed">
-                                Data4OOV maakt gebruik van een robuuste ckan backend. Applicaties kunnen metadata vinden via de ckan <code>/api</code>.
-                            </p>
-                            <div className="text-white font-semibold hover:underline flex items-center gap-1">
-                                Voorbeelden <span aria-hidden="true">&rarr;</span>
-                            </div>
-                        </div>
-                    </a>
 
                     <a href="/predict">
-                        <div className="bg-[#004562] text-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                        <div className="bg-[#75b9d8] text-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
                             <h2 className="text-2xl font-bold mb-3">Activity Predictor Demo</h2>
                             <p className="text-blue-100 mb-6 leading-relaxed">
                                 Data4OOV kan ook Machine Learning Modellen delen en hosten.
@@ -79,8 +68,21 @@ const HomePage = () => {
                         </div>
                     </a>
 
+                    <a href="/ckan">
+                        <div className="bg-[#f6a732] text-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                            <h2 className="text-2xl font-bold mb-3">API toegang</h2>
+                            <p className=" mb-6 leading-relaxed">
+                                Data4OOV maakt gebruik van een robuuste ckan backend. Applicaties kunnen metadata vinden via de ckan <code>/api</code>.
+                            </p>
+                            <div className=" font-semibold hover:underline flex items-center gap-1">
+                                Voorbeelden <span aria-hidden="true">&rarr;</span>
+                            </div>
+                        </div>
+                    </a>
+
+
                     <a href="/gebruik">
-                        <div className="bg-[#004562] text-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                        <div className="bg-[#bb1413] text-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
                             <h2 className="text-2xl font-bold mb-3">Voorwaarden</h2>
                             <p className="text-blue-100 mb-6 leading-relaxed">
                                 Voor het gebruik van deze dienst gaat u akkoord met de algemene gebruiksvoorwaarden.
