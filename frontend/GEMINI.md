@@ -35,7 +35,7 @@ This directory contains the **Next.js frontend** for the Datadex Wireframe proje
 - `yarn build`: Builds the application for production.
 - `yarn start`: Starts the production server.
 - `yarn lint`: Runs ESLint for code quality checks.
-- `npx playwright test`: Runs end-to-end tests.
+- `npx playwright test --reporter=line --project=chromium --headed`: Runs end-to-end tests.
 
 ## Directory Structure
 
@@ -67,19 +67,10 @@ This directory contains the **Next.js frontend** for the Datadex Wireframe proje
 
 ### Playwright Best Practices for Agents
 
-To avoid hanging processes and interactive prompts when running tests, always use the following flags:
-
+To avoid hanging processes and interactive prompts when running tests, always use the following flags: `--reporter=line --project=chromium --headed`
+Example:
 ```bash
-# Ensure yarn dev is restarted with a clean slate before running tests
-# This prevents state leaks and ensures the latest changes are reflected.
-
-# Run tests for a specific file with non-interactive reporter
 npx playwright test tests/search.spec.ts --reporter=line --project=chromium --headed
-```
-
-# If the project has a commented out baseURL, provide it explicitly
-# Or use full URLs in your test scripts (preferred for reliability)
-npx playwright test tests/search.spec.ts --reporter=line --headed
 ```
 
 **Common Pitfalls:**
