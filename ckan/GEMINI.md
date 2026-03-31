@@ -28,6 +28,12 @@ python3 /srv/app/ckan-init.py
 ```
 *(Note: This command is typically orchestrated by the root `docker-compose.yml` or run manually after deployment.)*
 
+### Docker changes
+Test changes to dockerfiles and dependencies by running:
+```bash
+docker compose build ckan
+```
+
 ## Key Files
 
 *   **`ckan.ini`**: The main configuration file for the CKAN application, defining plugins, database connections, and extension settings.
