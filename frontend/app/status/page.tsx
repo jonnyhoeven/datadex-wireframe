@@ -93,12 +93,12 @@ const StatusPage = async () => {
                                                     <div className="mt-1">
                                                         {report ? (
                                                             report.is_available ? (
-                                                                <CheckCircle className="text-green-500 w-4 h-4" title="Beschikbaar" />
+                                                                <CheckCircle className="text-green-500 w-4 h-4"/>
                                                             ) : (
-                                                                <AlertCircle className="text-red-500 w-4 h-4" title="Onbereikbaar" />
+                                                                <AlertCircle className="text-red-500 w-4 h-4"/>
                                                             )
                                                         ) : (
-                                                            <HelpCircle className="text-gray-300 w-4 h-4" title="Status onbekend" />
+                                                            <HelpCircle className="text-gray-300 w-4 h-4"/>
                                                         )}
                                                     </div>
                                                     <div>
