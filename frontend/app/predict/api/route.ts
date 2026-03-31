@@ -2,6 +2,9 @@ import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import metadata from './model_metadata.json';
 
+// Define a default timeout for fetch requests
+const FETCH_TIMEOUT = 5000; // 5 seconds
+
 // Define the schema for the request body
 const predictionSchema = z.object({
   title: z.string().min(1, { message: "Title cannot be empty" }),
@@ -53,11 +56,25 @@ export async function POST(req: NextRequest) {
     // 1. Get BERT Embeddings from the Python Service
     const embeddingServiceUrl = process.env.EMBEDDING_SERVICE_URL || 'http://127.0.0.1:8000/embed';
     
-    const embResponse = await fetch(embeddingServiceUrl, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ texts: [title] })
-    });
+    const embController = new AbortController();
+    const embTimeoutId = setTimeout(() => embController.abort(), FETCH_TIMEOUT);
+
+    let embResponse;
+    try {
+      embResponse = await fetch(embeddingServiceUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ texts: [title] }),
+        signal: embController.signal
+      });
+    } catch (error: any) {
+      if (error.name === 'AbortError') {
+        return NextResponse.json({ error: 'Embedding Service request timed out' }, { status: 408 });
+      }
+      throw error; // Re-throw other errors
+    } finally {
+      clearTimeout(embTimeoutId);
+    }
 
     if (!embResponse.ok) {
       console.error('Embedding Service error:', await embResponse.text());
@@ -74,17 +91,31 @@ export async function POST(req: NextRequest) {
     const modelName = process.env.TF_MODEL_NAME || 'activity_predictor';
     const tfServingUrl = process.env.TF_SERVING_URL || `http://127.0.0.1:8501/v1/models/${modelName}:predict`;
     
-    const response = await fetch(tfServingUrl, {
-      method: 'POST',
-      body: JSON.stringify({
-        instances: [
-          {
-            domain_input: domeinenEncoded,
-            bert_input: titleEmbedding
-          }
-        ]
-      })
-    });
+    const tfController = new AbortController();
+    const tfTimeoutId = setTimeout(() => tfController.abort(), FETCH_TIMEOUT);
+
+    let response;
+    try {
+      response = await fetch(tfServingUrl, {
+        method: 'POST',
+        body: JSON.stringify({
+          instances: [
+            {
+              domain_input: domeinenEncoded,
+              bert_input: titleEmbedding
+            }
+          ]
+        }),
+        signal: tfController.signal
+      });
+    } catch (error: any) {
+      if (error.name === 'AbortError') {
+        return NextResponse.json({ error: 'TensorFlow Serving request timed out' }, { status: 408 });
+      }
+      throw error; // Re-throw other errors
+    } finally {
+      clearTimeout(tfTimeoutId);
+    }
 
     if (!response.ok) {
       console.error('TF Serving error:', await response.text());
