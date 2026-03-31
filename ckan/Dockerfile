@@ -1,21 +1,32 @@
 FROM ckan/ckan-base:2.10
 
 USER root
-RUN apk update && \
-    apk add --no-cache \
-    gcc \
-    musl-dev \
-    postgresql-dev \
-    geos-dev \
-    proj-dev \
-    gdal-dev \
-    libxml2-dev \
-    libxslt-dev \
-    git \
-    uwsgi-python3
 
 COPY requirements.txt /srv/app/requirements.txt
-RUN pip install --no-cache-dir -r /srv/app/requirements.txt
+
+RUN apk update && \
+    apk add --no-cache \
+        geos \
+        proj \
+        gdal \
+        libxml2 \
+        libxslt \
+        libpq \
+        uwsgi-python3 && \
+    apk add --no-cache --virtual .build-deps \
+        gcc \
+        musl-dev \
+        postgresql-dev \
+        geos-dev \
+        proj-dev \
+        gdal-dev \
+        libxml2-dev \
+        libxslt-dev \
+        git && \
+    pip install --no-cache-dir -r /srv/app/requirements.txt && \
+    apk del .build-deps && \
+    rm -rf /var/cache/apk/*
+
 RUN chown -R ckan:ckan /srv/app/src/ckan/ckan/public/base/i18n
 
 USER ckan
