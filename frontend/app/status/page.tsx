@@ -5,21 +5,18 @@ import Link from 'next/link';
 import { CheckCircle, AlertCircle, HelpCircle, ExternalLink } from 'lucide-react';
 
 async function getResourceReport(resourceId: string): Promise<LinkReport | null> {
-    return fetchCKAN<LinkReport>('check_link_report_show', { resource_id: resourceId }, { ignoreErrors: true });
+    const report = await fetchCKAN<LinkReport>('check_link_report_show', { resource_id: resourceId }, { ignoreErrors: true });
+    // check_link_report_show returns an empty object for a pending report
+    if (Object.keys(report).length === 0) {
+        return null;
+    }
+    return report;
 }
 
 const StatusPage = async () => {
     // Fetch all datasets with resources
     const datasets = await fetchCKAN<Dataset[]>('current_package_list_with_resources', { limit: '1000' });
 
-    if (!datasets) {
-        return (
-            <div className="w-full">
-                <h1 className="text-3xl font-bold mb-8 text-brand-blue">Systeem Status</h1>
-                <p className="text-red-600">Fout bij het ophalen van datasets.</p>
-            </div>
-        );
-    }
 
     // Prepare status data
     const statusData = await Promise.all(
