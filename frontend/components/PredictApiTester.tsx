@@ -123,12 +123,12 @@ const PredictApiTester = () => {
                     <div className="flex flex-col md:flex-row gap-8 items-center text-left">
                         <div className="flex-1">
                             <div
-                                className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#75b9d8]/10 text-[#75b9d8] font-semibold text-sm mb-4">
+                                className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-lightblue/10 text-brand-lightblue font-semibold text-sm mb-4">
                                 <BrainCircuit size={16}/>
                                 <span>Activity Predictor v1.0</span>
                             </div>
                             <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">
-                                Activity <span className="text-[#75b9d8]">Predictor Demo</span>
+                                Activity <span className="text-brand-lightblue">Predictor Demo</span>
                             </h1>
                             <p className="text-lg text-gray-600 leading-relaxed max-w-2xl">
                                 Ontdek hoe AI helpt bij het ontsluiten van de juiste data. Onze Activity Predictor
@@ -142,7 +142,7 @@ const PredictApiTester = () => {
                         {/* Quick start card */}
                         <div className="w-full md:w-80 shrink-0">
                             <div
-                                className="bg-[#75b9d8] bg-gradient-to-br from-black/20 to-transparent text-white p-6 rounded-2xl shadow-xl transform ">
+                                className="bg-brand-lightblue bg-gradient-to-br from-black/20 to-transparent text-white p-6 rounded-2xl shadow-xl transform ">
                                 <h2 className="text-xl font-bold mb-3">Probeer het zelf</h2>
                                 <p className="text-sm opacity-90 mb-6 leading-relaxed">
                                     Vul een scenario in en zie hoe de Machine Learning pipeline direct kaartlagen
@@ -150,7 +150,7 @@ const PredictApiTester = () => {
                                 </p>
                                 <button
                                     onClick={() => document.getElementById('predictor-console')?.scrollIntoView({behavior: 'smooth'})}
-                                    className="bg-white text-[#75b9d8] w-full px-4 py-2 rounded-lg font-bold text-sm hover:bg-blue-50 transition-colors flex items-center justify-center gap-2"
+                                    className="bg-white text-brand-lightblue w-full px-4 py-2 rounded-lg font-bold text-sm hover:bg-blue-50 transition-colors flex items-center justify-center gap-2"
                                 >
                                     Start Demo <ArrowRight size={16}/>
                                 </button>
@@ -176,7 +176,7 @@ const PredictApiTester = () => {
                                 ].map((item, idx) => (
                                     <li key={idx}
                                         className="flex items-center gap-3 p-3 rounded-lg bg-white border border-gray-100 shadow-sm c transition-colors group">
-                                        <span className="text-[#75b9d8]">{item.icon}</span>
+                                        <span className="text-brand-lightblue">{item.icon}</span>
                                         <span
                                             className="font-medium text-gray-700 group-hover:text-gray-900">{item.label}</span>
                                     </li>
@@ -207,7 +207,7 @@ const PredictApiTester = () => {
                         <section id="predictor-console"
                                  className="bg-white p-8 rounded-2xl shadow-sm border border-gray-200">
                             <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-                                <Terminal className="text-[#75b9d8]"/>
+                                <Terminal className="text-brand-lightblue"/>
                                 Predictor Console
                             </h2>
                             <form onSubmit={handlePredict} className="space-y-6">
@@ -217,7 +217,7 @@ const PredictApiTester = () => {
                                             scenario</label>
                                         <input
                                             type="text"
-                                            className="bg-gray-50 border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-[#75b9d8] outline-none transition-shadow font-medium"
+                                            className="bg-gray-50 border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-brand-lightblue outline-none transition-shadow font-medium"
                                             value={title}
                                             onChange={(e) => setTitle(e.target.value)}
                                             placeholder="bijv. Brand in parkeergarage"
@@ -249,7 +249,7 @@ const PredictApiTester = () => {
 
                                 <button
                                     type="submit"
-                                    className="bg-[#75b9d8] hover:bg-[#5da7c8] transition-colors text-white px-8 py-3 rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg shadow-blue-100"
+                                    className="bg-brand-lightblue hover:bg-brand-lightblue-dark transition-colors text-white px-8 py-3 rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg shadow-blue-100"
                                     disabled={loading}
                                 >
                                     {loading ? (
@@ -310,7 +310,7 @@ const PredictApiTester = () => {
                         {/* Hoe het werkt sectie */}
                         <section className="bg-white p-8 rounded-2xl shadow-sm border border-gray-200">
                             <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-                                <BookOpen className="text-[#75b9d8]"/>
+                                <BookOpen className="text-brand-lightblue"/>
                                 Hoe het werkt
                             </h2>
                             <div className="grid md:grid-cols-3 gap-8">
@@ -337,7 +337,7 @@ const PredictApiTester = () => {
                                             {step.desc}
                                         </p>
                                         <Link href={step.link} target="_blank"
-                                              className="text-xs font-semibold text-[#75b9d8] hover:underline flex items-center gap-1">
+                                              className="text-xs font-semibold text-brand-lightblue hover:underline flex items-center gap-1">
                                             Details <ExternalLink size={12}/>
                                         </Link>
                                     </div>

@@ -15,7 +15,7 @@ const StatusPage = async () => {
     if (!datasets) {
         return (
             <div className="w-full">
-                <h1 className="text-3xl font-bold mb-8 text-[#004562]">Systeem Status</h1>
+                <h1 className="text-3xl font-bold mb-8 text-brand-blue">Systeem Status</h1>
                 <p className="text-red-600">Fout bij het ophalen van datasets.</p>
             </div>
         );
@@ -55,7 +55,7 @@ const StatusPage = async () => {
     return (
         <div className="w-full">
             <div className="mb-8">
-                <h1 className="text-3xl font-bold text-[#004562] mb-2">Dataset Status Overzicht</h1>
+                <h1 className="text-3xl font-bold text-brand-blue mb-2">Dataset Status Overzicht</h1>
                 <p className="text-gray-600">
                     Onderstaand overzicht toont de actuele status van alle datasets en de bijbehorende resources op basis van de automatische link-check.
                 </p>
@@ -75,7 +75,7 @@ const StatusPage = async () => {
                         {statusData.map(({ dataset, resourceReports, overallStatus }) => (
                             <tr key={dataset.id} className="hover:bg-gray-50 transition-colors">
                                 <td className="px-6 py-4 align-top">
-                                    <Link href={`/dataset/${dataset.name}`} className="font-semibold text-[#004562] hover:underline block">
+                                    <Link href={`/dataset/${dataset.name}`} className="font-semibold text-brand-blue hover:underline block">
                                         {dataset.title || dataset.name}
                                     </Link>
                                     <div className="text-[10px] text-gray-400 mt-1 uppercase">ID: {dataset.id.substring(0, 8)}...</div>

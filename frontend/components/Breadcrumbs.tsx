@@ -29,7 +29,7 @@ const Breadcrumbs = () => {
         <li className="flex items-center">
           <Link 
             href="/" 
-            className="hover:text-[#004562] transition-colors"
+            className="hover:text-brand-blue transition-colors"
           >
             Home
           </Link>
@@ -49,13 +49,13 @@ const Breadcrumbs = () => {
             <li key={href} className="flex items-center space-x-2">
               <span className="text-gray-400 font-light">/</span>
               {isLast ? (
-                <span className="font-semibold text-[#004562] truncate max-w-[200px] sm:max-w-md capitalize">
+                <span className="font-semibold text-brand-blue truncate max-w-[200px] sm:max-w-md capitalize">
                   {label}
                 </span>
               ) : (
                 <Link 
                   href={href} 
-                  className="hover:text-[#004562] transition-colors capitalize"
+                  className="hover:text-brand-blue transition-colors capitalize"
                 >
                   {label}
                 </Link>

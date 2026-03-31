@@ -91,7 +91,7 @@ const WmsMapItem: React.FC<{ link: MapResourceLink }> = ({ link }) => {
             {/* Header with Label and Dropdown */}
             <div className="p-3 border-b border-gray-100 flex flex-col md:flex-row md:items-center justify-between gap-3 bg-gray-50/50">
                 <div className="flex items-center gap-2">
-                    <div className="p-1.5 bg-[#75b9d8]/10 rounded-md text-[#75b9d8]">
+                    <div className="p-1.5 bg-brand-lightblue/10 rounded-md text-brand-lightblue">
                         <Layers size={16} />
                     </div>
                     <div>
@@ -134,7 +134,7 @@ const WmsMapItem: React.FC<{ link: MapResourceLink }> = ({ link }) => {
                 {loading && (
                     <div className="absolute inset-0 z-[1001] bg-white/60 flex items-center justify-center backdrop-blur-[1px]">
                         <div className="flex flex-col items-center gap-2">
-                            <Loader2 className="animate-spin text-[#75b9d8]" size={24} />
+                            <Loader2 className="animate-spin text-brand-lightblue" size={24} />
                             <span className="text-xs font-medium text-gray-500">Kaartlagen ophalen...</span>
                         </div>
                     </div>
@@ -176,7 +176,7 @@ const WmsMapItem: React.FC<{ link: MapResourceLink }> = ({ link }) => {
                 <span className="text-[10px] text-gray-500 font-medium">
                     {selectedLayers?.length || 0} van de {options.length} lagen geselecteerd
                 </span>
-                <span className="text-[10px] uppercase tracking-wider font-bold text-[#75b9d8] bg-[#75b9d8]/10 px-2 py-0.5 rounded">
+                <span className="text-[10px] uppercase tracking-wider font-bold text-brand-lightblue bg-brand-lightblue/10 px-2 py-0.5 rounded">
                     WMS Service
                 </span>
             </div>

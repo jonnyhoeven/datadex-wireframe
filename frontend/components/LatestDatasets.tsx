@@ -13,14 +13,14 @@ const LatestDatasets = async () => {
     }
 
     return (
-        <div className="text-[#004562] p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+        <div className="text-brand-blue p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
             <h2 className="text-2xl font-bold mb-3">Nieuw</h2>
             <div className="space-y-4">
                 {datasets.map((dataset) => (
                     <div key={dataset.id} className="border-b border-gray-100 pb-3 last:border-0 last:pb-0">
                         <Link href={`/dataset/${dataset.name}`} className="block group">
                             <div className="flex items-center justify-between gap-2">
-                                <h3 className="font-semibold text-gray-900 group-hover:text-[#004562] transition-colors line-clamp-1 text-sm">
+                                <h3 className="font-semibold text-gray-900 group-hover:text-brand-blue transition-colors line-clamp-1 text-sm">
                                     {dataset.title || dataset.name}
                                 </h3>
                                 <React.Suspense fallback={<div className="h-2 w-2 rounded-full bg-gray-100 animate-pulse"></div>}>
@@ -48,7 +48,7 @@ const LatestDatasets = async () => {
                 ))}
             </div>
             <div className="mt-6">
-                <Link href="/dataset" className="text-[#004562] font-semibold hover:underline flex items-center gap-1 text-sm">
+                <Link href="/dataset" className="text-brand-blue font-semibold hover:underline flex items-center gap-1 text-sm">
                     Bekijk alle datasets
                     <span aria-hidden="true">&rarr;</span>
                 </Link>

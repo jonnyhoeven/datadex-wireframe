@@ -35,7 +35,7 @@ const TopTags = async () => {
                     key={tag.name} 
                     href={`/tag/${encodeURIComponent(tag.name)}`}
                 >
-                    <div className="tag hover:bg-gray-200 transition-colors text-[#004562] border border-gray-100">
+                    <div className="tag hover:bg-gray-200 transition-colors text-brand-blue border border-gray-100">
                     {tag.display_name} <span className="text-xs text-gray-400 font-normal ml-1">({tag.count})</span>
                     </div>
                 </Link>

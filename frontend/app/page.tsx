@@ -15,7 +15,7 @@ const HomePage = () => {
             <main className="flex-grow container mx-auto px-6 py-16">
                 <div className="text-center max-w-4xl mx-auto mb-16">
                     <h1 className="text-5xl font-extrabold tracking-tight text-gray-900 mb-6">
-                        Hét data portaal voor <span className="text-[#004562]">Openbare Orde en Veiligheid</span>
+                        Hét data portaal voor <span className="text-brand-blue">Openbare Orde en Veiligheid</span>
                     </h1>
                     <p className="text-xl text-gray-600 mb-10 leading-relaxed">
                         Ontdek, analyseer en deel essentiële (geo-)informatie. Data4OOV maakt data toegankelijk
@@ -30,12 +30,12 @@ const HomePage = () => {
 
                     <LatestDatasets />
 
-                    <div className="text-[#004562] p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                    <div className="text-brand-blue p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
                         <h2 className="text-2xl font-bold mb-3">Thema's</h2>
                         <TopTags />
                         <div className="mt-6">
                             <Link href="/tag">
-                                <div className="text-[#004562] font-semibold hover:underline flex items-center gap-1 text-sm">
+                                <div className="text-brand-blue font-semibold hover:underline flex items-center gap-1 text-sm">
                                     Bekijk alle thema's
                                     <span aria-hidden="true">&rarr;</span>
                                 </div>
@@ -44,7 +44,7 @@ const HomePage = () => {
                     </div>
 
                     <a href={process.env.NEXT_PUBLIC_CKAN_URL || "http://localhost:4000"} >
-                        <div className="bg-[#004562] bg-gradient-to-br from-black/20 to-transparent text-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                        <div className="bg-brand-blue bg-gradient-to-br from-black/20 to-transparent text-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
                             <div className="inline-flex items-center gap-2 text-2xl font-bold mb-3">
                                 <PackagePlus size={24} />
                                 <span>Beheerders</span>
@@ -59,7 +59,7 @@ const HomePage = () => {
                     </a>
 
                     <a href="/predict">
-                        <div className="bg-[#75b9d8] bg-gradient-to-br shadow-blue-200  from-black/20 to-transparent text-white p-8 rounded-xl shadow-sm hover:shadow-md">
+                        <div className="bg-brand-lightblue bg-gradient-to-br shadow-blue-200  from-black/20 to-transparent text-white p-8 rounded-xl shadow-sm hover:shadow-md">
                             <div className="inline-flex items-center gap-2 text-2xl font-bold mb-3">
                                 <BrainCircuit size={24} />
                                 <span>Activity Predictor</span>
@@ -74,7 +74,7 @@ const HomePage = () => {
                     </a>
 
                     <a href="/ckan">
-                        <div className="bg-[#f6a732] bg-gradient-to-br from-black/20 to-transparent text-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                        <div className="bg-brand-orange bg-gradient-to-br from-black/20 to-transparent text-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
                             <div className="inline-flex items-center gap-2 text-2xl font-bold mb-3">
                                 <Cable size={24} />
                                 <span>CKAN Backend</span>
@@ -89,7 +89,7 @@ const HomePage = () => {
                     </a>
 
                     <a href="/gebruik">
-                        <div className="bg-[#bb1413] bg-gradient-to-br from-black/20 to-transparent text-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                        <div className="bg-brand-red bg-gradient-to-br from-black/20 to-transparent text-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
                             <div className="inline-flex items-center gap-2 text-2xl font-bold mb-3">
                                 <HandHeart size={24} />
                                 <span>Voorwaarden</span>

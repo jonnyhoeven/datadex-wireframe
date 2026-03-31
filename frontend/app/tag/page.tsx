@@ -47,14 +47,14 @@ const TagIndex = async () => {
                             className="group"
                         >
                             <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm hover:shadow-md hover:border-blue-200 transition-all h-full flex flex-col justify-between">
-                                <div className="font-bold text-lg text-[#004562] group-hover:text-blue-700 transition-colors break-words">
+                                <div className="font-bold text-lg text-brand-blue group-hover:text-blue-700 transition-colors break-words">
                                     {tag.display_name}
                                 </div>
                                 <div className="mt-4 pt-4 border-t border-gray-50 flex items-center justify-between">
                                     <span className="text-sm text-gray-500">
                                         {tag.count} {tag.count === 1 ? 'dataset' : 'datasets'}
                                     </span>
-                                    <span className="text-[#004562] opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <span className="text-brand-blue opacity-0 group-hover:opacity-100 transition-opacity">
                                         &rarr;
                                     </span>
                                 </div>

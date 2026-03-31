@@ -112,7 +112,7 @@ curl 'https://data4oov.nl/ckan/api/3/action/package_search?q=water' \\
 
     if (!mounted) {
         return <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-            <Loader2 className="animate-spin text-[#f6a732]" size={48}/>
+            <Loader2 className="animate-spin text-brand-orange" size={48}/>
         </div>;
     }
 
@@ -124,12 +124,12 @@ curl 'https://data4oov.nl/ckan/api/3/action/package_search?q=water' \\
                     <div className="flex flex-col md:flex-row gap-8 items-center text-left">
                         <div className="flex-1">
                             <div
-                                className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#f6a732]/10 text-[#f6a732] font-semibold text-sm mb-4">
+                                className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-orange/10 text-brand-orange font-semibold text-sm mb-4">
                                 <Database size={16}/>
                                 <span>CKAN Backend v3</span>
                             </div>
                             <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">
-                                API Toegang <span className="text-[#f6a732]">Data4OOV</span>
+                                API Toegang <span className="text-brand-orange">Data4OOV</span>
                             </h1>
                             <p className="text-lg text-gray-600 leading-relaxed max-w-2xl">
                                 Ontsluit de kracht van open data voor Openbare Orde en Veiligheid. Onze robuuste CKAN
@@ -141,7 +141,7 @@ curl 'https://data4oov.nl/ckan/api/3/action/package_search?q=water' \\
                         {/* Quick start card */}
                         <div className="w-full md:w-80 shrink-0">
                             <div
-                                className="bg-[#f6a732] bg-gradient-to-br   from-black/20 to-transparent text-white p-6 rounded-2xl shadow-xl transform hover:scale-105 transition-transform">
+                                className="bg-brand-orange bg-gradient-to-br   from-black/20 to-transparent text-white p-6 rounded-2xl shadow-xl transform hover:scale-105 transition-transform">
                                 <h2 className="text-xl font-bold mb-3">Snel aan de slag</h2>
                                 <p className="text-sm opacity-90 mb-6 leading-relaxed">
                                     Direct toegang tot alle metadata via <code>/ckan/api</code> op deze site.
@@ -149,7 +149,7 @@ curl 'https://data4oov.nl/ckan/api/3/action/package_search?q=water' \\
                                 <Link
                                     href="https://docs.ckan.org/en/latest/api/index.html"
                                     target="_blank"
-                                    className="bg-white text-[#f6a732] px-4 py-2 rounded-lg font-bold text-sm hover:bg-orange-50 transition-colors flex items-center justify-center gap-2"
+                                    className="bg-white text-brand-orange px-4 py-2 rounded-lg font-bold text-sm hover:bg-orange-50 transition-colors flex items-center justify-center gap-2"
                                 >
                                     Documentatie openen <ArrowRight size={16}/>
                                 </Link>
@@ -175,7 +175,7 @@ curl 'https://data4oov.nl/ckan/api/3/action/package_search?q=water' \\
                                 ].map((item, idx) => (
                                     <li key={idx}
                                         className="flex items-center gap-3 p-3 rounded-lg bg-white border border-gray-100 shadow-sm group">
-                                        <span className="text-[#f6a732]">{item.icon}</span>
+                                        <span className="text-brand-orange">{item.icon}</span>
                                         <span
                                             className="font-medium text-gray-700 group-hover:text-gray-900">{item.label}</span>
                                     </li>
@@ -201,7 +201,7 @@ curl 'https://data4oov.nl/ckan/api/3/action/package_search?q=water' \\
                         {/* API Tester Console */}
                         <section id="api-tester" className="bg-white p-8 rounded-2xl shadow-sm border border-gray-200">
                             <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-                                <Terminal className="text-[#f6a732]"/>
+                                <Terminal className="text-brand-orange"/>
                                 Interactieve API Console
                             </h2>
                             <form onSubmit={handleTestApi} className="space-y-6">
@@ -209,7 +209,7 @@ curl 'https://data4oov.nl/ckan/api/3/action/package_search?q=water' \\
                                     <div className="flex flex-col">
                                         <label className="font-semibold text-sm mb-2 text-gray-700">Methode</label>
                                         <select
-                                            className="bg-gray-50 border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-[#f6a732] outline-none transition-shadow"
+                                            className="bg-gray-50 border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-brand-orange outline-none transition-shadow"
                                             value={method}
                                             onChange={(e) => setMethod(e.target.value)}
                                         >
@@ -226,7 +226,7 @@ curl 'https://data4oov.nl/ckan/api/3/action/package_search?q=water' \\
                                             </span>
                                             <input
                                                 type="text"
-                                                className="border border-gray-300 p-3 rounded-r-lg w-full focus:ring-2 focus:ring-[#f6a732] outline-none font-mono text-sm transition-shadow"
+                                                className="border border-gray-300 p-3 rounded-r-lg w-full focus:ring-2 focus:ring-brand-orange outline-none font-mono text-sm transition-shadow"
                                                 value={endpoint}
                                                 onChange={(e) => setEndpoint(e.target.value)}
                                             />
@@ -239,7 +239,7 @@ curl 'https://data4oov.nl/ckan/api/3/action/package_search?q=water' \\
                                         <label className="font-semibold text-sm mb-2 text-gray-700">Request Body
                                             (JSON)</label>
                                         <textarea
-                                            className="bg-gray-50 border border-gray-300 p-4 rounded-lg w-full h-32 font-mono text-sm focus:ring-2 focus:ring-[#f6a732] outline-none transition-shadow"
+                                            className="bg-gray-50 border border-gray-300 p-4 rounded-lg w-full h-32 font-mono text-sm focus:ring-2 focus:ring-brand-orange outline-none transition-shadow"
                                             value={requestBody}
                                             onChange={(e) => setRequestBody(e.target.value)}
                                         />
@@ -248,7 +248,7 @@ curl 'https://data4oov.nl/ckan/api/3/action/package_search?q=water' \\
 
                                 <button
                                     type="submit"
-                                    className="bg-[#f6a732] hover:bg-orange-500 transition-colors text-white px-8 py-3 rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg shadow-orange-200"
+                                    className="bg-brand-orange hover:bg-orange-500 transition-colors text-white px-8 py-3 rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg shadow-orange-200"
                                     disabled={loading}
                                 >
                                     {loading ? (
@@ -295,7 +295,7 @@ curl 'https://data4oov.nl/ckan/api/3/action/package_search?q=water' \\
                         {/* Endpoint sction */}
                         <section>
                             <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-                                <Terminal className="text-[#f6a732]"/>
+                                <Terminal className="text-brand-orange"/>
                                 Belangrijkste Eindpunten
                             </h2>
                             <div className="space-y-4">
@@ -323,7 +323,7 @@ curl 'https://data4oov.nl/ckan/api/3/action/package_search?q=water' \\
                                 ].map((endpoint, idx) => (
                                     <div
                                         key={idx}
-                                        className="bg-white p-4 rounded-lg border border-gray-200 flex items-start sm:items-center gap-4 group hover:border-[#f6a732] transition-colors cursor-pointer"
+                                        className="bg-white p-4 rounded-lg border border-gray-200 flex items-start sm:items-center gap-4 group hover:border-brand-orange transition-colors cursor-pointer"
                                         onClick={() => {
                                             setMethod(endpoint.method);
                                             setEndpoint(endpoint.path.replace('/ckan/api/3/action/', ''));
@@ -336,13 +336,13 @@ curl 'https://data4oov.nl/ckan/api/3/action/package_search?q=water' \\
                                             {endpoint.method}
                                         </span>
                                         <div className="flex-1">
-                                            <code className="text-sm font-mono text-[#f6a732] font-semibold break-all">
+                                            <code className="text-sm font-mono text-brand-orange font-semibold break-all">
                                                 {endpoint.path}
                                             </code>
                                             <p className="text-xs text-gray-500 mt-1">{endpoint.desc}</p>
                                         </div>
                                         <ChevronRight size={16}
-                                                      className="text-gray-300 group-hover:text-[#f6a732] transition-colors"/>
+                                                      className="text-gray-300 group-hover:text-brand-orange transition-colors"/>
                                     </div>
                                 ))}
                             </div>
@@ -352,7 +352,7 @@ curl 'https://data4oov.nl/ckan/api/3/action/package_search?q=water' \\
                         <section>
                             <div className="flex items-center justify-between mb-6">
                                 <h2 className="text-2xl font-bold flex items-center gap-2">
-                                    <Code className="text-[#f6a732]"/>
+                                    <Code className="text-brand-orange"/>
                                     Code Voorbeelden
                                 </h2>
                                 <div className="flex bg-gray-200 p-1 rounded-lg text-xs font-bold">

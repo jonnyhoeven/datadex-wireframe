@@ -54,7 +54,7 @@ const Package = async ({params}: { params: Promise<{ slug: string }> }) => {
                                             key={tag.name}
                                             href={`/tag/${encodeURIComponent(tag.display_name)}`}
                                         >
-                                            <div className="tag hover:bg-gray-200 transition-colors text-[#004562] border border-gray-100">
+                                            <div className="tag hover:bg-gray-200 transition-colors text-brand-blue border border-gray-100">
                                                 {tag.display_name}
                                             </div>
                                         </Link>
