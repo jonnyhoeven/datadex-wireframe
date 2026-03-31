@@ -64,3 +64,24 @@ This directory contains the **Next.js frontend** for the Datadex Wireframe proje
 - Use Playwright for critical path testing (search, dataset navigation).
 - Tests are located in the `tests/` directory.
 - `playwright.config.ts` manages test configuration.
+
+### Playwright Best Practices for Agents
+
+To avoid hanging processes and interactive prompts when running tests, always use the following flags:
+
+```bash
+# Ensure yarn dev is restarted with a clean slate before running tests
+# This prevents state leaks and ensures the latest changes are reflected.
+
+# Run tests for a specific file with non-interactive reporter
+npx playwright test tests/search.spec.ts --reporter=line --project=chromium --headed
+```
+
+# If the project has a commented out baseURL, provide it explicitly
+# Or use full URLs in your test scripts (preferred for reliability)
+npx playwright test tests/search.spec.ts --reporter=line --headed
+```
+
+**Common Pitfalls:**
+- **HTML Reporter:** By default, Playwright may try to serve an HTML report on failure, which will hang the CLI. Always use `--reporter=line` or `--reporter=dot`.
+- **Base URL:** If `page.goto('/')` fails with an "Invalid URL" error, it means `baseURL` is not configured in `playwright.config.ts`. Use full URLs (e.g., `http://localhost:3000/`) in your tests.
