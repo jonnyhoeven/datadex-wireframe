@@ -7,8 +7,8 @@ const FETCH_TIMEOUT = 5000; // 5 seconds
 
 // Define the schema for the request body
 const predictionSchema = z.object({
-  title: z.string().min(1, { message: "Title cannot be empty" }),
-  domeinen: z.string().array().min(1, { message: "Domeinen must contain at least one domain" }),
+  title: z.string().min(0),
+  domeinen: z.string().array().min(0),
 });
 
 function loadMetadata() {
