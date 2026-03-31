@@ -115,12 +115,6 @@ const PredictApiTester = () => {
         ];
     };
 
-    if (!mounted) {
-        return <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-            <Loader2 className="animate-spin text-[#75b9d8]" size={48}/>
-        </div>;
-    }
-
     return (
         <div className="min-h-screen bg-gray-50 font-sans text-gray-900 w-full">
             {/* Header / Hero Section */}
