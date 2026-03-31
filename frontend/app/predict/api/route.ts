@@ -1,5 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { z } from 'zod';
 import metadata from './model_metadata.json';
+
+// Define the schema for the request body
+const predictionSchema = z.object({
+  title: z.string().min(1, { message: "Title cannot be empty" }),
+  domeinen: z.string().array().min(1, { message: "Domeinen must contain at least one domain" }),
+});
 
 function loadMetadata() {
   return metadata as any;
@@ -30,11 +37,13 @@ export async function GET() {
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { title, domeinen } = body;
+    const validationResult = predictionSchema.safeParse(body);
 
-    if (!title || !Array.isArray(domeinen)) {
-      return NextResponse.json({ error: 'Missing title or domeinen array' }, { status: 400 });
+    if (!validationResult.success) {
+      return NextResponse.json({ error: "Invalid request body", details: validationResult.error.flatten() }, { status: 400 });
     }
+
+    const { title, domeinen } = validationResult.data;
 
     const meta = loadMetadata();
     if (!meta) {
