@@ -70,7 +70,7 @@ These can be adjusted env variables.
 
 The services will be available at:
 
-- **Frontend**: http://localhost:3000 If not using the container, check [frontend](./frontend) 
+- **Frontend**: http://localhost:3000 If not using the container, check `./frontend`
 - **CKAN Backend**: http://localhost:4000
 
 ## Infrastructure as Code: Configuring the Portal
@@ -80,7 +80,7 @@ follows IaC principles, and the configuration is automatically applied when the 
 
 ### 1. Define your configuration
 
-Edit [ckan-config.yaml](ckan/ckan-config.yaml) to include the entities you want to create:
+Edit `ckan/ckan-config.yaml` to include the entities you want to create:
 
 ### 2. Apply changes
 
