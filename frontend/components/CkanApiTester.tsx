@@ -20,7 +20,6 @@ import {
 import Link from 'next/link';
 
 const CkanApiTester = () => {
-    const [mounted, setMounted] = useState(false);
     const [method, setMethod] = useState('GET');
     const [endpoint, setEndpoint] = useState('package_show?id=water');
     const [requestBody, setRequestBody] = useState('{\n  "q": "water"\n}');
@@ -28,10 +27,6 @@ const CkanApiTester = () => {
     const [loading, setLoading] = useState(false);
     const [activeTab, setActiveTab] = useState('js');
     const [copied, setCopied] = useState(false);
-
-    useEffect(() => {
-        setMounted(true);
-    }, []);
 
     const copyToClipboard = (text: string) => {
         if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -109,12 +104,6 @@ if data['success']:
 curl 'https://data4oov.nl/ckan/api/3/action/package_search?q=water' \\
      -H 'Accept: application/json'`
     };
-
-    if (!mounted) {
-        return <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-            <Loader2 className="animate-spin text-brand-orange" size={48}/>
-        </div>;
-    }
 
     return (
         <div className="min-h-screen bg-gray-50 font-sans text-gray-900 w-full">
