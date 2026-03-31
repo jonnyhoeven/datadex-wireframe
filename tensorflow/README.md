@@ -34,7 +34,7 @@ This ensures the classifier receives a clean, dense representation of the title'
 - The **BERT branch** processes semantic meaning from the title.
 - The **Domain branch** acts as a categorical filter/prior, though it is intentionally weighted lower (`0.3x`) to ensure
   the text remains the primary driver of predictions.
-- These branches are concatenated and passed through several dense layers with **Batch Normalization** and **Dropout**to
+- These branches are concatenated and passed through several dense layers with **Batch Normalization** and **Dropout** to
   prevent overfitting.
 - The output layer uses a **Sigmoid** activation for multi-label classification, optimized using **Binary Focal
   Crossentropy** to handle class imbalance.
