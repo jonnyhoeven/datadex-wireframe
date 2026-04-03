@@ -162,6 +162,7 @@ const WmsMapItem: React.FC<{ link: MapResourceLink }> = ({ link }) => {
 
                     {selectedString && (
                         <WMSTileLayer
+                            key={`${baseUrl}-${selectedString}`}
                             url={baseUrl}
                             layers={selectedString}
                             format="image/png"

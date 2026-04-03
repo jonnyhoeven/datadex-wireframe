@@ -1,7 +1,8 @@
 "use client";
 
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useMemo} from 'react';
 import dynamic from "next/dynamic";
+import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 import {
     Terminal,
     ArrowRight,
@@ -25,33 +26,51 @@ const defaultDomain = 'brandweer'
 
 const Select = dynamic(() => import('react-select'), {ssr: false});
 
+interface PredictApiTesterProps {
+    initialDomeinOptions?: any[];
+    initialLayerOptions?: any[];
+}
 
-const PredictApiTester = () => {
+const PredictApiTester = ({ initialDomeinOptions = [], initialLayerOptions = [] }: PredictApiTesterProps) => {
+    const router = useRouter();
+    const pathname = usePathname();
+    const searchParams = useSearchParams();
+
     const [mounted, setMounted] = useState(false);
-    const [title, setTitle] = useState(defaultTitle);
-    const [selectedDomeinen, setSelectedDomeinen] = useState<any>([]);
+    
+    // Sync title with URL
+    const title = searchParams.get('q') || defaultTitle;
+    const setTitle = (newTitle: string) => {
+        const params = new URLSearchParams(searchParams.toString());
+        if (newTitle) params.set('q', newTitle);
+        else params.delete('q');
+        router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+    };
+
+    // Sync domeinen with URL
+    const domeinenParam = searchParams.get('d');
+    const selectedDomeinValues = useMemo(() => domeinenParam ? domeinenParam.split(',') : [defaultDomain], [domeinenParam]);
+    
     const [selectedLayers, setSelectedLayers] = useState<any>([]);
     const [response, setResponse] = useState<any>(null);
     const [loading, setLoading] = useState(false);
-    const [domeinOptions, setDomeinOptions] = useState<any>([]);
-    const [allLayerOptions, setAllLayerOptions] = useState<any>([]);
+    
+    // Use props instead of fetching client-side
+    const domeinOptions = initialDomeinOptions;
+    const allLayerOptions = initialLayerOptions;
+
+    const selectedDomeinen = domeinOptions.filter(opt => selectedDomeinValues.includes(opt.value));
+    
+    const setSelectedDomeinen = (options: any) => {
+        const params = new URLSearchParams(searchParams.toString());
+        const values = (options as any[]).map(o => o.value);
+        if (values.length > 0) params.set('d', values.join(','));
+        else params.delete('d');
+        router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+    };
 
     useEffect(() => {
         setMounted(true);
-        fetch('/predict/api')
-            .then(res => res.json())
-            .then(data => {
-                if (data.metadata?.domeinen_classes) {
-                    const dOptions = data.metadata.domeinen_classes.map((d: string) => ({value: d, label: d}));
-                    setDomeinOptions(dOptions);
-                    setSelectedDomeinen([dOptions.find((o: any) => o.value === defaultDomain)].filter(Boolean));
-                }
-                if (data.metadata?.layers_classes) {
-                    const lOptions = data.metadata.layers_classes.map((l: string) => ({value: l, label: l}));
-                    setAllLayerOptions(lOptions);
-                }
-            })
-            .catch(err => console.error('Error fetching metadata:', err));
     }, []);
 
     const handlePredict = async (e: React.FormEvent) => {
@@ -66,7 +85,7 @@ const PredictApiTester = () => {
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
                     title,
-                    domeinen: selectedDomeinen.map((d: any) => d.value)
+                    domeinen: selectedDomeinValues
                 })
             });
             const data = await res.json();
