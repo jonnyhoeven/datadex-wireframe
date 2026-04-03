@@ -1,7 +1,6 @@
 "use client";
 
 import React, {useState, useEffect, useMemo} from 'react';
-import dynamic from "next/dynamic";
 import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 import {
     Terminal,
@@ -17,18 +16,17 @@ import {
     Cpu,
     Copy,
     BookOpen,
-    ExternalLink
+    ExternalLink,
+    Check
 } from 'lucide-react';
 import Link from 'next/link';
 
 const defaultTitle = 'brand bij schouwburg'
 const defaultDomain = 'brandweer'
 
-const Select = dynamic(() => import('react-select'), {ssr: false});
-
-interface PredictApiTesterProps {
-    initialDomeinOptions?: any[];
-    initialLayerOptions?: any[];
+export interface PredictApiTesterProps {
+    initialDomeinOptions?: {value: string, label: string}[];
+    initialLayerOptions?: {value: string, label: string}[];
 }
 
 const PredictApiTester = ({ initialDomeinOptions = [], initialLayerOptions = [] }: PredictApiTesterProps) => {
@@ -36,45 +34,50 @@ const PredictApiTester = ({ initialDomeinOptions = [], initialLayerOptions = [] 
     const pathname = usePathname();
     const searchParams = useSearchParams();
 
-    const [mounted, setMounted] = useState(false);
+    // Initialize state from URL or defaults
+    const [title, setTitle] = useState(() => searchParams.get('q') ?? defaultTitle);
     
-    // Sync title with URL
-    const title = searchParams.get('q') || defaultTitle;
-    const setTitle = (newTitle: string) => {
-        const params = new URLSearchParams(searchParams.toString());
-        if (newTitle) params.set('q', newTitle);
-        else params.delete('q');
-        router.replace(`${pathname}?${params.toString()}`, { scroll: false });
-    };
-
-    // Sync domeinen with URL
-    const domeinenParam = searchParams.get('d');
-    const selectedDomeinValues = useMemo(() => domeinenParam ? domeinenParam.split(',') : [defaultDomain], [domeinenParam]);
+    // Support an explicit empty parameter to denote "no domains selected"
+    const [selectedDomeinValues, setSelectedDomeinValues] = useState<string[]>(() => {
+        const d = searchParams.get('d');
+        if (d === '') return [];
+        if (d) return d.split(',');
+        return [defaultDomain];
+    });
     
-    const [selectedLayers, setSelectedLayers] = useState<any>([]);
+    const [selectedLayers, setSelectedLayers] = useState<string[]>([]);
     const [response, setResponse] = useState<any>(null);
     const [loading, setLoading] = useState(false);
     
-    // Use props instead of fetching client-side
-    const domeinOptions = initialDomeinOptions;
-    const allLayerOptions = initialLayerOptions;
-
-    const selectedDomeinen = domeinOptions.filter(opt => selectedDomeinValues.includes(opt.value));
-    
-    const setSelectedDomeinen = (options: any) => {
-        const params = new URLSearchParams(searchParams.toString());
-        const values = (options as any[]).map(o => o.value);
-        if (values.length > 0) params.set('d', values.join(','));
-        else params.delete('d');
-        router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+    const toggleDomein = (value: string) => {
+        setSelectedDomeinValues(prev => {
+            const current = new Set(prev);
+            if (current.has(value)) current.delete(value);
+            else current.add(value);
+            return Array.from(current);
+        });
     };
 
-    useEffect(() => {
-        setMounted(true);
-    }, []);
+    const toggleLayer = (value: string) => {
+        setSelectedLayers(prev => prev.includes(value) ? prev.filter(l => l !== value) : [...prev, value]);
+    };
 
-    const handlePredict = async (e: React.FormEvent) => {
-        e.preventDefault();
+    // Auto-predict on initial mount or when user navigates using Browser Back/Forward
+    useEffect(() => {
+        const currentQ = searchParams.get('q') ?? defaultTitle;
+        const rawD = searchParams.get('d');
+        const currentD = rawD === '' ? [] : rawD ? rawD.split(',') : [defaultDomain];
+        
+        // Sync local inputs if URL changed externally (Back/Forward)
+        setTitle(currentQ);
+        setSelectedDomeinValues(currentD);
+        
+        // Perform the prediction based on the newly navigated URL
+        performPredict(currentQ, currentD);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [searchParams]);
+
+    const performPredict = async (searchTitle: string, searchDomeinen: string[]) => {
         setLoading(true);
         setResponse(null);
         setSelectedLayers([]);
@@ -84,16 +87,15 @@ const PredictApiTester = ({ initialDomeinOptions = [], initialLayerOptions = [] 
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
-                    title,
-                    domeinen: selectedDomeinValues
+                    title: searchTitle,
+                    domeinen: searchDomeinen
                 })
             });
             const data = await res.json();
             setResponse({status: res.status, ok: res.ok, data});
 
             if (res.ok && data.predicted_layers) {
-                const predicted = data.predicted_layers.map((l: string) => ({value: l, label: l}));
-                setSelectedLayers(predicted);
+                setSelectedLayers(data.predicted_layers);
             }
         } catch (error: any) {
             setResponse({error: error.message || String(error)});
@@ -102,37 +104,24 @@ const PredictApiTester = ({ initialDomeinOptions = [], initialLayerOptions = [] 
         }
     };
 
+    const handlePredict = (e?: React.FormEvent) => {
+        if (e) e.preventDefault();
+        
+        // Push current form state to URL (this will trigger the useEffect to fetch)
+        const params = new URLSearchParams(searchParams.toString());
+        params.set('q', title);
+        params.set('d', selectedDomeinValues.length > 0 ? selectedDomeinValues.join(',') : '');
+        router.push(`${pathname}?${params.toString()}`, { scroll: false });
+    };
+
     const copyToClipboard = (text: string) => {
         const el = document.createElement('textarea');
         el.value = text;
         el.setAttribute('readonly', '');
-        el.style.position = 'absolute';
-        el.style.left = '-9999px';
         document.body.appendChild(el);
         el.select();
         document.execCommand('copy');
         document.body.removeChild(el);
-    };
-
-    const getGroupedLayerOptions = () => {
-        if (!response?.data?.predicted_layers) {
-            return allLayerOptions;
-        }
-
-        const predictedSet = new Set(response.data.predicted_layers);
-        const suggested = allLayerOptions.filter((o: any) => predictedSet.has(o.value));
-        const others = allLayerOptions.filter((o: any) => !predictedSet.has(o.value));
-
-        return [
-            {
-                label: 'Gesuggereerd door AI',
-                options: suggested
-            },
-            {
-                label: 'Overige lagen',
-                options: others
-            }
-        ];
     };
 
     return (
@@ -225,16 +214,16 @@ const PredictApiTester = ({ initialDomeinOptions = [], initialLayerOptions = [] 
 
                         {/* Predictor Console */}
                         <section id="predictor-console"
-                                 className="bg-white p-8 rounded-2xl shadow-sm border border-gray-200">
+                                 className="bg-white p-8 rounded-2xl shadow-sm border border-gray-200 min-h-[500px]">
                             <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
                                 <Terminal className="text-brand-lightblue"/>
                                 Predictor Console
                             </h2>
+
                             <form onSubmit={handlePredict} className="space-y-6">
                                 <div className="space-y-4">
                                     <div className="flex flex-col">
-                                        <label className="font-semibold text-sm mb-2 text-gray-700">Titel van het
-                                            scenario</label>
+                                        <label className="font-semibold text-sm mb-2 text-gray-700">Titel van het scenario</label>
                                         <input
                                             type="text"
                                             className="bg-gray-50 border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-brand-lightblue outline-none transition-shadow font-medium"
@@ -244,26 +233,27 @@ const PredictApiTester = ({ initialDomeinOptions = [], initialLayerOptions = [] 
                                         />
                                     </div>
                                     <div className="flex flex-col">
-                                        <label className="font-semibold text-sm mb-2 text-gray-700">Betrokken
-                                            Domeinen</label>
-                                        <Select
-                                            instanceId="domeinen-select"
-                                            isMulti
-                                            options={domeinOptions}
-                                            value={selectedDomeinen}
-                                            onChange={setSelectedDomeinen}
-                                            className="text-sm"
-                                            placeholder="Selecteer domeinen..."
-                                            styles={{
-                                                control: (base) => ({
-                                                    ...base,
-                                                    borderRadius: '0.5rem',
-                                                    padding: '2px',
-                                                    borderColor: '#d1d5db',
-                                                    backgroundColor: '#f9fafb'
-                                                })
-                                            }}
-                                        />
+                                        <label className="font-semibold text-sm mb-2 text-gray-700">Betrokken Domeinen</label>
+                                        <div className="flex flex-wrap gap-2">
+                                            {initialDomeinOptions.map(opt => {
+                                                const isSelected = selectedDomeinValues.includes(opt.value);
+                                                return (
+                                                    <button
+                                                        key={opt.value}
+                                                        type="button"
+                                                        onClick={() => toggleDomein(opt.value)}
+                                                        className={`px-3 py-1.5 text-sm font-medium rounded-lg border flex items-center gap-2 transition-all duration-200 ${
+                                                            isSelected
+                                                                ? 'bg-brand-lightblue text-white border-brand-lightblue shadow-sm'
+                                                                : 'bg-gray-50 text-gray-600 border-gray-200 hover:bg-gray-100 hover:border-gray-300'
+                                                        }`}
+                                                    >
+                                                        {isSelected && <Check size={14} />}
+                                                        {opt.label}
+                                                    </button>
+                                                )
+                                            })}
+                                        </div>
                                     </div>
                                 </div>
 
@@ -289,8 +279,7 @@ const PredictApiTester = ({ initialDomeinOptions = [], initialLayerOptions = [] 
                             <div className="mt-8 pt-8 border-t border-gray-100">
                                 <div className="flex flex-col w-full">
                                     <div className="flex justify-between items-end mb-3">
-                                        <label className="font-semibold text-sm text-gray-700">Voorspelde
-                                            Kaartlagen</label>
+                                        <label className="font-semibold text-sm text-gray-700">Voorspelde Kaartlagen</label>
                                         {response?.ok && (
                                             <span
                                                 className="text-[10px] uppercase tracking-wider font-bold text-green-600 bg-green-50 px-3 py-1 rounded-full border border-green-100 flex items-center gap-1">
@@ -298,30 +287,48 @@ const PredictApiTester = ({ initialDomeinOptions = [], initialLayerOptions = [] 
                                             </span>
                                         )}
                                     </div>
-                                    <Select
-                                        instanceId="layers-select"
-                                        isMulti
-                                        options={getGroupedLayerOptions()}
-                                        value={selectedLayers}
-                                        onChange={setSelectedLayers}
-                                        className="text-sm"
-                                        placeholder="Wacht op voorspelling..."
-                                        noOptionsMessage={() => "Geen lagen gevonden"}
-                                        styles={{
-                                            control: (base) => ({
-                                                ...base,
-                                                borderRadius: '0.5rem',
-                                                padding: '2px',
-                                                borderColor: '#d1d5db',
-                                                backgroundColor: '#f9fafb'
-                                            })
-                                        }}
-                                    />
+                                    
+                                    <div className="bg-gray-50 border border-gray-200 rounded-xl p-4 max-h-[300px] overflow-y-auto">
+                                        {loading ? (
+                                            <div className="flex flex-col items-center justify-center py-8 text-gray-400">
+                                                <Loader2 className="animate-spin mb-2" size={24} />
+                                                <span className="text-sm">Bezig met analyseren...</span>
+                                            </div>
+                                        ) : response?.ok && response?.data?.predicted_layers ? (
+                                            <div className="space-y-4">
+                                                <div>
+                                                    <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Gesuggereerd door AI</h4>
+                                                    <div className="flex flex-wrap gap-2">
+                                                        {response.data.predicted_layers.map((layer: string) => (
+                                                            <button
+                                                                key={layer}
+                                                                type="button"
+                                                                onClick={() => toggleLayer(layer)}
+                                                                className={`px-3 py-1.5 text-sm font-medium rounded-lg border flex items-center gap-2 transition-all ${
+                                                                    selectedLayers.includes(layer)
+                                                                        ? 'bg-blue-100 text-blue-800 border-blue-200'
+                                                                        : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'
+                                                                }`}
+                                                            >
+                                                                {selectedLayers.includes(layer) && <Check size={14} className="text-blue-600" />}
+                                                                {layer}
+                                                            </button>
+                                                        ))}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        ) : (
+                                            <div className="py-8 text-center text-sm text-gray-500">
+                                                Nog geen voorspelling gedaan. Start de demo voor AI-suggesties.
+                                            </div>
+                                        )}
+                                    </div>
+                                    
                                     <p className="mt-3 text-xs text-gray-500 italic flex items-center gap-1">
                                         <Info size={14}/>
                                         {response?.ok
                                             ? "De AI heeft de meest relevante lagen bovenaan gezet en automatisch geselecteerd."
-                                            : "Nog geen voorspelling gedaan. Start de demo voor AI-suggesties."}
+                                            : loading ? "Het AI model verwerkt uw aanvraag..." : "Lagen verschijnen hier zodra u de analyse start."}
                                     </p>
                                 </div>
                             </div>
@@ -399,3 +406,4 @@ const PredictApiTester = ({ initialDomeinOptions = [], initialLayerOptions = [] 
 };
 
 export default PredictApiTester;
+

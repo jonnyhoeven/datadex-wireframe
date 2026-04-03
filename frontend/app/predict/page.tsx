@@ -1,4 +1,4 @@
-import PredictApiTester from '../../components/PredictApiTester';
+import PredictPageClientWrapper from '../../components/PredictPageClientWrapper';
 import metadata from './api/model_metadata.json';
 
 export const metadata_page = {
@@ -11,7 +11,7 @@ export default async function PredictPage() {
     const allLayerOptions = metadata.layers_classes.map((l: string) => ({ value: l, label: l }));
 
     return (
-        <PredictApiTester 
+        <PredictPageClientWrapper 
           initialDomeinOptions={domeinOptions} 
           initialLayerOptions={allLayerOptions} 
         />
