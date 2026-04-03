@@ -1,7 +1,7 @@
 "use client";
 
 import React, {useState, useEffect} from 'react';
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 import {
     Terminal,
     ArrowRight,
@@ -22,7 +22,9 @@ import Link from 'next/link';
 
 const defaultTitle = 'brand bij schouwburg'
 const defaultDomain = 'brandweer'
+
 const Select = dynamic(() => import('react-select'), {ssr: false});
+
 
 const PredictApiTester = () => {
     const [mounted, setMounted] = useState(false);
@@ -93,7 +95,6 @@ const PredictApiTester = () => {
         document.body.removeChild(el);
     };
 
-    // Build grouped options for the Layers select
     const getGroupedLayerOptions = () => {
         if (!response?.data?.predicted_layers) {
             return allLayerOptions;

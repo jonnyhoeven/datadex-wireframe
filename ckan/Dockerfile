@@ -30,7 +30,9 @@ RUN apk update && \
 RUN chown -R ckan:ckan /srv/app/src/ckan/ckan/public/base/i18n
 
 USER ckan
+COPY --chown=ckan:ckan ckan-config.yaml /srv/app/ckan-config.yaml
 COPY --chown=ckan:ckan ckan-init.py /srv/app/ckan-init.py
 RUN chmod +x /srv/app/ckan-init.py
-COPY --chown=ckan:ckan ckan-config.yaml /srv/app/ckan-config.yaml
+
+COPY --chown=ckan:ckan ckan.ini /srv/app/ckan.ini
 COPY --chown=ckan:ckan schema.yaml /srv/app/schema.yaml
