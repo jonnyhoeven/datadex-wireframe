@@ -372,7 +372,7 @@ const PredictApiTester = ({ initialDomeinOptions = [], initialLayerOptions = [] 
                             </div>
                         </section>
 
-                        {/* API Response debug section */}
+                        {/* API Response debug sectie */}
                         {response && (
                             <section>
                                 <h3 className="text-xl font-bold mb-4 flex items-center justify-between">
