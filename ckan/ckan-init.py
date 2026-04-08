@@ -128,17 +128,20 @@ if __name__ == "__main__":
     except Exception as e:
         print(f"Error generating SYSADMIN user: {e}")
 
-    # Not using api tokens yet
-    # try:
-    #     cmd = ["ckan", "-c", CKAN_INI, "user", "token", "add", CKAN_SYSADMIN_NAME, "setup"]
-    #     result = subprocess.run(cmd, capture_output=True, text=True)
-    #     if result.returncode == 0:
-    #         API_KEY = result.stdout.split(":", 1)[1].strip()
-    #         print("Successfully generated API token.")
-    #     else:
-    #         print(f"Failed to generate API token: {result.stderr}")
-    # except Exception as e:
-    #     print(f"Error generating API token: {e}")
+    try:
+        cmd = ["ckan", "-c", CKAN_INI, "user", "token", "add", CKAN_SYSADMIN_NAME, "setup"]
+        result = subprocess.run(cmd, capture_output=True, text=True)
+        if result.returncode == 0:
+            lines = result.stdout.strip().splitlines()
+            if lines:
+                API_KEY = lines[-1].strip()
+                print("Successfully generated API token.")
+            else:
+                print("Failed to parse API token from output.")
+        else:
+            print(f"Failed to generate API token: {result.stderr}")
+    except Exception as e:
+        print(f"Error generating API token: {e}")
 
     try:
         print("Initializing harvest database...")
