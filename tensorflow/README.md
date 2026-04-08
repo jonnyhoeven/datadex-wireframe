@@ -36,13 +36,8 @@ This ensures the classifier receives a clean, dense representation of the title'
   the text remains the primary driver of predictions.
 - These branches are concatenated and passed through several dense layers with **Batch Normalization** and **Dropout** to
   prevent overfitting.
-- The output layer uses a **Sigmoid** activation for multi-label classification, optimized using **Binary Focal
-  Crossentropy** to handle class imbalance.
-
-## Model Derivation & Training
-
-The model is derived from `mockdata.yaml`, which contains a curated set of Dutch emergency activities, their standard
-domains, and the corresponding map layers they typically require.
+- The output layer uses a **Sigmoid** activation for multi-label classification, optimized using **[Binary Focal Crossentropy](https://www.youtube.com/watch?v=6ArSys5qHAU)** to handle class imbalance.
+The model is derived from `mockdata.yaml`, which contains a curated set of Dutch emergency activities, their standard domains with the corresponding map layers they typically require.
 
 ### Training Pipeline (`robbert_training.py`):
 
