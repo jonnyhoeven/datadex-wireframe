@@ -17,7 +17,7 @@ this repository.
 ## Project Structure
 
 - `frontend/`: Next.js frontend application source code.
-- `docker-compose.yml`: Defines `frontend`, `ckan`, `db (PostgreSQL)`, `solr`, `redis`,  services.
+- `docker-compose.yml`: Defines `frontend`, `ckan`, `db (PostgreSQL)`, `solr`, `redis`, and some demo `tensorflow stuff` services.
 - `ckan.ini`: Base configuration file with environment variable placeholders.
 - `.env.example`: Template for environment variables.
 - `requirements.txt`: Python dependencies for CKAN and extensions.
@@ -47,7 +47,7 @@ Use Docker Compose to build the custom CKAN image and start all services, exampl
 ```bash
 docker compose up
 docker compose up --build
-docker compose up frontend --force-recreate  --build
+docker compose up frontend --force-recreate --build
 ```
 
 ### 3. Initialize the Database and Automated Setup
@@ -64,7 +64,7 @@ docker compose exec ckan python3 /srv/app/ckan-init.py
 - **Password**: `password`
 - **Email**: `admin@example.com`
 
-These can be adjusted env variables.
+These can be adjusted through env variables.
 
 ### 4. Access the Portal
 

@@ -2,7 +2,8 @@
 
 ## Project Overview
 
-This project is a data catalog built with a **CKAN backend** and a **Next.js frontend**. It's a Dockerized application that follows Infrastructure as Code principles, meaning the entire portal state is defined in configuration files within this repository.
+This project is a data catalog built with a **CKAN backend** and a **Next.js frontend**.
+It's a Dockerized application that follows Infrastructure as Code principles, meaning the entire portal state is defined in configuration files within this repository.
 
 **Core Technologies:**
 
