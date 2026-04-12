@@ -27,7 +27,10 @@
             yarn
             
             # Machine Learning & Scripts
-            python311
+            (python311.withPackages (ps: with ps; [
+              pyyaml
+              requests
+            ]))
             ruff
           ];
 

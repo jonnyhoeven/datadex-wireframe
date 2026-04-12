@@ -1,5 +1,6 @@
-.idea
-.env
+/.idea
+/.env
+/.direnv
 /frontend/.next/
 /frontend/node_modules/
 /ckan/data/

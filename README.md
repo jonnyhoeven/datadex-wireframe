@@ -24,14 +24,36 @@ this repository.
 
 ## Prerequisites
 
-- [Docker](https://docs.docker.com/get-docker/)
-- [Docker Compose](https://docs.docker.com/compose/install/)
+This project utilizes a **Nix Flake** and **direnv** to provide a consistent development environment across all services. 
+
+### ❄️ Nix Managed (Automatic)
+These tools are automatically provided by the project's shell:
+1.  **Node.js (v24)** & **Yarn**
+2.  **Python (v3.11)** & **Ruff**
+3.  **Docker CLI** & **Docker Compose**
+
+### 🛠 Manual Installations
+These tools must be installed manually on your system:
+1.  **[Nix](https://nixos.org/download/)**: For package management.
+2.  **[direnv](https://direnv.net/docs/installation.html)**: For automatic environment switching.
+3.  **[Docker Desktop](https://www.docker.com/products/docker-desktop/)** (or OrbStack): Required to run the containers on macOS.
+4.  **[Antigravity AI](https://github.com/google-deepmind/antigravity)**: The AI coding assistant for this repository.
 
 ## Quick Start
 
-Follow these steps to set up the project on your local machine:
+Follow these steps to set up the project:
 
-### 1. Configure Environment Variables
+### 1. Initialize the Development Environment
+
+Once Nix and Direnv are installed, `cd` into the project root and allow the environment:
+
+```bash
+direnv allow
+```
+
+This will automatically load Node 24, Yarn, Python 3.11, and the Docker CLI into your shell.
+
+### 2. Configure Environment Variables
 
 Copy the example environment file and adjust any settings if necessary (the defaults are usually fine for local
 development):
@@ -40,7 +62,7 @@ development):
 cp .env.example .env
 ```
 
-### 2. Build and Start the Services
+### 3. Build and Start the Services
 
 Use Docker Compose to build the custom CKAN image and start all services, examples:
 
@@ -50,7 +72,7 @@ docker compose up --build
 docker compose up frontend --force-recreate --build
 ```
 
-### 3. Initialize the Database and Automated Setup
+### 4. Initialize the Database and Automated Setup
 
 You can initialize/bootstrap ckan using the following command: 
 
@@ -66,7 +88,7 @@ docker compose exec ckan python3 /srv/app/ckan-init.py
 
 These can be adjusted through env variables.
 
-### 4. Access the Portal
+### 5. Access the Portal
 
 The services will be available at:
 
