@@ -92,12 +92,11 @@ packages:
 
   - name: "vrijevlak"
     title: "Vrijvlak"
-    notes: "Digitale kadastrale kaart van Nederland.  Beeldt de kadastrale percelen, gebouwen en liggingsovereenkomsten weer."
+    notes: "Digitale kadastrale kaart van Nederland. Beeldt de kadastrale percelen, gebouwen en liggingsovereenkomsten weer."
     owner_org: "zuid-holland"
     license_id: "cc-by-nc"
     groups:
       - name: "afgeschermd"
-      - name: "openbaar"
     tags:
       - display_name: "Kadaster"
         name: "kadaster"

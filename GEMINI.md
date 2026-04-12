@@ -13,6 +13,16 @@ It's a Dockerized application that follows Infrastructure as Code principles, me
 *   **Search:** Solr
 *   **Machine Learning:** TensorFlow
 *   **Containerization:** Docker, Docker Compose
+*   **Dev Environment:** Nix Flake + direnv
+
+## Nix Environment
+
+This project uses a **Nix Flake** to manage all development tools (Node 24, Python 3.11, Docker Compose). 
+
+**Usage:**
+1. Ensure `direnv` is installed.
+2. Run `direnv allow` in the root.
+3. Your shell will automatically load the correct versions of all tools.
 
 ## Getting Started
 

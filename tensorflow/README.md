@@ -1,7 +1,7 @@
 # Activity Predictor Model
 
-This directory contains the machine learning pipeline, training scripts, and serving configuration for the **Activity
-Predictor**. This model is a multi-label classifier designed to suggest relevant map layers based on an activity's title
+This directory contains the machine learning pipeline, training scripts, and serving configuration for the **Activity Predictor**. 
+This model is a multi-label classifier designed to suggest relevant map layers based on an activity's title
 and its associated emergency domains.
 
 ## The Model Architecture
@@ -11,16 +11,13 @@ streams:
 
 1. **Textual Input (`bert_input`):** 768-dimensional embeddings generated from the activity title using **RobBERT** (a
    Dutch BERT model: `pdelobelle/robbert-v2-dutch-base`).
-    - **Mean Pooling:** Since BERT produces an embedding for every single token, the pipeline uses "Mean Pooling" to
-      create a single vector for the entire title. It ignores padding tokens, sums the embeddings of real tokens, and
-      divides by the sentence length to capture the average semantic meaning.
+    - **Mean Pooling:** Since BERT produces an embedding for every single token, the pipeline uses "Mean Pooling" to create a single vector for the entire title. It ignores padding tokens, sums the embeddings of real tokens, and divides by the sentence length to capture the average semantic meaning.
 2. **Categorical Input (`domain_input`):** A multi-label binarized vector representing the involved domains (e.g.,
    `brandweer`, `politie`, `GGD`).
 
 ### Semantic Processing (Mean Pooling)
 
-To convert token-level outputs into a single fixed-length vector, the `robbert_training.py` script performs the
-following steps:
+To convert token-level outputs into a single fixed-length vector, the `robbert_training.py` script performs the following steps:
 
 - **Retrieve Embeddings:** Extracts the `last_hidden_state` from the transformer.
 - **Mask Alignment:** Expands the attention mask to match the embedding dimensions.
@@ -43,13 +40,11 @@ The model is derived from `mockdata.yaml`, which contains a curated set of Dutch
 
 1. **Data Loading:** Parses `mockdata.yaml`.
 2. **Label Encoding:** Uses `MultiLabelBinarizer` for both input domains and output layers.
-3. **Embedding Generation:** Uses the `transformers` library to compute mean-pooled RobBERT embeddings for every
-   activity name.
+3. **Embedding Generation:** Uses the `transformers` library to compute mean-pooled RobBERT embeddings for every activity name.
 4. **Training:** Fits the functional model with early stopping and learning rate reduction.
 5. **Export:**
     - **Model:** Saved in `SavedModel` format to `tf_serving_models/activity_predictor/1/`.
-    - **Metadata:** Exported to `model_metadata.json` (and synced to the frontend). This file contains the class
-      mappings (e.g., `layers_classes`) required to decode the model's raw output.
+    - **Metadata:** Exported to `model_metadata.json` (and synced to the frontend). This file contains the class mappings (e.g., `layers_classes`) required to decode the model's raw output.
 
 ### Local Setup
 
